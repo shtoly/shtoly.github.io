@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/%E6%A2%A6%E6%83%B3%E5%AE%B6.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/%E6%A2%A6%E6%83%B3%E5%AE%B6.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shtoly.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="前提文档链接 Vite 环境变量和模式文档：https:&#x2F;&#x2F;vitejs.cn&#x2F;vite3-cn&#x2F;guide&#x2F;env-and-mode.html#env-files">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vite 环境变量配置文件">
+<meta property="og:url" content="https://shtoly.github.io/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/index.html">
+<meta property="og:site_name" content="Shtoly&#39;s Blog">
+<meta property="og:description" content="前提文档链接 Vite 环境变量和模式文档：https:&#x2F;&#x2F;vitejs.cn&#x2F;vite3-cn&#x2F;guide&#x2F;env-and-mode.html#env-files">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://shtoly.github.io/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-2.png">
+<meta property="og:image" content="https://shtoly.github.io/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-1.png">
+<meta property="og:image" content="https://shtoly.github.io/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-3.png">
+<meta property="og:image" content="https://shtoly.github.io/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-4.png">
+<meta property="og:image" content="https://shtoly.github.io/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-5.png">
+<meta property="og:image" content="https://shtoly.github.io/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-6.png">
+<meta property="article:published_time" content="2024-10-18T13:09:50.357Z">
+<meta property="article:modified_time" content="2024-10-16T01:20:57.000Z">
+<meta property="article:author" content="Shtoly">
+<meta property="article:tag" content="vite">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shtoly.github.io/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-2.png">
+
+
+<link rel="canonical" href="https://shtoly.github.io/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://shtoly.github.io/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/","path":"2024/10/18/vite环境变量配置文件/","title":"vite 环境变量配置文件"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>vite 环境变量配置文件 | Shtoly's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Shtoly's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">9</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">9</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+<aside class="sidebar">
+
+  <div
+    class="sidebar-inner sidebar-nav-active sidebar-toc-active"
+  >
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-toc">文章目录</li>
+      <li class="sidebar-nav-overview">站点概览</li>
+    </ul>
+
+    <div class="sidebar-panel-container">
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+        <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%8E%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">开发环境与配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">2.</span> <span class="nav-text">环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">2.1.</span> <span class="nav-text">环境变量的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E5%AE%9A%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="nav-number">2.2.</span> <span class="nav-text">指定开发环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E5%AE%9A%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.2.1.</span> <span class="nav-text">指定开发环境的模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E5%AE%9A%E7%8E%AF%E5%A2%83%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.2.2.</span> <span class="nav-text">指定环境类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.2.3.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">2.2.4.</span> <span class="nav-text">注意事项</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shtoly"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shtoly</p>
+  <div class="site-description" itemprop="description">Shtoly's Blog</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shtoly" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shtoly" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+<!-- recent posts -->
+    <div class="links-of-blogroll motion-element links-of-blogroll-block">
+        <div class="links-of-blogroll-title recent-posts-title">
+	    <i class="fa fa-history " aria-hidden="true"></i>
+            近期文章
+	</div>
+	<ul class="links-of-blogroll-list recent-posts-list">
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" title="带参数的文件上传" target="">
+		    带参数的文件上传
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" title="vite 环境变量配置文件" target="">
+		    vite 环境变量配置文件
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2024/10/18/hello-world/" title="Hello World" target="">
+		    Hello World
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2024/10/16/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98-%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD/" title="前端面试题-类型判断（补充中）" target="">
+		    前端面试题-类型判断（补充中）
+		    </a>
+		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2024/10/15/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="微信小程序-学习笔记（学习中）" target="">
+		    微信小程序-学习笔记（学习中）
+		    </a>
+		</li>
+	</ul>
+    </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="pjax">
+  </div>
+</aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://shtoly.github.io/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shtoly">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shtoly's Blog">
+      <meta itemprop="description" content="Shtoly's Blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="vite 环境变量配置文件 | Shtoly's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vite 环境变量配置文件
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-10-18 21:09:50" itemprop="dateCreated datePublished" datetime="2024-10-18T21:09:50+08:00">2024-10-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-16 09:20:57" itemprop="dateModified" datetime="2024-10-16T09:20:57+08:00">2024-10-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E5%B7%A5%E7%A8%8B%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">工程化</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><strong>前提文档链接</strong></p>
+<p>Vite 环境变量和模式文档：<a target="_blank" rel="noopener" href="https://vitejs.cn/vite3-cn/guide/env-and-mode.html#env-files">https://vitejs.cn/vite3-cn/guide/env-and-mode.html#env-files</a></p>
+<hr>
+<span id="more"></span>
+<h2 id="开发环境与配置文件">开发环境与配置文件</h2>
+<p>在项目开发中，我们往往需要在不同环境下使用不同的配置，比如开发环境、测试环境、生产环境等。</p>
+<p>在项目开发中，常见的环境有</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>dev</code> – 开发环境，外部用户无法访问，开发人员使用，版本变动大。</p>
+</li>
+<li class="lvl-2">
+<p><code>prod</code> – 生产环境，面向外部用户的环境，正式环境。</p>
+</li>
+<li class="lvl-2">
+<p><code>test</code> – 测试环境，外部用户无法访问，专门给测试人员使用的，版本相对稳定。</p>
+</li>
+<li class="lvl-2">
+<p><code>sit (System Integration Test)</code> – 集成环境，系统集成测试，开发人员自己测试流程是否走通。</p>
+</li>
+<li class="lvl-2">
+<p><code>uat (User Acceptance Test environment)</code> – 用户验收测试环境，主要面向要交付的人员进行验证测试。</p>
+</li>
+<li class="lvl-2">
+<p><code>pre</code> – 灰度环境，外部用户可以访问，但是服务器配置相对低，其它和生产一样。</p>
+</li>
+<li class="lvl-2">
+<p><code>fat (Feature Acceptance Test environment)</code> – 功能验收测试环境，用于软件测试者测试使用。在以 <a target="_blank" rel="noopener" href="https://vitejs.cn/">Vite</a> 作为构建工具开发项目时，环境变量配置文件名为 <code>.env</code>，文件名后缀为 <code>.env.[mode]</code>，其中 <code>mode</code> 为环境名称，如 <code>dev</code>、<code>prod</code>、<code>test</code> 等。</p>
+</li>
+</ul>
+<p>根据 <code>mode</code> 的不同，可以配置不同的环境变量，例如</p>
+<blockquote>
+<p>.env.development<br>
+.env.production<br>
+.env.test</p>
+</blockquote>
+<p>默认情况下，Vite 会自动读取 <code>.env</code> 文件（通用配置），并根据 <code>NODE_ENV</code> 的值来确定当前环境。</p>
+<p>但对于一份指定模式的文件（例如 .env.production）会比通用形式的优先级更高（例如 .env）。且相同的配置项，指定模式的文件会覆盖通用配置。</p>
+<p>虽说环境有多种，但真正的开发模式只有两种</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>development</code>：开发模式下</p>
+</li>
+<li class="lvl-2">
+<p><code>production</code>：生产模式下</p>
+</li>
+</ul>
+<p>我们可以在不同的开发模式下配置多种环境，基于这种情况下，又习惯性的把 <code>开发环境</code> 和 <code>生产环境</code> 作为主环境，而在主环境下配置各种子环境，显示的把开发模式指定出来，便于开发人员理解，基于此，有些项目的环境目录会出现以下情况</p>
+<blockquote>
+<p>.env.development<br>
+.env.development.sit<br>
+.env.production<br>
+.env.production.uat</p>
+</blockquote>
+<h2 id="环境变量">环境变量</h2>
+<p>在 Vite 中，环境变量的命名规则默认为 <code>VITE_</code> 开头，例如 <code>VITE_API_URL</code>。</p>
+<p><strong>官方解释</strong></p>
+<blockquote>
+<p>为了防止意外地将一些环境变量泄漏到客户端，只有以 VITE_ 为前缀的变量才会暴露给经过 vite 处理的代码。例如下面这些环境变量：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">VITE_SOME_KEY</span>=<span class="number">123</span></span><br><span class="line"><span class="attr">DB_PASSWORD</span>=foobar</span><br></pre></td></tr></table></figure>
+<p>只有 VITE_SOME_KEY 会被暴露为 import.meta.env.VITE_SOME_KEY 提供给客户端源码，而 DB_PASSWORD 则不会。</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(<span class="keyword">import</span>.meta.env.VITE_SOME_KEY) <span class="comment">// 123</span></span><br><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(<span class="keyword">import</span>.meta.env.DB_PASSWORD) <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>如果修改默认前缀，请参阅 <a target="_blank" rel="noopener" href="https://vitejs.cn/vite3-cn/config/shared-options.html#envprefix">envprefix</a>。</p>
+<h3 id="环境变量的使用">环境变量的使用</h3>
+<p>在项目中，有些公共部分是需要我们抽离出来，作为环境变量进行配置，例如：<code>API_BASE_URL</code>，<code>ROUTE_BASE_URL</code>等等。</p>
+<p>我们可以在 <code>.env.[mode]</code> 配置文件中填写</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">VITE_APP_API_URL</span>=http://x.x.x.x:xx</span><br><span class="line"><span class="attr">VITE_ROUTE_BASE_URL</span>=/xxx</span><br></pre></td></tr></table></figure>
+<p>在项目中，我们可以通过 <code>import.meta.env.[变量名]</code> 来获取这些环境变量。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">env</span>.<span class="property">VITE_APP_API_URL</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">env</span>.<span class="property">VITE_ROUTE_BASE_URL</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="指定开发环境">指定开发环境</h3>
+<p>我们可以通过获取这些环境变量以达到不同环境下使用不同变量的功能，但我们如何确定当前环境或者当前模式呢？</p>
+<h4 id="指定开发环境的模式">指定开发环境的模式</h4>
+<p>开发环境的模式需要在配置文件中配置 <code>NODE_ENV</code> 变量，Vite 会自动读取该变量，并根据该变量的值来确定当前开发模式，默认为 <code>development</code>。</p>
+<p><code>NODE_ENV</code> 有两个值：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>development</code>：开发模式</p>
+</li>
+<li class="lvl-2">
+<p><code>production</code>：生产模式</p>
+</li>
+</ul>
+<p>在有些时候，我们不需要进行显示的配置，Vite 内部会自动根据当前环境来确定开发模式。例如：</p>
+<blockquote>
+<p>默认情况下，开发服务器 (dev 命令) 运行在 development (开发) 模式，而 build 命令（打包命令）则运行在 production (生产) 模式。</p>
+<p>这意味着当执行 vite build 时，它会自动加载 .env.production 中可能存在的环境变量。 ————<a target="_blank" rel="noopener" href="https://vitejs.cn/vite3-cn/guide/env-and-mode.html#env-files">官方解释</a></p>
+</blockquote>
+<h4 id="指定环境类型">指定环境类型</h4>
+<p>在上文我们提到了 <code>.env.[mode]</code> ，我们只需要改写 <code>mode</code> 值便可实现环境的创建，在真实情况下，<code>mode</code> 可以是任意值，但为了避免混淆，我们可以遵循以上的软规定。</p>
+<p>通过改变 mode 的值便可创建一个环境，但除了 <code>.env.development</code> 和 .<code>env.production</code> 可以被 Vite 自动识别在 dev命令 和 build 命令情况下读取变量外，其他的 mode 配置只会根据 <code>NODE_ENV</code> 的值来识别其对应的配置文件。</p>
+<p>我们还需要在启动命令中进行模式指定，在项目根目录的 <code>package.json</code> 中的执行脚本 <code>script</code> 中添加一条命令，如</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;dev-test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vite --mode test&quot;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+<p>通过指定 <code>--mode</code> 参数，Vite 就会根据当前启动命令指定的模式来加载对应的 Vite 项目中 <code>.env.[mode]</code> mode 指定的配置文件。</p>
+<h4 id="示例">示例</h4>
+<p>在 <code>.env.development</code> 中配置</p>
+<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-2.png" class="" title="vite 环境变量配置文件">
+<p>我在封装的请求模块中引用 <code>VITE_APP_API_URL</code> 变量</p>
+<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-1.png" class="" title="vite 环境变量配置文件">
+<p>通过 <code>npm run dev</code> 启动项目，在网络请求中的 <code>baseURL</code> 显示为 <code>http://10.111.11.11:8080</code></p>
+<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-3.png" class="" title="vite 环境变量配置文件">
+<p>我们更换环境</p>
+<p>在 <code>.env.test</code> 中配置</p>
+<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-4.png" class="" title="vite 环境变量配置文件">
+<p>在 <code>package.json</code> 中添加一条命令</p>
+<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-5.png" class="" title="vite 环境变量配置文件">
+<p>运行 <code>npm run dev-test</code>，在网络请求中的 <code>baseURL</code> 显示为 <code>http://10.122.22.22:8001</code></p>
+<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-6.png" class="" title="vite 环境变量配置文件">
+<h4 id="注意事项">注意事项</h4>
+<p>当前 <code>Vite</code> 版本执行打包命令时，如果在 <code>.env,production</code> 中指定了 <code>NODE_ENV:production</code>，会报错，只需把该配置删除即可，打包时还是会读取 <code>.env,production</code> 的配置。</p>
+
+    </div>
+
+    
+    
+    
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Shtoly 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="Shtoly 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Shtoly
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://shtoly.github.io/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" title="vite 环境变量配置文件">https://shtoly.github.io/2024/10/18/vite环境变量配置文件/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/vite/" rel="tag"><i class="fa fa-tag"></i> vite</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/10/18/hello-world/" rel="prev" title="Hello World">
+                  <i class="fa fa-angle-left"></i> Hello World
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="next" title="带参数的文件上传">
+                  带参数的文件上传 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main><div id="tp-weather-widget"></div>
+<script>
+(function(a,h,g,f,e,d,c,b){b=function(){d=h.createElement(g);c=h.getElementsByTagName(g)[0];d.src=e;d.charset="utf-8";d.async=1;c.parentNode.insertBefore(d,c)};a["SeniverseWeatherWidgetObject"]=f;a[f]||(a[f]=function(){(a[f].q=a[f].q||[]).push(arguments)});a[f].l=+new Date();if(a.attachEvent){a.attachEvent("onload",b)}else{a.addEventListener("load",b,false)}}(window,document,"script","SeniverseWeatherWidget","//cdn.sencdn.com/widget2/static/js/bundle.js?t="+parseInt((new Date().getTime() / 100000000).toString(),10)));
+window.SeniverseWeatherWidget('show', {
+    flavor: "bubble",
+    location: "WW2CSZKC3PHE",
+    geolocation: true,
+    language: "zh-Hans",
+    unit: "c",
+    theme: "auto",
+    token: "67d8c8ef-0f03-4d08-b5ba-ac1a9f24ee70",
+    hover: "enabled",
+    container: "tp-weather-widget"
+})
+</script><!-- require APlayer -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<!-- require MetingJS-->
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script> 
+<!--网易云-->   
+<meting-js
+    server="netease"
+    id="6903651881"
+    type="playlist" 
+    mini="true"
+    fixed="true"
+    autoplay="true"
+    volume="0.4"
+    theme="#FADFA3"
+    order="random"
+    loop="all"
+    preload="auto"
+    mutex="true"
+    list-folded="true"
+    loop="all"
+    >
+</meting-js>
+<footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Shtoly</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">8k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">28 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("10/10/2024 00:00:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/shtoly" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '48vh',
+  right: 'unset',
+  left: '25px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"shtoly","repo":"shtoly.github.io","client_id":"Ov23liK31JPQeoo7RowF","client_secret":"1b6ca11cecf9665e1ea7e7f6e7e4a0377f3241b5","admin_user":"shtoly","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"40185a93148e2569fe85adfd85d29708"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":null});</script></body>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/mouse-click-themes/clicklove.js"></script>
+</html>

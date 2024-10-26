@@ -1,0 +1,44 @@
+/**
+ * details css
+ */
+details {
+  background-color: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  padding: 1em;
+  margin: 1rem 0;
+  transition: all 0.3s ease;
+}
+details:hover {
+  border-color: #337ecc;
+}
+summary {
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  list-style: none;
+  position: relative;
+  padding-left: 25px;
+  transition: color 0.3s ease;
+  min-height: 1rem;
+  line-height: 1rem;
+}
+summary:hover {
+  color: #337ecc;
+}
+summary::before {
+  content: "▶";
+  position: absolute;
+  left: 0;
+  font-size: 14px;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+}
+details[open] summary::before {
+  transform: rotate(90deg);
+}
+details > *:not(summary) {
+  margin-top: 10px;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
