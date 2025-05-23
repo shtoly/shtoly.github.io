@@ -681,9 +681,10 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
+    <title>Hello World</title>
     <url>/2025/05/23/day%2002%20HTML/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1>一、HTML结构分析</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h1>一、HTML结构分析</h1>
 <h2 id="1-1-文档声明">1.1 文档声明</h2>
 <p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1733834354754.png" alt="1733834354754"></p>
 <p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1733834422129.png" alt="1733834422129"></p>
@@ -855,6 +856,12 @@
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&#x27;UTF-8&#x27;</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1734012808180.png" alt="1734012808180"></p>
 ]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
   </entry>
   <entry>
     <title>post</title>
