@@ -21,25 +21,26 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"shtoly.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Shtoly&#39;s Blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Shtoly&#39;s Blog">
-<meta property="og:url" content="https://shtoly.github.io/page/2/index.html">
+    <meta property="og:type" content="article">
+<meta property="og:title" content="Vue首屏加载优化">
+<meta property="og:url" content="https://shtoly.github.io/2025/07/08/vue%E9%A6%96%E5%B1%8F%E5%8A%A0%E8%BD%BD%E4%BC%98%E5%8C%96/index.html">
 <meta property="og:site_name" content="Shtoly&#39;s Blog">
-<meta property="og:description" content="Shtoly&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-07-08T12:56:12.804Z">
+<meta property="article:modified_time" content="2025-07-08T13:35:34.460Z">
 <meta property="article:author" content="Shtoly">
+<meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://shtoly.github.io/page/2/">
+<link rel="canonical" href="https://shtoly.github.io/2025/07/08/vue%E9%A6%96%E5%B1%8F%E5%8A%A0%E8%BD%BD%E4%BC%98%E5%8C%96/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"page/2/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://shtoly.github.io/2025/07/08/vue%E9%A6%96%E5%B1%8F%E5%8A%A0%E8%BD%BD%E4%BC%98%E5%8C%96/","path":"2025/07/08/vue首屏加载优化/","title":"Vue首屏加载优化"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Shtoly's Blog</title>
+<title>Vue首屏加载优化 | Shtoly's Blog</title>
   
 
 
@@ -72,7 +73,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Shtoly's Blog</h1>
+      <p class="site-title">Shtoly's Blog</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -87,7 +88,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">9</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">11</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">10</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">10</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -126,7 +127,7 @@
 <aside class="sidebar">
 
   <div
-    class="sidebar-inner sidebar-overview-active"
+    class="sidebar-inner sidebar-nav-active sidebar-toc-active"
   >
     <ul class="sidebar-nav">
       <li class="sidebar-nav-toc">文章目录</li>
@@ -136,6 +137,7 @@
     <div class="sidebar-panel-container">
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+        <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%8E%E6%A0%B7%E5%9C%A8%E4%BB%A3%E7%A0%81%E4%B8%AD%E5%B0%86%E9%A6%96%E5%B1%8F%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4%E8%AE%A1%E7%AE%97%E5%87%BA%E6%9D%A5"><span class="nav-number">1.</span> <span class="nav-text">怎样在代码中将首屏加载时间计算出来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue%E4%B8%AD%E7%9A%84%E5%BC%82%E6%AD%A5%E7%BB%84%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">vue中的异步组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%B8%B8%E6%99%AE%E9%80%9A%E5%AF%BC%E5%85%A5%E7%BB%84%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">正常普通导入组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5%E7%BB%84%E4%BB%B6"><span class="nav-number">2.2.</span> <span class="nav-text">异步组件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A6%96%E9%A1%B5%E5%9B%BE%E7%89%87"><span class="nav-number">3.</span> <span class="nav-text">首页图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E7%99%BD%E5%B1%8F%E6%98%BE%E7%A4%BA-%E9%AA%A8%E6%9E%B6%E5%B1%8F"><span class="nav-number">4.</span> <span class="nav-text">优化白屏显示-骨架屏</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -150,18 +152,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -179,13 +181,8 @@
 	</div>
 	<ul class="links-of-blogroll-list recent-posts-list">
 	        <li class="my-links-of-blogroll-item">
-		    <a href="/2025/05/23/day%2002%20HTML/" title="HTML" target="">
-		    HTML
-		    </a>
-		</li>
-	        <li class="my-links-of-blogroll-item">
-		    <a href="/2024/10/26/post/" title="post" target="">
-		    post
+		    <a href="/2025/07/08/vue%E9%A6%96%E5%B1%8F%E5%8A%A0%E8%BD%BD%E4%BC%98%E5%8C%96/" title="Vue首屏加载优化" target="">
+		    Vue首屏加载优化
 		    </a>
 		</li>
 	        <li class="my-links-of-blogroll-item">
@@ -203,6 +200,11 @@
 		    Hello World
 		    </a>
 		</li>
+	        <li class="my-links-of-blogroll-item">
+		    <a href="/2024/10/16/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98-%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD/" title="前端面试题-类型判断（补充中）" target="">
+		    前端面试题-类型判断（补充中）
+		    </a>
+		</li>
 	</ul>
     </div>
       </div>
@@ -217,17 +219,18 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://shtoly.github.io/2024/10/13/%E5%88%9B%E5%BB%BARN%E9%A1%B9%E7%9B%AE/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://shtoly.github.io/2025/07/08/vue%E9%A6%96%E5%B1%8F%E5%8A%A0%E8%BD%BD%E4%BC%98%E5%8C%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -240,13 +243,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Shtoly's Blog">
+      <meta itemprop="name" content="Vue首屏加载优化 | Shtoly's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/10/13/%E5%88%9B%E5%BB%BARN%E9%A1%B9%E7%9B%AE/" class="post-title-link" itemprop="url">创建RN项目</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Vue首屏加载优化
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -255,15 +258,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2024-10-13 22:01:17" itemprop="dateCreated datePublished" datetime="2024-10-13T22:01:17+08:00">2024-10-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-16 09:28:41" itemprop="dateModified" datetime="2024-10-16T09:28:41+08:00">2024-10-16</time>
+      <time title="创建时间：2025-07-08 20:56:12 / 修改时间：21:35:34" itemprop="dateCreated datePublished" datetime="2025-07-08T20:56:12+08:00">2025-07-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -275,22 +272,25 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%89%8D%E7%AB%AF/APP/" itemprop="url" rel="index"><span itemprop="name">APP</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%89%8D%E7%AB%AF/APP/React-Native/" itemprop="url" rel="index"><span itemprop="name">React Native</span></a>
+          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%A6%96%E5%B1%8F%E5%8A%A0%E8%BD%BD%E4%BC%98%E5%8C%96/" itemprop="url" rel="index"><span itemprop="name">首屏加载优化</span></a>
         </span>
     </span>
 
   
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
     <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>163</span>
+      <span>257</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -307,28 +307,79 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-          <h1>Android 开发环境</h1>
-<ul class="lvl-0">
-<li class="lvl-2">配置 Android 环境，请跟着<a target="_blank" rel="noopener" href="https://reactnative.cn/docs/0.74/getting-started">文档</a>(0.74版本)进行</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/10/13/%E5%88%9B%E5%BB%BARN%E9%A1%B9%E7%9B%AE/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+    <div class="post-body" itemprop="articleBody"><hr>
+<span id="more"></span>
+<h2 id="怎样在代码中将首屏加载时间计算出来">怎样在代码中将首屏加载时间计算出来</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 首屏时间的计算</span></span><br><span class="line">    <span class="comment">// console.log(performance.timing.domComplete - performance.timing.navigationStart, &#x27;times&#x27;)//已弃用</span></span><br><span class="line">    </span><br><span class="line">   <span class="keyword">const</span> observer = <span class="keyword">new</span> <span class="title class_">PerformanceObserver</span>(<span class="function">(<span class="params">list</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(list.<span class="title function_">getEntries</span>())</span><br><span class="line">    &#125;)</span><br><span class="line">    observer.<span class="title function_">observe</span>(&#123; <span class="attr">entryTypes</span>: [<span class="string">&#x27;navigation&#x27;</span>] &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="vue中的异步组件">vue中的异步组件</h2>
+<p>在vue框架中怎么实现当用到这个组件时才会加载</p>
+<p>异步组件（在打包的时候单独形成分包）</p>
+<h3 id="正常普通导入组件">正常普通导入组件</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cs <span class="keyword">from</span> <span class="string">&quot;./cs.vue&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="异步组件">异步组件</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 异步组件</span></span><br><span class="line"><span class="keyword">const</span> cs = <span class="title function_">defineAsyncComponent</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">import</span>(<span class="string">&#x27;./cs.vue&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="首页图片">首页图片</h2>
+<p>接口返回的图片为网络图片，在页面加载的时候不会占用加载时间</p>
+<h2 id="优化白屏显示-骨架屏">优化白屏显示-骨架屏</h2>
+<p>在vue页面没加载出来之前显示骨架屏</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 35%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 50%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 60%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 80%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
     </div>
 
     
     
     
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Shtoly 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="Shtoly 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Shtoly
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://shtoly.github.io/2025/07/08/vue%E9%A6%96%E5%B1%8F%E5%8A%A0%E8%BD%BD%E4%BC%98%E5%8C%96/" title="Vue首屏加载优化">https://shtoly.github.io/2025/07/08/vue首屏加载优化/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/vue/" rel="tag"><i class="fa fa-tag"></i> vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="prev" title="带参数的文件上传">
+                  <i class="fa fa-angle-left"></i> 带参数的文件上传
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
@@ -336,10 +387,9 @@
 
 
 
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
 
+
+    <div class="comments gitalk-container"></div>
 </div>
   </main><div id="tp-weather-widget"></div>
 <script>
@@ -402,7 +452,7 @@ window.SeniverseWeatherWidget('show', {
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">31 分钟</span>
+    <span title="站点阅读时长">29 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -510,7 +560,7 @@ darkmode.showWidget();
 </script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"shtoly","repo":"shtoly.github.io","client_id":"Ov23liK31JPQeoo7RowF","client_secret":"1b6ca11cecf9665e1ea7e7f6e7e4a0377f3241b5","admin_user":"shtoly","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"c853ec00cc9d13bc22336b7d45d1416e"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"shtoly","repo":"shtoly.github.io","client_id":"Ov23liK31JPQeoo7RowF","client_secret":"1b6ca11cecf9665e1ea7e7f6e7e4a0377f3241b5","admin_user":"shtoly","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"f1473df27a437689f8d074c0d01a193f"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":380},"mobile":null});</script></body>

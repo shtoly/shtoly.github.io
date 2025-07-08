@@ -42,6 +42,55 @@
       </tags>
   </entry>
   <entry>
+    <title>SASS星空</title>
+    <url>/2024/10/15/SASS%E6%98%9F%E7%A9%BA/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p><strong>效果图</strong></p>
+<img data-src="/2024/10/15/SASS%E6%98%9F%E7%A9%BA/preview.gif" class="" title="SASS星空">
+<p>盒子的阴影可以设置多个，所以我们可以通过阴影实现星光的效果，但纯写 css 过于抽象，我们可以利用 sass 的循环语法、函数与变量编写</p>
+<p><strong>HTML结构</strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;./index.css&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 这里只设置三个层级,可以根据需要自己添加 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layer1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layer2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layer3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;title&quot;</span>&gt;</span>Sass 星空<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>SASS代码</strong><br>
+提示：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>对SASS的编译不要用 VScode 的插件：easy sass，可能会出现函数识别导致编译失败的问题</p>
+</li>
+<li class="lvl-2">
+<p>可以在 node 环境下，安装 sass：<code>npm i sass</code></p>
+</li>
+<li class="lvl-2">
+<p>后执行 <code>npx sass [sass文件路径] [编译转换后的css输出文件路径] --no-source-map -w</code></p>
+</li>
+</ul>
+<blockquote>
+<p>npx sass index.scss index.css --no-source-map -w</p>
+</blockquote>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>npx：暂时把 sass 加入环境变量中，仅在此命令行操作有效</p>
+</li>
+<li class="lvl-2">
+<p>sass：安装 sass 自带的执行命令</p>
+</li>
+<li class="lvl-2">
+<p>–no-source-map：取消源映射，source-map里面存放着sass与css的映射信息，通过此命令可以取消该文件的生成</p>
+</li>
+<li class="lvl-2">
+<p>-w：监听sass/scss的文件内容变化，自动更新生成的css</p>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">// 背景底色</span><br><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">    radial-gradient 是 CSS3 中用于创建径向渐变背景的属性。</span></span><br><span class="line"><span class="comment">    ellipse at bottom 指定了渐变形状为椭圆，并且椭圆的底部与元素的底部对齐。</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">radial-gradient</span>(ellipse at bottom, <span class="number">#1b2735</span> <span class="number">0%</span>, <span class="number">#090a0f</span> <span class="number">100%</span>);</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.title</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&quot;lato&quot;</span>, sans-serif;</span><br><span class="line">  <span class="attribute">font-weight</span>: <span class="number">300</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">letter-spacing</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">margin-top</span>: -<span class="number">60px</span>;</span><br><span class="line">  <span class="attribute">padding-left</span>: <span class="number">10px</span>;</span><br><span class="line">  // 渐变背景，将文本背景设置为透明，并设置背景颜色为 <span class="selector-id">#38495a</span></span><br><span class="line">  // 即将文字展示为背景颜色</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(white, <span class="number">#38495a</span>);</span><br><span class="line">  -webkit-<span class="attribute">background-clip</span>: text;</span><br><span class="line">  <span class="attribute">background-clip</span>: text;</span><br><span class="line">  <span class="attribute">color</span>: transparent;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 创建星光（阴影）函数</span><br><span class="line"><span class="keyword">@function</span> createShadow($n) &#123;</span><br><span class="line">  // 定义阴影变量  </span><br><span class="line">  $shadow: <span class="string">&quot;#&#123;random($limit: 100)&#125;vw #&#123;random($limit: 100)&#125;vh #fff&quot;</span>;</span><br><span class="line">  <span class="keyword">@for</span> $i from <span class="number">2</span> through $n &#123;</span><br><span class="line">    // 每次循环向 $shadow 中添加新的阴影</span><br><span class="line">    $shadow: <span class="string">&quot;#&#123;$shadow&#125;, #&#123;random($limit: 100)&#125;vw #&#123;random($limit: 100)&#125;vh #fff&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  // unquote() 函数用于将字符串转换为 CSS 属性值，即去掉字符串</span><br><span class="line">  <span class="keyword">@return</span> unquote($shadow);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 定义星光（阴影）初始数量</span><br><span class="line">$count: <span class="number">1000</span>;</span><br><span class="line">// 定义动画初始时间</span><br><span class="line">$duration: <span class="number">400s</span>;</span><br><span class="line"><span class="keyword">@for</span> $i from <span class="number">1</span> through <span class="number">3</span> &#123;</span><br><span class="line">  // 每次循环时将数量和动画时间减半，以达到不同层级的动画效果</span><br><span class="line">  $count: <span class="built_in">floor</span>(<span class="built_in">calc</span>($count / <span class="number">2</span>));</span><br><span class="line">  $duration: <span class="built_in">floor</span>(<span class="built_in">calc</span>($duration / <span class="number">2</span>));</span><br><span class="line"></span><br><span class="line">  // 输出调试信息</span><br><span class="line">  <span class="keyword">@debug</span> <span class="string">&quot;count #&#123;$count&#125;&quot;</span>;</span><br><span class="line">  <span class="keyword">@debug</span> <span class="string">&quot;duration #&#123;$duration&#125;&quot;</span>;</span><br><span class="line">  // 创建层级的样式</span><br><span class="line">  <span class="selector-class">.layer</span>#&#123;$<span class="selector-tag">i</span>&#125; &#123;</span><br><span class="line">    $size: #&#123;$<span class="selector-tag">i</span>&#125;px;</span><br><span class="line">    <span class="attribute">position</span>: fixed;</span><br><span class="line">    <span class="attribute">width</span>: $size;</span><br><span class="line">    <span class="attribute">height</span>: $size;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#f40</span>;</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="built_in">createShadow</span>($count);</span><br><span class="line">    <span class="attribute">animation</span>: moveUp $duration linear infinite;</span><br><span class="line">    // 为了动画的流畅和无缝衔接，在 &amp;<span class="selector-pseudo">::after</span> 中设置相同的参数</span><br><span class="line">    &amp;<span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">      <span class="attribute">content</span>: <span class="string">&quot;&quot;</span>;</span><br><span class="line">      <span class="attribute">position</span>: fixed;</span><br><span class="line">      <span class="attribute">top</span>: <span class="number">100vh</span>;</span><br><span class="line">      <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">      <span class="attribute">width</span>: inherit;</span><br><span class="line">      <span class="attribute">height</span>: inherit;</span><br><span class="line">      <span class="attribute">box-shadow</span>: inherit;</span><br><span class="line">      <span class="attribute">background</span>: inherit;</span><br><span class="line">      <span class="attribute">border-radius</span>: inherit;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 移动动画</span><br><span class="line"><span class="keyword">@keyframes</span> moveUp &#123;</span><br><span class="line">  <span class="number">100%</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">100vh</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>前端</category>
+        <category>页面</category>
+      </categories>
+      <tags>
+        <tag>SASS</tag>
+        <tag>CSS</tag>
+        <tag>HTML</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2024/10/18/hello-world/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -65,6 +114,128 @@
       </categories>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vite 环境变量配置文件</title>
+    <url>/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p><strong>前提文档链接</strong></p>
+<p>Vite 环境变量和模式文档：<a href="https://vitejs.cn/vite3-cn/guide/env-and-mode.html#env-files">https://vitejs.cn/vite3-cn/guide/env-and-mode.html#env-files</a></p>
+<hr>
+<span id="more"></span>
+<h2 id="开发环境与配置文件">开发环境与配置文件</h2>
+<p>在项目开发中，我们往往需要在不同环境下使用不同的配置，比如开发环境、测试环境、生产环境等。</p>
+<p>在项目开发中，常见的环境有</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>dev</code> – 开发环境，外部用户无法访问，开发人员使用，版本变动大。</p>
+</li>
+<li class="lvl-2">
+<p><code>prod</code> – 生产环境，面向外部用户的环境，正式环境。</p>
+</li>
+<li class="lvl-2">
+<p><code>test</code> – 测试环境，外部用户无法访问，专门给测试人员使用的，版本相对稳定。</p>
+</li>
+<li class="lvl-2">
+<p><code>sit (System Integration Test)</code> – 集成环境，系统集成测试，开发人员自己测试流程是否走通。</p>
+</li>
+<li class="lvl-2">
+<p><code>uat (User Acceptance Test environment)</code> – 用户验收测试环境，主要面向要交付的人员进行验证测试。</p>
+</li>
+<li class="lvl-2">
+<p><code>pre</code> – 灰度环境，外部用户可以访问，但是服务器配置相对低，其它和生产一样。</p>
+</li>
+<li class="lvl-2">
+<p><code>fat (Feature Acceptance Test environment)</code> – 功能验收测试环境，用于软件测试者测试使用。在以 <a href="https://vitejs.cn/">Vite</a> 作为构建工具开发项目时，环境变量配置文件名为 <code>.env</code>，文件名后缀为 <code>.env.[mode]</code>，其中 <code>mode</code> 为环境名称，如 <code>dev</code>、<code>prod</code>、<code>test</code> 等。</p>
+</li>
+</ul>
+<p>根据 <code>mode</code> 的不同，可以配置不同的环境变量，例如</p>
+<blockquote>
+<p>.env.development<br>
+.env.production<br>
+.env.test</p>
+</blockquote>
+<p>默认情况下，Vite 会自动读取 <code>.env</code> 文件（通用配置），并根据 <code>NODE_ENV</code> 的值来确定当前环境。</p>
+<p>但对于一份指定模式的文件（例如 .env.production）会比通用形式的优先级更高（例如 .env）。且相同的配置项，指定模式的文件会覆盖通用配置。</p>
+<p>虽说环境有多种，但真正的开发模式只有两种</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>development</code>：开发模式下</p>
+</li>
+<li class="lvl-2">
+<p><code>production</code>：生产模式下</p>
+</li>
+</ul>
+<p>我们可以在不同的开发模式下配置多种环境，基于这种情况下，又习惯性的把 <code>开发环境</code> 和 <code>生产环境</code> 作为主环境，而在主环境下配置各种子环境，显示的把开发模式指定出来，便于开发人员理解，基于此，有些项目的环境目录会出现以下情况</p>
+<blockquote>
+<p>.env.development<br>
+.env.development.sit<br>
+.env.production<br>
+.env.production.uat</p>
+</blockquote>
+<h2 id="环境变量">环境变量</h2>
+<p>在 Vite 中，环境变量的命名规则默认为 <code>VITE_</code> 开头，例如 <code>VITE_API_URL</code>。</p>
+<p><strong>官方解释</strong></p>
+<blockquote>
+<p>为了防止意外地将一些环境变量泄漏到客户端，只有以 VITE_ 为前缀的变量才会暴露给经过 vite 处理的代码。例如下面这些环境变量：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">VITE_SOME_KEY</span>=<span class="number">123</span></span><br><span class="line"><span class="attr">DB_PASSWORD</span>=foobar</span><br></pre></td></tr></table></figure>
+<p>只有 VITE_SOME_KEY 会被暴露为 import.meta.env.VITE_SOME_KEY 提供给客户端源码，而 DB_PASSWORD 则不会。</p>
+<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(<span class="keyword">import</span>.meta.env.VITE_SOME_KEY) <span class="comment">// 123</span></span><br><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(<span class="keyword">import</span>.meta.env.DB_PASSWORD) <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>如果修改默认前缀，请参阅 <a href="https://vitejs.cn/vite3-cn/config/shared-options.html#envprefix">envprefix</a>。</p>
+<h3 id="环境变量的使用">环境变量的使用</h3>
+<p>在项目中，有些公共部分是需要我们抽离出来，作为环境变量进行配置，例如：<code>API_BASE_URL</code>，<code>ROUTE_BASE_URL</code>等等。</p>
+<p>我们可以在 <code>.env.[mode]</code> 配置文件中填写</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">VITE_APP_API_URL</span>=http://x.x.x.x:xx</span><br><span class="line"><span class="attr">VITE_ROUTE_BASE_URL</span>=/xxx</span><br></pre></td></tr></table></figure>
+<p>在项目中，我们可以通过 <code>import.meta.env.[变量名]</code> 来获取这些环境变量。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">env</span>.<span class="property">VITE_APP_API_URL</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">env</span>.<span class="property">VITE_ROUTE_BASE_URL</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="指定开发环境">指定开发环境</h3>
+<p>我们可以通过获取这些环境变量以达到不同环境下使用不同变量的功能，但我们如何确定当前环境或者当前模式呢？</p>
+<h4 id="指定开发环境的模式">指定开发环境的模式</h4>
+<p>开发环境的模式需要在配置文件中配置 <code>NODE_ENV</code> 变量，Vite 会自动读取该变量，并根据该变量的值来确定当前开发模式，默认为 <code>development</code>。</p>
+<p><code>NODE_ENV</code> 有两个值：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>development</code>：开发模式</p>
+</li>
+<li class="lvl-2">
+<p><code>production</code>：生产模式</p>
+</li>
+</ul>
+<p>在有些时候，我们不需要进行显示的配置，Vite 内部会自动根据当前环境来确定开发模式。例如：</p>
+<blockquote>
+<p>默认情况下，开发服务器 (dev 命令) 运行在 development (开发) 模式，而 build 命令（打包命令）则运行在 production (生产) 模式。</p>
+<p>这意味着当执行 vite build 时，它会自动加载 .env.production 中可能存在的环境变量。 ————<a href="https://vitejs.cn/vite3-cn/guide/env-and-mode.html#env-files">官方解释</a></p>
+</blockquote>
+<h4 id="指定环境类型">指定环境类型</h4>
+<p>在上文我们提到了 <code>.env.[mode]</code> ，我们只需要改写 <code>mode</code> 值便可实现环境的创建，在真实情况下，<code>mode</code> 可以是任意值，但为了避免混淆，我们可以遵循以上的软规定。</p>
+<p>通过改变 mode 的值便可创建一个环境，但除了 <code>.env.development</code> 和 .<code>env.production</code> 可以被 Vite 自动识别在 dev命令 和 build 命令情况下读取变量外，其他的 mode 配置只会根据 <code>NODE_ENV</code> 的值来识别其对应的配置文件。</p>
+<p>我们还需要在启动命令中进行模式指定，在项目根目录的 <code>package.json</code> 中的执行脚本 <code>script</code> 中添加一条命令，如</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;dev-test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vite --mode test&quot;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+<p>通过指定 <code>--mode</code> 参数，Vite 就会根据当前启动命令指定的模式来加载对应的 Vite 项目中 <code>.env.[mode]</code> mode 指定的配置文件。</p>
+<h4 id="示例">示例</h4>
+<p>在 <code>.env.development</code> 中配置</p>
+<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-2.png" class="" title="vite 环境变量配置文件">
+<p>我在封装的请求模块中引用 <code>VITE_APP_API_URL</code> 变量</p>
+<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-1.png" class="" title="vite 环境变量配置文件">
+<p>通过 <code>npm run dev</code> 启动项目，在网络请求中的 <code>baseURL</code> 显示为 <code>http://10.111.11.11:8080</code></p>
+<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-3.png" class="" title="vite 环境变量配置文件">
+<p>我们更换环境</p>
+<p>在 <code>.env.test</code> 中配置</p>
+<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-4.png" class="" title="vite 环境变量配置文件">
+<p>在 <code>package.json</code> 中添加一条命令</p>
+<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-5.png" class="" title="vite 环境变量配置文件">
+<p>运行 <code>npm run dev-test</code>，在网络请求中的 <code>baseURL</code> 显示为 <code>http://10.122.22.22:8001</code></p>
+<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-6.png" class="" title="vite 环境变量配置文件">
+<h4 id="注意事项">注意事项</h4>
+<p>当前 <code>Vite</code> 版本执行打包命令时，如果在 <code>.env,production</code> 中指定了 <code>NODE_ENV:production</code>，会报错，只需把该配置删除即可，打包时还是会读取 <code>.env,production</code> 的配置。</p>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>工程化</category>
+      </categories>
+      <tags>
+        <tag>vite</tag>
       </tags>
   </entry>
   <entry>
@@ -198,177 +369,6 @@
       </tags>
   </entry>
   <entry>
-    <title>SASS星空</title>
-    <url>/2024/10/15/SASS%E6%98%9F%E7%A9%BA/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p><strong>效果图</strong></p>
-<img data-src="/2024/10/15/SASS%E6%98%9F%E7%A9%BA/preview.gif" class="" title="SASS星空">
-<p>盒子的阴影可以设置多个，所以我们可以通过阴影实现星光的效果，但纯写 css 过于抽象，我们可以利用 sass 的循环语法、函数与变量编写</p>
-<p><strong>HTML结构</strong></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;./index.css&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 这里只设置三个层级,可以根据需要自己添加 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layer1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layer2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layer3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;title&quot;</span>&gt;</span>Sass 星空<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>SASS代码</strong><br>
-提示：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>对SASS的编译不要用 VScode 的插件：easy sass，可能会出现函数识别导致编译失败的问题</p>
-</li>
-<li class="lvl-2">
-<p>可以在 node 环境下，安装 sass：<code>npm i sass</code></p>
-</li>
-<li class="lvl-2">
-<p>后执行 <code>npx sass [sass文件路径] [编译转换后的css输出文件路径] --no-source-map -w</code></p>
-</li>
-</ul>
-<blockquote>
-<p>npx sass index.scss index.css --no-source-map -w</p>
-</blockquote>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>npx：暂时把 sass 加入环境变量中，仅在此命令行操作有效</p>
-</li>
-<li class="lvl-2">
-<p>sass：安装 sass 自带的执行命令</p>
-</li>
-<li class="lvl-2">
-<p>–no-source-map：取消源映射，source-map里面存放着sass与css的映射信息，通过此命令可以取消该文件的生成</p>
-</li>
-<li class="lvl-2">
-<p>-w：监听sass/scss的文件内容变化，自动更新生成的css</p>
-</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">// 背景底色</span><br><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">    radial-gradient 是 CSS3 中用于创建径向渐变背景的属性。</span></span><br><span class="line"><span class="comment">    ellipse at bottom 指定了渐变形状为椭圆，并且椭圆的底部与元素的底部对齐。</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">radial-gradient</span>(ellipse at bottom, <span class="number">#1b2735</span> <span class="number">0%</span>, <span class="number">#090a0f</span> <span class="number">100%</span>);</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.title</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&quot;lato&quot;</span>, sans-serif;</span><br><span class="line">  <span class="attribute">font-weight</span>: <span class="number">300</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">letter-spacing</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">margin-top</span>: -<span class="number">60px</span>;</span><br><span class="line">  <span class="attribute">padding-left</span>: <span class="number">10px</span>;</span><br><span class="line">  // 渐变背景，将文本背景设置为透明，并设置背景颜色为 <span class="selector-id">#38495a</span></span><br><span class="line">  // 即将文字展示为背景颜色</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(white, <span class="number">#38495a</span>);</span><br><span class="line">  -webkit-<span class="attribute">background-clip</span>: text;</span><br><span class="line">  <span class="attribute">background-clip</span>: text;</span><br><span class="line">  <span class="attribute">color</span>: transparent;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 创建星光（阴影）函数</span><br><span class="line"><span class="keyword">@function</span> createShadow($n) &#123;</span><br><span class="line">  // 定义阴影变量  </span><br><span class="line">  $shadow: <span class="string">&quot;#&#123;random($limit: 100)&#125;vw #&#123;random($limit: 100)&#125;vh #fff&quot;</span>;</span><br><span class="line">  <span class="keyword">@for</span> $i from <span class="number">2</span> through $n &#123;</span><br><span class="line">    // 每次循环向 $shadow 中添加新的阴影</span><br><span class="line">    $shadow: <span class="string">&quot;#&#123;$shadow&#125;, #&#123;random($limit: 100)&#125;vw #&#123;random($limit: 100)&#125;vh #fff&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  // unquote() 函数用于将字符串转换为 CSS 属性值，即去掉字符串</span><br><span class="line">  <span class="keyword">@return</span> unquote($shadow);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 定义星光（阴影）初始数量</span><br><span class="line">$count: <span class="number">1000</span>;</span><br><span class="line">// 定义动画初始时间</span><br><span class="line">$duration: <span class="number">400s</span>;</span><br><span class="line"><span class="keyword">@for</span> $i from <span class="number">1</span> through <span class="number">3</span> &#123;</span><br><span class="line">  // 每次循环时将数量和动画时间减半，以达到不同层级的动画效果</span><br><span class="line">  $count: <span class="built_in">floor</span>(<span class="built_in">calc</span>($count / <span class="number">2</span>));</span><br><span class="line">  $duration: <span class="built_in">floor</span>(<span class="built_in">calc</span>($duration / <span class="number">2</span>));</span><br><span class="line"></span><br><span class="line">  // 输出调试信息</span><br><span class="line">  <span class="keyword">@debug</span> <span class="string">&quot;count #&#123;$count&#125;&quot;</span>;</span><br><span class="line">  <span class="keyword">@debug</span> <span class="string">&quot;duration #&#123;$duration&#125;&quot;</span>;</span><br><span class="line">  // 创建层级的样式</span><br><span class="line">  <span class="selector-class">.layer</span>#&#123;$<span class="selector-tag">i</span>&#125; &#123;</span><br><span class="line">    $size: #&#123;$<span class="selector-tag">i</span>&#125;px;</span><br><span class="line">    <span class="attribute">position</span>: fixed;</span><br><span class="line">    <span class="attribute">width</span>: $size;</span><br><span class="line">    <span class="attribute">height</span>: $size;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#f40</span>;</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="built_in">createShadow</span>($count);</span><br><span class="line">    <span class="attribute">animation</span>: moveUp $duration linear infinite;</span><br><span class="line">    // 为了动画的流畅和无缝衔接，在 &amp;<span class="selector-pseudo">::after</span> 中设置相同的参数</span><br><span class="line">    &amp;<span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">      <span class="attribute">content</span>: <span class="string">&quot;&quot;</span>;</span><br><span class="line">      <span class="attribute">position</span>: fixed;</span><br><span class="line">      <span class="attribute">top</span>: <span class="number">100vh</span>;</span><br><span class="line">      <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">      <span class="attribute">width</span>: inherit;</span><br><span class="line">      <span class="attribute">height</span>: inherit;</span><br><span class="line">      <span class="attribute">box-shadow</span>: inherit;</span><br><span class="line">      <span class="attribute">background</span>: inherit;</span><br><span class="line">      <span class="attribute">border-radius</span>: inherit;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 移动动画</span><br><span class="line"><span class="keyword">@keyframes</span> moveUp &#123;</span><br><span class="line">  <span class="number">100%</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">100vh</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>前端</category>
-        <category>页面</category>
-      </categories>
-      <tags>
-        <tag>SASS</tag>
-        <tag>CSS</tag>
-        <tag>HTML</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vite 环境变量配置文件</title>
-    <url>/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p><strong>前提文档链接</strong></p>
-<p>Vite 环境变量和模式文档：<a href="https://vitejs.cn/vite3-cn/guide/env-and-mode.html#env-files">https://vitejs.cn/vite3-cn/guide/env-and-mode.html#env-files</a></p>
-<hr>
-<span id="more"></span>
-<h2 id="开发环境与配置文件">开发环境与配置文件</h2>
-<p>在项目开发中，我们往往需要在不同环境下使用不同的配置，比如开发环境、测试环境、生产环境等。</p>
-<p>在项目开发中，常见的环境有</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><code>dev</code> – 开发环境，外部用户无法访问，开发人员使用，版本变动大。</p>
-</li>
-<li class="lvl-2">
-<p><code>prod</code> – 生产环境，面向外部用户的环境，正式环境。</p>
-</li>
-<li class="lvl-2">
-<p><code>test</code> – 测试环境，外部用户无法访问，专门给测试人员使用的，版本相对稳定。</p>
-</li>
-<li class="lvl-2">
-<p><code>sit (System Integration Test)</code> – 集成环境，系统集成测试，开发人员自己测试流程是否走通。</p>
-</li>
-<li class="lvl-2">
-<p><code>uat (User Acceptance Test environment)</code> – 用户验收测试环境，主要面向要交付的人员进行验证测试。</p>
-</li>
-<li class="lvl-2">
-<p><code>pre</code> – 灰度环境，外部用户可以访问，但是服务器配置相对低，其它和生产一样。</p>
-</li>
-<li class="lvl-2">
-<p><code>fat (Feature Acceptance Test environment)</code> – 功能验收测试环境，用于软件测试者测试使用。在以 <a href="https://vitejs.cn/">Vite</a> 作为构建工具开发项目时，环境变量配置文件名为 <code>.env</code>，文件名后缀为 <code>.env.[mode]</code>，其中 <code>mode</code> 为环境名称，如 <code>dev</code>、<code>prod</code>、<code>test</code> 等。</p>
-</li>
-</ul>
-<p>根据 <code>mode</code> 的不同，可以配置不同的环境变量，例如</p>
-<blockquote>
-<p>.env.development<br>
-.env.production<br>
-.env.test</p>
-</blockquote>
-<p>默认情况下，Vite 会自动读取 <code>.env</code> 文件（通用配置），并根据 <code>NODE_ENV</code> 的值来确定当前环境。</p>
-<p>但对于一份指定模式的文件（例如 .env.production）会比通用形式的优先级更高（例如 .env）。且相同的配置项，指定模式的文件会覆盖通用配置。</p>
-<p>虽说环境有多种，但真正的开发模式只有两种</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><code>development</code>：开发模式下</p>
-</li>
-<li class="lvl-2">
-<p><code>production</code>：生产模式下</p>
-</li>
-</ul>
-<p>我们可以在不同的开发模式下配置多种环境，基于这种情况下，又习惯性的把 <code>开发环境</code> 和 <code>生产环境</code> 作为主环境，而在主环境下配置各种子环境，显示的把开发模式指定出来，便于开发人员理解，基于此，有些项目的环境目录会出现以下情况</p>
-<blockquote>
-<p>.env.development<br>
-.env.development.sit<br>
-.env.production<br>
-.env.production.uat</p>
-</blockquote>
-<h2 id="环境变量">环境变量</h2>
-<p>在 Vite 中，环境变量的命名规则默认为 <code>VITE_</code> 开头，例如 <code>VITE_API_URL</code>。</p>
-<p><strong>官方解释</strong></p>
-<blockquote>
-<p>为了防止意外地将一些环境变量泄漏到客户端，只有以 VITE_ 为前缀的变量才会暴露给经过 vite 处理的代码。例如下面这些环境变量：</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">VITE_SOME_KEY</span>=<span class="number">123</span></span><br><span class="line"><span class="attr">DB_PASSWORD</span>=foobar</span><br></pre></td></tr></table></figure>
-<p>只有 VITE_SOME_KEY 会被暴露为 import.meta.env.VITE_SOME_KEY 提供给客户端源码，而 DB_PASSWORD 则不会。</p>
-<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(<span class="keyword">import</span>.meta.env.VITE_SOME_KEY) <span class="comment">// 123</span></span><br><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(<span class="keyword">import</span>.meta.env.DB_PASSWORD) <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>如果修改默认前缀，请参阅 <a href="https://vitejs.cn/vite3-cn/config/shared-options.html#envprefix">envprefix</a>。</p>
-<h3 id="环境变量的使用">环境变量的使用</h3>
-<p>在项目中，有些公共部分是需要我们抽离出来，作为环境变量进行配置，例如：<code>API_BASE_URL</code>，<code>ROUTE_BASE_URL</code>等等。</p>
-<p>我们可以在 <code>.env.[mode]</code> 配置文件中填写</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">VITE_APP_API_URL</span>=http://x.x.x.x:xx</span><br><span class="line"><span class="attr">VITE_ROUTE_BASE_URL</span>=/xxx</span><br></pre></td></tr></table></figure>
-<p>在项目中，我们可以通过 <code>import.meta.env.[变量名]</code> 来获取这些环境变量。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">env</span>.<span class="property">VITE_APP_API_URL</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">env</span>.<span class="property">VITE_ROUTE_BASE_URL</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="指定开发环境">指定开发环境</h3>
-<p>我们可以通过获取这些环境变量以达到不同环境下使用不同变量的功能，但我们如何确定当前环境或者当前模式呢？</p>
-<h4 id="指定开发环境的模式">指定开发环境的模式</h4>
-<p>开发环境的模式需要在配置文件中配置 <code>NODE_ENV</code> 变量，Vite 会自动读取该变量，并根据该变量的值来确定当前开发模式，默认为 <code>development</code>。</p>
-<p><code>NODE_ENV</code> 有两个值：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><code>development</code>：开发模式</p>
-</li>
-<li class="lvl-2">
-<p><code>production</code>：生产模式</p>
-</li>
-</ul>
-<p>在有些时候，我们不需要进行显示的配置，Vite 内部会自动根据当前环境来确定开发模式。例如：</p>
-<blockquote>
-<p>默认情况下，开发服务器 (dev 命令) 运行在 development (开发) 模式，而 build 命令（打包命令）则运行在 production (生产) 模式。</p>
-<p>这意味着当执行 vite build 时，它会自动加载 .env.production 中可能存在的环境变量。 ————<a href="https://vitejs.cn/vite3-cn/guide/env-and-mode.html#env-files">官方解释</a></p>
-</blockquote>
-<h4 id="指定环境类型">指定环境类型</h4>
-<p>在上文我们提到了 <code>.env.[mode]</code> ，我们只需要改写 <code>mode</code> 值便可实现环境的创建，在真实情况下，<code>mode</code> 可以是任意值，但为了避免混淆，我们可以遵循以上的软规定。</p>
-<p>通过改变 mode 的值便可创建一个环境，但除了 <code>.env.development</code> 和 .<code>env.production</code> 可以被 Vite 自动识别在 dev命令 和 build 命令情况下读取变量外，其他的 mode 配置只会根据 <code>NODE_ENV</code> 的值来识别其对应的配置文件。</p>
-<p>我们还需要在启动命令中进行模式指定，在项目根目录的 <code>package.json</code> 中的执行脚本 <code>script</code> 中添加一条命令，如</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;dev-test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vite --mode test&quot;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
-<p>通过指定 <code>--mode</code> 参数，Vite 就会根据当前启动命令指定的模式来加载对应的 Vite 项目中 <code>.env.[mode]</code> mode 指定的配置文件。</p>
-<h4 id="示例">示例</h4>
-<p>在 <code>.env.development</code> 中配置</p>
-<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-2.png" class="" title="vite 环境变量配置文件">
-<p>我在封装的请求模块中引用 <code>VITE_APP_API_URL</code> 变量</p>
-<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-1.png" class="" title="vite 环境变量配置文件">
-<p>通过 <code>npm run dev</code> 启动项目，在网络请求中的 <code>baseURL</code> 显示为 <code>http://10.111.11.11:8080</code></p>
-<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-3.png" class="" title="vite 环境变量配置文件">
-<p>我们更换环境</p>
-<p>在 <code>.env.test</code> 中配置</p>
-<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-4.png" class="" title="vite 环境变量配置文件">
-<p>在 <code>package.json</code> 中添加一条命令</p>
-<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-5.png" class="" title="vite 环境变量配置文件">
-<p>运行 <code>npm run dev-test</code>，在网络请求中的 <code>baseURL</code> 显示为 <code>http://10.122.22.22:8001</code></p>
-<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-6.png" class="" title="vite 环境变量配置文件">
-<h4 id="注意事项">注意事项</h4>
-<p>当前 <code>Vite</code> 版本执行打包命令时，如果在 <code>.env,production</code> 中指定了 <code>NODE_ENV:production</code>，会报错，只需把该配置删除即可，打包时还是会读取 <code>.env,production</code> 的配置。</p>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>工程化</category>
-      </categories>
-      <tags>
-        <tag>vite</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>创建RN项目</title>
     <url>/2024/10/13/%E5%88%9B%E5%BB%BARN%E9%A1%B9%E7%9B%AE/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1>Android 开发环境</h1>
@@ -399,6 +399,34 @@
       </categories>
       <tags>
         <tag>React Native</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue首屏加载优化</title>
+    <url>/2025/07/08/vue%E9%A6%96%E5%B1%8F%E5%8A%A0%E8%BD%BD%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
+<span id="more"></span>
+<h2 id="怎样在代码中将首屏加载时间计算出来">怎样在代码中将首屏加载时间计算出来</h2>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 首屏时间的计算</span></span><br><span class="line">    <span class="comment">// console.log(performance.timing.domComplete - performance.timing.navigationStart, &#x27;times&#x27;)//已弃用</span></span><br><span class="line">    </span><br><span class="line">   <span class="keyword">const</span> observer = <span class="keyword">new</span> <span class="title class_">PerformanceObserver</span>(<span class="function">(<span class="params">list</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(list.<span class="title function_">getEntries</span>())</span><br><span class="line">    &#125;)</span><br><span class="line">    observer.<span class="title function_">observe</span>(&#123; <span class="attr">entryTypes</span>: [<span class="string">&#x27;navigation&#x27;</span>] &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="vue中的异步组件">vue中的异步组件</h2>
+<p>在vue框架中怎么实现当用到这个组件时才会加载</p>
+<p>异步组件（在打包的时候单独形成分包）</p>
+<h3 id="正常普通导入组件">正常普通导入组件</h3>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> cs <span class="keyword">from</span> <span class="string">&quot;./cs.vue&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="异步组件">异步组件</h3>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 异步组件</span></span><br><span class="line"><span class="keyword">const</span> cs = <span class="title function_">defineAsyncComponent</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">import</span>(<span class="string">&#x27;./cs.vue&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="首页图片">首页图片</h2>
+<p>接口返回的图片为网络图片，在页面加载的时候不会占用加载时间</p>
+<h2 id="优化白屏显示-骨架屏">优化白屏显示-骨架屏</h2>
+<p>在vue页面没加载出来之前显示骨架屏</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 35%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 50%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 60%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 80%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>首屏加载优化</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -608,6 +636,36 @@
       </tags>
   </entry>
   <entry>
+    <title>带参数的文件上传</title>
+    <url>/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="带参数的文件上传"><strong>带参数的文件上传</strong></h2>
+<span id="more"></span>
+<h1>带参数的文件上传</h1>
+<h2 id="Element-plus-组件upload-关闭自动上传">Element plus 组件upload 关闭自动上传</h2>
+<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-1.png" class="" title="带参数的文件上传">
+<h2 id="成功后的回调">成功后的回调</h2>
+<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-2.png" class="" title="带参数的文件上传">
+<h2 id="获取实际文件对象">获取实际文件对象</h2>
+<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-3.png" class="" title="带参数的文件上传">
+<h2 id="上传方法">上传方法</h2>
+<h3 id="使用FormData-对象">使用FormData()对象</h3>
+<p><strong>FormData</strong> 接口提供了一种表示表单数据的键值对 <code>key/value</code> 的构造方式，并且可以轻松的将数据通过<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/send"><code>XMLHttpRequest.send()</code></a> 方法发送出去，本接口和此方法都相当简单直接。如果送出时的编码类型被设为 <code>&quot;multipart/form-data&quot;</code>，它会使用和表单一样的格式。</p>
+<h3 id="例子">例子</h3>
+<p>下面的代码将创建一个空的 FormData 对象：</p>
+<p>jsCopy to Clipboard</p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> formData = <span class="keyword">new</span> FormData(); <span class="comment">// 当前为空</span></span><br></pre></td></tr></table></figure>
+<p>你可以使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FormData/append"><code>FormData.append</code></a>来添加键/值对到表单里面；</p>
+<p>jsCopy to Clipboard</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">formData.<span class="built_in">append</span>(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;Chris&quot;</span>);</span><br></pre></td></tr></table></figure>
+<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-4.png" class="" title="带参数的文件上传">]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>微信小程序-学习笔记（学习中）</title>
     <url>/2024/10/15/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="1-图片懒加载没生效问题">1. 图片懒加载没生效问题</h2>
@@ -649,225 +707,5 @@
       <tags>
         <tag>微信小程序</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>带参数的文件上传</title>
-    <url>/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="带参数的文件上传"><strong>带参数的文件上传</strong></h2>
-<span id="more"></span>
-<h1>带参数的文件上传</h1>
-<h2 id="Element-plus-组件upload-关闭自动上传">Element plus 组件upload 关闭自动上传</h2>
-<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-1.png" class="" title="带参数的文件上传">
-<h2 id="成功后的回调">成功后的回调</h2>
-<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-2.png" class="" title="带参数的文件上传">
-<h2 id="获取实际文件对象">获取实际文件对象</h2>
-<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-3.png" class="" title="带参数的文件上传">
-<h2 id="上传方法">上传方法</h2>
-<h3 id="使用FormData-对象">使用FormData()对象</h3>
-<p><strong>FormData</strong> 接口提供了一种表示表单数据的键值对 <code>key/value</code> 的构造方式，并且可以轻松的将数据通过<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/send"><code>XMLHttpRequest.send()</code></a> 方法发送出去，本接口和此方法都相当简单直接。如果送出时的编码类型被设为 <code>&quot;multipart/form-data&quot;</code>，它会使用和表单一样的格式。</p>
-<h3 id="例子">例子</h3>
-<p>下面的代码将创建一个空的 FormData 对象：</p>
-<p>jsCopy to Clipboard</p>
-<figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> formData = <span class="keyword">new</span> FormData(); <span class="comment">// 当前为空</span></span><br></pre></td></tr></table></figure>
-<p>你可以使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FormData/append"><code>FormData.append</code></a>来添加键/值对到表单里面；</p>
-<p>jsCopy to Clipboard</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">formData.<span class="built_in">append</span>(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;Chris&quot;</span>);</span><br></pre></td></tr></table></figure>
-<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-4.png" class="" title="带参数的文件上传">]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HTML</title>
-    <url>/2025/05/23/day%2002%20HTML/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<hr>
-<span id="more"></span>
-<h1>一、HTML结构分析</h1>
-<h2 id="1-1-文档声明">1.1 文档声明</h2>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1733834354754.png" alt="1733834354754"></p>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1733834422129.png" alt="1733834422129"></p>
-<h2 id="1-2-html元素">1.2 html元素</h2>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1733834679382.png" alt="1733834679382"></p>
-<h3 id="1-2-1-html元素">1.2.1 html元素</h3>
-<p>是指<html>这个具体的元素，表示HTML文档里面的根元素</p>
-<h3 id="1-2-2-lang属性（language语言）">1.2.2 lang属性（language语言）</h3>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1733834969969.png" alt="1733834969969"></p>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1733835226332.png" alt="1733835226332"></p>
-<p>根据lang属性的值来确定</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>网页阅读的语言</p>
-</li>
-<li class="lvl-2">
-<p>网页翻译语言</p>
-<p>​</p>
-</li>
-</ul>
-<h2 id="1-3-head元素">1.3 head元素</h2>
-<h3 id="1-3-1-HTML-head元素">1.3.1 HTML head元素</h3>
-<p>规定文档的配置信息，又称元数据，包括文档标题，引用文档样式和脚本等。</p>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1733835919748.png" alt="1733835919748"></p>
-<h3 id="1-3-2-常见设置">1.3.2 常见设置</h3>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>网页标题<title></title></p>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1733836053723.png" alt="1733836053723"></p>
-</li>
-<li class="lvl-2">
-<p>网页编码<meta></p>
-</li>
-</ul>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1733836069738.png" alt="1733836069738"></p>
-<meta charset='utf-8'>
-<h2 id="1-4-body元素">1.4 body元素</h2>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1733837055768.png" alt="1733837055768"></p>
-<h3 id="1-4-1-h元素（heading）">1.4.1 h元素（heading）</h3>
-<p>h1-h6的区别是通过css进行调整的</p>
-<p>注意：h元素通常和SEO优化有关</p>
-<h3 id="1-4-2-p元素">1.4.2 p元素</h3>
-<h3 id="1-4-3-img元素">1.4.3 img元素</h3>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>两个属性</p>
-<ul class="lvl-2">
-<li class="lvl-4">src ：图片路径</li>
-<li class="lvl-4">alt ：当图片加载不出来时显示的文字（占位）</li>
-</ul>
-</li>
-<li class="lvl-2">
-<p>地址</p>
-<ul class="lvl-2">
-<li class="lvl-4">网络地址</li>
-<li class="lvl-4">本地地址
-<ul class="lvl-4">
-<li class="lvl-6">相对路径</li>
-<li class="lvl-6">绝对路径</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="1-4-4-a元素（anchor-锚）">1.4.4 a元素（anchor:锚）</h3>
-<p>定义超链接，用于可打开新的URL</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>href：URL路径</p>
-<ul class="lvl-2">
-<li class="lvl-4">
-<p>外部链接</p>
-</li>
-<li class="lvl-4">
-<p>页面内跳转（锚点链接）</p>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1733922108166.png" alt="1733922108166"></p>
-</li>
-<li class="lvl-4">
-<p>其他URL</p>
-<ul class="lvl-4">
-<li class="lvl-6">
-<p>.zip压缩包   （下载）</p>
-</li>
-<li class="lvl-6">
-<p>其他协议地址：mailto</p>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1733922001365.png" alt="1733922001365"></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="lvl-2">
-<p>target：默认_self，新建标签页_blank</p>
-</li>
-</ul>
-<p>_parent 和 _top 和iframe结合使用</p>
-<h3 id="1-4-5-iframe元素">1.4.5 iframe元素</h3>
-<p>在HTML文档中嵌入另一个HTNL文档（在一个网页中嵌入另一个网页）</p>
-<p>禁止网页在iframe中使用</p>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1733922907220.png" alt="1733922907220"></p>
-<p>属性：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>href</p>
-</li>
-<li class="lvl-2">
-<p>frameborder: 0 (无边框)，1（有边框）</p>
-</li>
-</ul>
-<h3 id="1-4-6-div元素（division-分开，分配）">1.4.6 div元素（division:分开，分配）</h3>
-<p>div,span元素（纯粹的容器）历史</p>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1733925369647.png" alt="1733925369647"></p>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1733926132877.png" alt="1733926132877"></p>
-<h3 id="1-4-7-span元素">1.4.7 span元素</h3>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1733926142413.png" alt="1733926142413"></p>
-<h3 id="1-4-8-不常见的元素">1.4.8 不常见的元素</h3>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1733926863286.png" alt="1733926863286"></p>
-<h2 id="1-5-HTML全局属性">1.5 HTML全局属性</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>id</p>
-</li>
-<li class="lvl-2">
-<p>class</p>
-</li>
-<li class="lvl-2">
-<p>style</p>
-</li>
-<li class="lvl-2">
-<p>title</p>
-</li>
-</ul>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1734004772284.png" alt="1734004772284"></p>
-<h1>二、额外补充</h1>
-<h2 id="2-1-字符实体">2.1 字符实体</h2>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1734005887126.png" alt="1734005887126"></p>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1734005908682.png" alt="1734005908682"></p>
-<h2 id="2-2-URL地址">2.2 URL地址</h2>
-<h3 id="2-2-1-URL">2.2.1 URL</h3>
-<p>URL代表的时统一资源定位符（就是一个给定的独特资源在 Web 上的地址）</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>理论上说，每个有效的 URL 都指向一个唯一的资源；</p>
-</li>
-<li class="lvl-2">
-<p>这个资源可以是一个 HTML 页面，一个 CSS 文档，一幅图像，等等;</p>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1734006298175.png" alt="1734006298175"></p>
-</li>
-</ul>
-<p>统一资源定位符，俗称网络地址，相当于网络中的门牌号</p>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1733749087486.png" alt="1733749087486"></p>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1733749397608.png" alt="1733749397608"></p>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1733749414365.png" alt="1733749414365"></p>
-<h3 id="2-2-2-URI">2.2.2 URI</h3>
-<p>统一资源标识符，用于标识Web技术使用的逻辑或物理资源</p>
-<h3 id="2-2-3-URL和URI的区别">2.2.3 URL和URI的区别</h3>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1733749929551.png" alt="1733749929551"></p>
-<h2 id="2-3-元素语义化">2.3 元素语义化</h2>
-<p>用正确的元素做正确的事</p>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1734009140142.png" alt="1734009140142"></p>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1734009215835.png" alt="1734009215835"></p>
-<h2 id="2-4-SEO优化">2.4 SEO优化</h2>
-<p>搜索引擎优化（英语:search engine optimization，缩写为SEO)是通过了解搜索引擎的运作规则来调整网站，以及提高网站在有关搜索引擎内排名的方式。</p>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1734009634026.png" alt="1734009634026"></p>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1734010243958.png" alt="1734010243958"></p>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1734010784393.png" alt="1734010784393"></p>
-<h2 id="2-5-字符编码">2.5 字符编码</h2>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1734012727693.png" alt="1734012727693"></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&#x27;UTF-8&#x27;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img data-src="C:%5CUsers%5C19923%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1734012808180.png" alt="1734012808180"></p>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>post</title>
-    <url>/2024/10/26/post/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>]]></content>
   </entry>
 </search>
