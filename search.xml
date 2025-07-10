@@ -432,9 +432,8 @@
   <entry>
     <title>带参数的文件上传</title>
     <url>/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="带参数的文件上传"><strong>带参数的文件上传</strong></h2>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
 <span id="more"></span>
-<h1>带参数的文件上传</h1>
 <h2 id="Element-plus-组件upload-关闭自动上传">Element plus 组件upload 关闭自动上传</h2>
 <img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-1.png" class="" title="带参数的文件上传">
 <h2 id="成功后的回调">成功后的回调</h2>
