@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>vue中的插槽slot</title>
+      <link href="/2025/07/15/vue%E4%B8%AD%E6%8F%92%E6%A7%BDslot/"/>
+      <url>/2025/07/15/vue%E4%B8%AD%E6%8F%92%E6%A7%BDslot/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr><span id="more"></span><h1>vue中的插槽slot</h1><p>为了让组件具备更强的通用性</p><h2 id="子组件">子组件</h2><p>声明插槽的Comp组件</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">slot</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span> //默认插槽，调用default()，将返回的虚拟节点放到这里</span><br><span class="line">    <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">&#x27;slot1&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span>  //具名插槽，调用slot1()，将返回的虚拟节点放到这里</span><br><span class="line">    <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">&#x27;slot2&#x27;</span> <span class="attr">msg</span>=<span class="string">&#x27;hello world&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span>  //作用域插槽，调用slot2(&#123;msg:&#x27;hello world&#x27;&#125;)，将返回的虚拟节点放到这里</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure><h2 id="父组件">父组件</h2><p>使用具有插槽的子组件</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;Comp&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">        default slot</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">    &lt;template #slot1&gt;</span><br><span class="line">      &lt;p&gt;</span><br><span class="line">        slot1</span><br><span class="line">      &lt;/p&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">    &lt;template #slot2=&#x27;slotData&#x27;&gt;</span><br><span class="line">      &lt;p&gt;</span><br><span class="line">        slot2:&#123;&#123;slotData.msg&#125;&#125;</span><br><span class="line">      &lt;/p&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">&lt;/Comp&gt;</span><br></pre></td></tr></table></figure><p>插槽向组件Comp传递一个对象，对象里面的属性名就是插槽名</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">default</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;,</span><br><span class="line">    <span class="attr">slot1</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;,</span><br><span class="line">    <span class="attr">slot2</span>:<span class="keyword">function</span>(<span class="params">slotData</span>)&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用这些函数就会返回对应的虚拟节点</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+          <category> vue中的插槽slot </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Vue首屏加载优化</title>
       <link href="/2025/07/08/vue%E9%A6%96%E5%B1%8F%E5%8A%A0%E8%BD%BD%E4%BC%98%E5%8C%96/"/>
       <url>/2025/07/08/vue%E9%A6%96%E5%B1%8F%E5%8A%A0%E8%BD%BD%E4%BC%98%E5%8C%96/</url>
