@@ -21,28 +21,25 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"shtoly.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://shtoly.github.io/2024/10/18/hello-world/index.html">
+    <meta property="og:type" content="article">
+<meta property="og:title" content="Clipboard API">
+<meta property="og:url" content="https://shtoly.github.io/2025/07/19/Clipboard%20API/index.html">
 <meta property="og:site_name" content="Shtoly&#39;s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-10-18T13:09:50.348Z">
-<meta property="article:modified_time" content="2024-10-15T09:06:35.000Z">
+<meta property="article:published_time" content="2025-07-19T13:56:06.931Z">
+<meta property="article:modified_time" content="2025-07-19T13:57:21.700Z">
 <meta property="article:author" content="Shtoly">
-<meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://shtoly.github.io/2024/10/18/hello-world/">
+<link rel="canonical" href="https://shtoly.github.io/2025/07/19/Clipboard%20API/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://shtoly.github.io/2024/10/18/hello-world/","path":"2024/10/18/hello-world/","title":"Hello World"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://shtoly.github.io/2025/07/19/Clipboard%20API/","path":"2025/07/19/Clipboard API/","title":"Clipboard API"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Hello World | Shtoly's Blog</title>
+<title>Clipboard API | Shtoly's Blog</title>
   
 
 
@@ -139,7 +136,7 @@
     <div class="sidebar-panel-container">
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-        <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+        <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Clipboard API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">基本介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.2.</span> <span class="nav-text">主要应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%90%91%E7%BD%91%E9%A1%B5%E4%B8%8A%E7%B2%98%E8%B4%B4%E5%9B%BE%E7%89%87"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 向网页上粘贴图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%A4%8D%E5%88%B6-%E7%B2%98%E8%B4%B4%E5%86%85%E5%AE%B9%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 复制&#x2F;粘贴内容转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%AF%BB%E5%8F%96%E5%89%AA%E8%B4%B4%E6%9D%BF%E6%95%B0%E6%8D%AE"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. 读取剪贴板数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">高级用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5-Clipboard-API"><span class="nav-number">1.3.1.</span> <span class="nav-text">异步 Clipboard API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E9%99%90%E5%88%B6"><span class="nav-number">1.4.</span> <span class="nav-text">安全限制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="nav-number">1.5.</span> <span class="nav-text">浏览器兼容性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E5%BB%BA%E8%AE%AE"><span class="nav-number">1.6.</span> <span class="nav-text">实际应用建议</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -232,7 +229,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://shtoly.github.io/2024/10/18/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://shtoly.github.io/2025/07/19/Clipboard%20API/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -245,12 +242,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Hello World | Shtoly's Blog">
+      <meta itemprop="name" content="Clipboard API | Shtoly's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          Clipboard API
         </h1>
 
         <div class="post-meta-container">
@@ -260,15 +257,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2024-10-18 21:09:50" itemprop="dateCreated datePublished" datetime="2024-10-18T21:09:50+08:00">2024-10-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-15 17:06:35" itemprop="dateModified" datetime="2024-10-15T17:06:35+08:00">2024-10-15</time>
+      <time title="创建时间：2025-07-19 21:56:06 / 修改时间：21:57:21" itemprop="dateCreated datePublished" datetime="2025-07-19T21:56:06+08:00">2025-07-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -276,7 +267,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a>
+          <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/Clipboard-API/" itemprop="url" rel="index"><span itemprop="name">Clipboard API</span></a>
         </span>
     </span>
 
@@ -294,14 +289,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>79</span>
+      <span>731</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>3 分钟</span>
     </span>
 </div>
 
@@ -311,21 +306,112 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+    <div class="post-body" itemprop="articleBody"><hr>
 <span id="more"></span>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h1>Clipboard API</h1>
+<h2 id="基本介绍">基本介绍</h2>
+<p>Clipboard API 是现代浏览器提供的 JavaScript API，允许网页以安全可控的方式访问系统剪贴板。它提供了以下核心功能：</p>
+<ol>
+<li class="lvl-3">
+<p><strong>读取剪贴板内容</strong>（粘贴操作）</p>
+</li>
+<li class="lvl-3">
+<p><strong>写入剪贴板内容</strong>（复制操作）</p>
+</li>
+<li class="lvl-3">
+<p><strong>监听剪贴板事件</strong></p>
+</li>
+<li class="lvl-3">
+<p><strong>处理多种数据类型</strong>（文本、HTML、图片等）</p>
+</li>
+</ol>
+<h2 id="主要应用场景">主要应用场景</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>向网页上粘贴图片</p>
+</li>
+<li class="lvl-2">
+<p>复制一些内容，当粘贴后变成另一段文字（比如：不让粘贴之类的文字）</p>
+</li>
+<li class="lvl-2">
+<p>某些购物网站会读取粘贴板上的数据进行读取对应的商品</p>
+</li>
+</ul>
+<h3 id="1-向网页上粘贴图片">1. 向网页上粘贴图片</h3>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;editor&quot;</span> <span class="attr">contenteditable</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> editor = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.editor&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">    </span></span><br><span class="line"><span class="language-javascript">    editor.<span class="title function_">addEventListener</span>(<span class="string">&#x27;paste&#x27;</span>, <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">if</span> (e.<span class="property">clipboardData</span>.<span class="property">files</span>.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        e.<span class="title function_">preventDefault</span>();</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> file = e.<span class="property">clipboardData</span>.<span class="property">files</span>[<span class="number">0</span>];</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> img = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;img&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">        img.<span class="property">src</span> = <span class="variable constant_">URL</span>.<span class="title function_">createObjectURL</span>(file);</span></span><br><span class="line"><span class="language-javascript">        editor.<span class="title function_">appendChild</span>(img);</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;);</span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>代码功能说明：</p>
+<ol>
+<li class="lvl-3">
+<p>创建一个可编辑的div元素（<code>contenteditable</code>属性）</p>
+</li>
+<li class="lvl-3">
+<p>监听粘贴事件，检查剪贴板中是否有文件</p>
+</li>
+<li class="lvl-3">
+<p>如果检测到文件（如图片），则：</p>
+<ul class="lvl-2">
+<li class="lvl-5">阻止默认粘贴行为</li>
+<li class="lvl-5">获取第一个文件</li>
+<li class="lvl-5">创建img元素并设置src为文件对象URL</li>
+<li class="lvl-5">将图片插入到编辑器中</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-复制-粘贴内容转换">2. 复制/粘贴内容转换</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 复制时转换内容</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;copy&#x27;</span>, <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">  e.<span class="title function_">preventDefault</span>(); <span class="comment">// 阻止默认复制行为</span></span><br><span class="line">  navigator.<span class="property">clipboard</span>.<span class="title function_">weiteText</span>(<span class="string">&quot;不准复制，打钱！！！&quot;</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="3-读取剪贴板数据">3. 读取剪贴板数据</h3>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;editor&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 修正后的剪贴板读取代码</span></span></span><br><span class="line"><span class="language-javascript">        navigator.<span class="property">clipboard</span>.<span class="title function_">readText</span>()</span></span><br><span class="line"><span class="language-javascript">            .<span class="title function_">then</span>(<span class="function">(<span class="params">text</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.editor&#x27;</span>).<span class="property">innerHTML</span> = text;</span></span><br><span class="line"><span class="language-javascript">            &#125;)</span></span><br><span class="line"><span class="language-javascript">            .<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;读取剪贴板失败:&#x27;</span>, error);</span></span><br><span class="line"><span class="language-javascript">                <span class="title function_">alert</span>(<span class="string">&#x27;无法读取剪贴板内容&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">            &#125;);</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="高级用法">高级用法</h2>
+<h3 id="异步-Clipboard-API">异步 Clipboard API</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 写入剪贴板</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">copyToClipboard</span>(<span class="params">text</span>) &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> navigator.<span class="property">clipboard</span>.<span class="title function_">writeText</span>(text);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;复制成功&#x27;</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;复制失败:&#x27;</span>, err);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 读取剪贴板</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">pasteFromClipboard</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> text = <span class="keyword">await</span> navigator.<span class="property">clipboard</span>.<span class="title function_">readText</span>();</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;粘贴内容:&#x27;</span>, text);</span><br><span class="line">    <span class="keyword">return</span> text;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;读取剪贴板失败:&#x27;</span>, err);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="安全限制">安全限制</h2>
+<ol>
+<li class="lvl-3">
+<p><strong>权限要求</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-5">写入操作通常不需要特殊权限</li>
+<li class="lvl-5">读取操作需要用户明确授权（通过权限API请求<code>clipboard-read</code>权限）</li>
+</ul>
+</li>
+<li class="lvl-3">
+<p><strong>用户交互要求</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-5">剪贴板访问必须在用户触发的事件（如点击）中执行</li>
+<li class="lvl-5">不能在没有用户交互的情况下自动访问剪贴板</li>
+</ul>
+</li>
+<li class="lvl-3">
+<p><strong>HTTPS要求</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-5">大多数浏览器要求页面通过HTTPS提供服务才能使用Clipboard API</li>
+</ul>
+</li>
+</ol>
+<h2 id="浏览器兼容性">浏览器兼容性</h2>
+<ol>
+<li class="lvl-3">
+<p><strong>现代浏览器</strong>：Chrome、Edge、Firefox、Safari等主流浏览器均已支持</p>
+</li>
+<li class="lvl-3">
+<p><strong>兼容性检测</strong>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!navigator.<span class="property">clipboard</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;您的浏览器不支持Clipboard API&#x27;</span>);</span><br><span class="line">  <span class="comment">// 提供回退方案</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="实际应用建议">实际应用建议</h2>
+<ol>
+<li class="lvl-3">
+<p><strong>提供回退方案</strong>：对于不支持Clipboard API的浏览器，可以使用<code>document.execCommand</code></p>
+</li>
+<li class="lvl-3">
+<p><strong>清晰的用户提示</strong>：当需要读取剪贴板时，明确告知用户并请求权限</p>
+</li>
+<li class="lvl-3">
+<p><strong>错误处理</strong>：妥善处理权限被拒绝的情况</p>
+</li>
+<li class="lvl-3">
+<p><strong>性能考虑</strong>：处理大文件（如图片）时要注意内存使用</p>
+</li>
+</ol>
 
     </div>
 
@@ -360,7 +446,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://shtoly.github.io/2024/10/18/hello-world/" title="Hello World">https://shtoly.github.io/2024/10/18/hello-world/</a>
+      <a href="https://shtoly.github.io/2025/07/19/Clipboard%20API/" title="Clipboard API">https://shtoly.github.io/2025/07/19/Clipboard API/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -368,22 +454,16 @@
 </ul>
 </div>
 
-          <div class="post-tags">
-              <a href="/tags/hexo/" rel="tag"><i class="fa fa-tag"></i> hexo</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/10/16/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98-%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD/" rel="prev" title="前端面试题-类型判断（补充中）">
-                  <i class="fa fa-angle-left"></i> 前端面试题-类型判断（补充中）
+                <a href="/2025/07/19/%E5%8A%A8%E7%94%BB/" rel="prev" title="动画">
+                  <i class="fa fa-angle-left"></i> 动画
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" rel="next" title="vite 环境变量配置文件">
-                  vite 环境变量配置文件 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -566,7 +646,7 @@ darkmode.showWidget();
 </script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"shtoly","repo":"shtoly.github.io","client_id":"Ov23liK31JPQeoo7RowF","client_secret":"1b6ca11cecf9665e1ea7e7f6e7e4a0377f3241b5","admin_user":"shtoly","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"26670038a9eb9673bfb66c7c186021bd"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"shtoly","repo":"shtoly.github.io","client_id":"Ov23liK31JPQeoo7RowF","client_secret":"1b6ca11cecf9665e1ea7e7f6e7e4a0377f3241b5","admin_user":"shtoly","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"fd6152fde3b6e79e4b29808bd4c3e014"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":380},"mobile":null});</script></body>
