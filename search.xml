@@ -46,7 +46,7 @@
     <url>/2025/09/23/React%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
 <span id="more"></span>
-<h1>React 事件机制</h1>
+<h3 id="React-事件机制">React 事件机制</h3>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;div onClick=&#123;<span class="variable language_">this</span>.<span class="property">handleClick</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>)&#125;&gt;点我&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 <p>​	React并不是将click事件绑定到了div的真实DOM上，而是在document处监听了所有的事件，当事件发生并且冒泡到document处的时候，React将事件内容封装并交由真正的处理函数运行。这样的方式不仅仅减少了内存的消耗，还能在组件挂在销毁时统一订阅和移除事件。</p>
 <p>​	除此之外，冒泡到document上的事件也不是原生的浏览器事件，而是由react自己实现的合成事件（SyntheticEvent）。因此如果不想要是事件冒泡的话应该调用event.preventDefault()方法，而不是调用event.stopProppagation()方法。</p>
@@ -1182,6 +1182,83 @@
       </categories>
       <tags>
         <tag>面经</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>React 高阶组件、Render props、hooks 有什么区别，为什么要不断迭代</title>
+    <url>/2025/09/23/React%20%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6%E3%80%81Render%20props%E3%80%81hooks%20%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%B8%8D%E6%96%AD%E8%BF%AD%E4%BB%A3/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
+<span id="more"></span>
+<h3 id="React-高阶组件、Render-props、hooks-有什么区别，为什么要不断迭代">React 高阶组件、Render props、hooks 有什么区别，为什么要不断迭代</h3>
+<p>这三者是目前react解决代码复用的主要方式：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>高阶组件（HOC）是 React 中用于复用组件逻辑的一种高级技巧。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。具体而言，高阶组件是参数为组件，返回值为新组件的函数。</p>
+</li>
+<li class="lvl-2">
+<p>render props是指一种在 React 组件之间使用一个值为函数的 prop 共享代码的简单技术，更具体的说，render prop 是一个用于告知组件需要渲染什么内容的函数 prop。</p>
+</li>
+<li class="lvl-2">
+<p>通常，render props 和高阶组件只渲染一个子节点。让 Hook 来服务这个使用场景更加简单。这两种模式仍有用武之地，（例如，一个虚拟滚动条组件或许会有一个 renderltem 属性，或是一个可见的容器组件或许会有它自己的 DOM 结构）。但在大部分场景下，Hook 足够了，并且能够帮助减少嵌套。</p>
+</li>
+</ul>
+<h4 id="HOC">HOC</h4>
+<p>官方解释∶</p>
+<p>高阶组件（HOC）是 React 中用于复用组件逻辑的一种高级技巧。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。</p>
+<p>简言之，HOC是一种组件的设计模式，HOC接受一个组件和额外的参数（如果需要），返回一个新的组件。HOC 是纯函数，没有副作用。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// hoc的定义</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">withSubscription</span>(<span class="params">WrappedComponent, selectData</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">class</span> <span class="title class_">extends</span> <span class="title class_">React</span>.<span class="property">Component</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">      <span class="variable language_">super</span>(props);</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">        <span class="attr">data</span>: <span class="title function_">selectData</span>(<span class="title class_">DataSource</span>, props)</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 一些通用的逻辑处理</span></span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// ... 并使用新数据渲染被包装的组件!</span></span><br><span class="line">      <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">WrappedComponent</span> <span class="attr">data</span>=<span class="string">&#123;this.state.data&#125;</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">BlogPostWithSubscription</span> = <span class="title function_">withSubscription</span>(<span class="title class_">BlogPost</span>,</span><br><span class="line">  <span class="function">(<span class="params">DataSource, props</span>) =&gt;</span> <span class="title class_">DataSource</span>.<span class="title function_">getBlogPost</span>(props.<span class="property">id</span>));</span><br></pre></td></tr></table></figure>
+<p>HOC的优缺点∶</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>优点∶ 逻辑服用、不影响被包裹组件的内部逻辑。</p>
+</li>
+<li class="lvl-2">
+<p>缺点∶ hoc传递给被包裹组件的props容易和被包裹后的组件重名，进而被覆盖</p>
+</li>
+</ul>
+<h4 id="Render-props">Render props</h4>
+<p>官方解释∶</p>
+<p>&quot;render prop&quot;是指一种在 React 组件之间使用一个值为函数的 prop 共享代码的简单技术</p>
+<p>具有render prop 的组件接受一个返回React元素的函数，将render的渲染逻辑注入到组件内部。在这里，&quot;render&quot;的命名可以是任何其他有效的标识符。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// DataProvider组件内部的渲染逻辑如下</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DataProvider</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Components</span> &#123;</span><br><span class="line">     state = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;Tom&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">p</span>&gt;</span>共享数据组件自己内部的渲染逻辑<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          &#123; this.props.render(this.state) &#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用方式</span></span><br><span class="line">&lt;<span class="title class_">DataProvider</span> render=&#123;<span class="function"><span class="params">data</span> =&gt;</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello &#123;data.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">)&#125;/&gt;</span><br></pre></td></tr></table></figure>
+<p>由此可以看到，render props的优缺点也很明显∶</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>优点：数据共享、代码复用，将组件内的state作为props传递给调用者，将渲染逻辑交给调用者。</p>
+</li>
+<li class="lvl-2">
+<p>缺点：无法在 return 语句外访问数据、嵌套写法不够优雅</p>
+</li>
+</ul>
+<h4 id="Hooks">Hooks</h4>
+<p>官方解释∶</p>
+<p>Hook是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。通过自定义hook，可以复用代码逻辑。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 自定义一个获取订阅数据的hook</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">useSubscription</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> data = <span class="title class_">DataSource</span>.<span class="title function_">getComments</span>();</span><br><span class="line">  <span class="keyword">return</span> [data];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">CommentList</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;data&#125; = props;</span><br><span class="line">  <span class="keyword">const</span> [subData] = <span class="title function_">useSubscription</span>();</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line">&lt;<span class="title class_">CommentList</span> data=<span class="string">&#x27;hello&#x27;</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>以上可以看出，hook解决了hoc的prop覆盖的问题，同时使用的方式解决了render props的嵌套地狱的问题。hook的优点如下∶</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>使用直观；</p>
+</li>
+<li class="lvl-2">
+<p>解决hoc的prop 重名问题；</p>
+</li>
+<li class="lvl-2">
+<p>解决render props 因共享数据 而出现嵌套地狱的问题；</p>
+</li>
+<li class="lvl-2">
+<p>能在return之外使用数据的问题。</p>
+</li>
+</ul>
+<p>需要注意的是：hook只能在组件顶层使用，不可在分支语句中使用。</p>
+<h4 id="总结">总结</h4>
+<p>Hoc、render props和hook都是为了解决代码复用的问题，但是hoc和render props都有特定的使用场景和明显的缺点。hook是react16.8更新的新的API，让组件逻辑复用更简洁明了，同时也解决了hoc和render props的一些缺点。</p>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>React 高阶组件、Render props、hooks 有什么区别，为什么要不断迭代</category>
+      </categories>
+      <tags>
+        <tag>React</tag>
       </tags>
   </entry>
 </search>

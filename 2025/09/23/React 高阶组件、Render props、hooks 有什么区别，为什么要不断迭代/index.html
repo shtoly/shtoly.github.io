@@ -21,32 +21,26 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"shtoly.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="利用 box-shadow 和 SASS 实现星空效果">
-<meta property="og:type" content="article">
-<meta property="og:title" content="SASS星空">
-<meta property="og:url" content="https://shtoly.github.io/2024/10/15/SASS%E6%98%9F%E7%A9%BA/index.html">
+    <meta property="og:type" content="article">
+<meta property="og:title" content="React 高阶组件、Render props、hooks 有什么区别，为什么要不断迭代">
+<meta property="og:url" content="https://shtoly.github.io/2025/09/23/React%20%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6%E3%80%81Render%20props%E3%80%81hooks%20%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%B8%8D%E6%96%AD%E8%BF%AD%E4%BB%A3/index.html">
 <meta property="og:site_name" content="Shtoly&#39;s Blog">
-<meta property="og:description" content="利用 box-shadow 和 SASS 实现星空效果">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://shtoly.github.io/2024/10/15/SASS%E6%98%9F%E7%A9%BA/preview.gif">
-<meta property="article:published_time" content="2024-10-15T02:29:50.000Z">
-<meta property="article:modified_time" content="2024-10-15T02:48:52.000Z">
+<meta property="article:published_time" content="2025-09-23T02:44:49.660Z">
+<meta property="article:modified_time" content="2025-09-23T03:03:38.406Z">
 <meta property="article:author" content="Shtoly">
-<meta property="article:tag" content="SASS">
-<meta property="article:tag" content="CSS">
-<meta property="article:tag" content="HTML">
+<meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://shtoly.github.io/2024/10/15/SASS%E6%98%9F%E7%A9%BA/preview.gif">
 
 
-<link rel="canonical" href="https://shtoly.github.io/2024/10/15/SASS%E6%98%9F%E7%A9%BA/">
+<link rel="canonical" href="https://shtoly.github.io/2025/09/23/React%20%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6%E3%80%81Render%20props%E3%80%81hooks%20%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%B8%8D%E6%96%AD%E8%BF%AD%E4%BB%A3/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://shtoly.github.io/2024/10/15/SASS%E6%98%9F%E7%A9%BA/","path":"2024/10/15/SASS星空/","title":"SASS星空"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://shtoly.github.io/2025/09/23/React%20%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6%E3%80%81Render%20props%E3%80%81hooks%20%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%B8%8D%E6%96%AD%E8%BF%AD%E4%BB%A3/","path":"2025/09/23/React 高阶组件、Render props、hooks 有什么区别，为什么要不断迭代/","title":"React 高阶组件、Render props、hooks 有什么区别，为什么要不断迭代"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>SASS星空 | Shtoly's Blog</title>
+<title>React 高阶组件、Render props、hooks 有什么区别，为什么要不断迭代 | Shtoly's Blog</title>
   
 
 
@@ -133,7 +127,7 @@
 <aside class="sidebar">
 
   <div
-    class="sidebar-inner sidebar-overview-active"
+    class="sidebar-inner sidebar-nav-active sidebar-toc-active"
   >
     <ul class="sidebar-nav">
       <li class="sidebar-nav-toc">文章目录</li>
@@ -143,6 +137,7 @@
     <div class="sidebar-panel-container">
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+        <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#React-%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6%E3%80%81Render-props%E3%80%81hooks-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%B8%8D%E6%96%AD%E8%BF%AD%E4%BB%A3"><span class="nav-number">1.</span> <span class="nav-text">React 高阶组件、Render props、hooks 有什么区别，为什么要不断迭代</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HOC"><span class="nav-number">1.1.</span> <span class="nav-text">HOC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Render-props"><span class="nav-number">1.2.</span> <span class="nav-text">Render props</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hooks"><span class="nav-number">1.3.</span> <span class="nav-text">Hooks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -235,7 +230,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://shtoly.github.io/2024/10/15/SASS%E6%98%9F%E7%A9%BA/">
+    <link itemprop="mainEntityOfPage" href="https://shtoly.github.io/2025/09/23/React%20%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6%E3%80%81Render%20props%E3%80%81hooks%20%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%B8%8D%E6%96%AD%E8%BF%AD%E4%BB%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -248,12 +243,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="SASS星空 | Shtoly's Blog">
-      <meta itemprop="description" content="利用 box-shadow 和 SASS 实现星空效果">
+      <meta itemprop="name" content="React 高阶组件、Render props、hooks 有什么区别，为什么要不断迭代 | Shtoly's Blog">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          SASS星空
+          React 高阶组件、Render props、hooks 有什么区别，为什么要不断迭代
         </h1>
 
         <div class="post-meta-container">
@@ -265,7 +260,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-10-15 10:29:50 / 修改时间：10:48:52" itemprop="dateCreated datePublished" datetime="2024-10-15T10:29:50+08:00">2024-10-15</time>
+      <time title="创建时间：2025-09-23 10:44:49 / 修改时间：11:03:38" itemprop="dateCreated datePublished" datetime="2025-09-23T10:44:49+08:00">2025-09-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -277,7 +272,7 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%89%8D%E7%AB%AF/%E9%A1%B5%E9%9D%A2/" itemprop="url" rel="index"><span itemprop="name">页面</span></a>
+          <a href="/categories/%E5%89%8D%E7%AB%AF/React-%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6%E3%80%81Render-props%E3%80%81hooks-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%B8%8D%E6%96%AD%E8%BF%AD%E4%BB%A3/" itemprop="url" rel="index"><span itemprop="name">React 高阶组件、Render props、hooks 有什么区别，为什么要不断迭代</span></a>
         </span>
     </span>
 
@@ -295,60 +290,89 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>706</span>
+      <span>1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
+      <span>4 分钟</span>
     </span>
 </div>
 
-            <div class="post-description">利用 box-shadow 和 SASS 实现星空效果</div>
         </div>
       </header>
 
     
     
     
-    <div class="post-body" itemprop="articleBody"><p><strong>效果图</strong></p>
-<img data-src="/2024/10/15/SASS%E6%98%9F%E7%A9%BA/preview.gif" class="" title="SASS星空">
-<p>盒子的阴影可以设置多个，所以我们可以通过阴影实现星光的效果，但纯写 css 过于抽象，我们可以利用 sass 的循环语法、函数与变量编写</p>
-<p><strong>HTML结构</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;./index.css&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 这里只设置三个层级,可以根据需要自己添加 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layer1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layer2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layer3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;title&quot;</span>&gt;</span>Sass 星空<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>SASS代码</strong><br>
-提示：</p>
+    <div class="post-body" itemprop="articleBody"><hr>
+<span id="more"></span>
+<h3 id="React-高阶组件、Render-props、hooks-有什么区别，为什么要不断迭代">React 高阶组件、Render props、hooks 有什么区别，为什么要不断迭代</h3>
+<p>这三者是目前react解决代码复用的主要方式：</p>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p>对SASS的编译不要用 VScode 的插件：easy sass，可能会出现函数识别导致编译失败的问题</p>
+<p>高阶组件（HOC）是 React 中用于复用组件逻辑的一种高级技巧。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。具体而言，高阶组件是参数为组件，返回值为新组件的函数。</p>
 </li>
 <li class="lvl-2">
-<p>可以在 node 环境下，安装 sass：<code>npm i sass</code></p>
+<p>render props是指一种在 React 组件之间使用一个值为函数的 prop 共享代码的简单技术，更具体的说，render prop 是一个用于告知组件需要渲染什么内容的函数 prop。</p>
 </li>
 <li class="lvl-2">
-<p>后执行 <code>npx sass [sass文件路径] [编译转换后的css输出文件路径] --no-source-map -w</code></p>
+<p>通常，render props 和高阶组件只渲染一个子节点。让 Hook 来服务这个使用场景更加简单。这两种模式仍有用武之地，（例如，一个虚拟滚动条组件或许会有一个 renderltem 属性，或是一个可见的容器组件或许会有它自己的 DOM 结构）。但在大部分场景下，Hook 足够了，并且能够帮助减少嵌套。</p>
 </li>
 </ul>
-<blockquote>
-<p>npx sass index.scss index.css --no-source-map -w</p>
-</blockquote>
+<h4 id="HOC">HOC</h4>
+<p>官方解释∶</p>
+<p>高阶组件（HOC）是 React 中用于复用组件逻辑的一种高级技巧。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。</p>
+<p>简言之，HOC是一种组件的设计模式，HOC接受一个组件和额外的参数（如果需要），返回一个新的组件。HOC 是纯函数，没有副作用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// hoc的定义</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">withSubscription</span>(<span class="params">WrappedComponent, selectData</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">class</span> <span class="title class_">extends</span> <span class="title class_">React</span>.<span class="property">Component</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">      <span class="variable language_">super</span>(props);</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">        <span class="attr">data</span>: <span class="title function_">selectData</span>(<span class="title class_">DataSource</span>, props)</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 一些通用的逻辑处理</span></span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// ... 并使用新数据渲染被包装的组件!</span></span><br><span class="line">      <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">WrappedComponent</span> <span class="attr">data</span>=<span class="string">&#123;this.state.data&#125;</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">BlogPostWithSubscription</span> = <span class="title function_">withSubscription</span>(<span class="title class_">BlogPost</span>,</span><br><span class="line">  <span class="function">(<span class="params">DataSource, props</span>) =&gt;</span> <span class="title class_">DataSource</span>.<span class="title function_">getBlogPost</span>(props.<span class="property">id</span>));</span><br></pre></td></tr></table></figure>
+<p>HOC的优缺点∶</p>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p>npx：暂时把 sass 加入环境变量中，仅在此命令行操作有效</p>
+<p>优点∶ 逻辑服用、不影响被包裹组件的内部逻辑。</p>
 </li>
 <li class="lvl-2">
-<p>sass：安装 sass 自带的执行命令</p>
-</li>
-<li class="lvl-2">
-<p>–no-source-map：取消源映射，source-map里面存放着sass与css的映射信息，通过此命令可以取消该文件的生成</p>
-</li>
-<li class="lvl-2">
-<p>-w：监听sass/scss的文件内容变化，自动更新生成的css</p>
+<p>缺点∶ hoc传递给被包裹组件的props容易和被包裹后的组件重名，进而被覆盖</p>
 </li>
 </ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">// 背景底色</span><br><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">    radial-gradient 是 CSS3 中用于创建径向渐变背景的属性。</span></span><br><span class="line"><span class="comment">    ellipse at bottom 指定了渐变形状为椭圆，并且椭圆的底部与元素的底部对齐。</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">radial-gradient</span>(ellipse at bottom, <span class="number">#1b2735</span> <span class="number">0%</span>, <span class="number">#090a0f</span> <span class="number">100%</span>);</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.title</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&quot;lato&quot;</span>, sans-serif;</span><br><span class="line">  <span class="attribute">font-weight</span>: <span class="number">300</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">letter-spacing</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">margin-top</span>: -<span class="number">60px</span>;</span><br><span class="line">  <span class="attribute">padding-left</span>: <span class="number">10px</span>;</span><br><span class="line">  // 渐变背景，将文本背景设置为透明，并设置背景颜色为 <span class="selector-id">#38495a</span></span><br><span class="line">  // 即将文字展示为背景颜色</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(white, <span class="number">#38495a</span>);</span><br><span class="line">  -webkit-<span class="attribute">background-clip</span>: text;</span><br><span class="line">  <span class="attribute">background-clip</span>: text;</span><br><span class="line">  <span class="attribute">color</span>: transparent;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 创建星光（阴影）函数</span><br><span class="line"><span class="keyword">@function</span> createShadow($n) &#123;</span><br><span class="line">  // 定义阴影变量  </span><br><span class="line">  $shadow: <span class="string">&quot;#&#123;random($limit: 100)&#125;vw #&#123;random($limit: 100)&#125;vh #fff&quot;</span>;</span><br><span class="line">  <span class="keyword">@for</span> $i from <span class="number">2</span> through $n &#123;</span><br><span class="line">    // 每次循环向 $shadow 中添加新的阴影</span><br><span class="line">    $shadow: <span class="string">&quot;#&#123;$shadow&#125;, #&#123;random($limit: 100)&#125;vw #&#123;random($limit: 100)&#125;vh #fff&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  // unquote() 函数用于将字符串转换为 CSS 属性值，即去掉字符串</span><br><span class="line">  <span class="keyword">@return</span> unquote($shadow);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 定义星光（阴影）初始数量</span><br><span class="line">$count: <span class="number">1000</span>;</span><br><span class="line">// 定义动画初始时间</span><br><span class="line">$duration: <span class="number">400s</span>;</span><br><span class="line"><span class="keyword">@for</span> $i from <span class="number">1</span> through <span class="number">3</span> &#123;</span><br><span class="line">  // 每次循环时将数量和动画时间减半，以达到不同层级的动画效果</span><br><span class="line">  $count: <span class="built_in">floor</span>(<span class="built_in">calc</span>($count / <span class="number">2</span>));</span><br><span class="line">  $duration: <span class="built_in">floor</span>(<span class="built_in">calc</span>($duration / <span class="number">2</span>));</span><br><span class="line"></span><br><span class="line">  // 输出调试信息</span><br><span class="line">  <span class="keyword">@debug</span> <span class="string">&quot;count #&#123;$count&#125;&quot;</span>;</span><br><span class="line">  <span class="keyword">@debug</span> <span class="string">&quot;duration #&#123;$duration&#125;&quot;</span>;</span><br><span class="line">  // 创建层级的样式</span><br><span class="line">  <span class="selector-class">.layer</span>#&#123;$<span class="selector-tag">i</span>&#125; &#123;</span><br><span class="line">    $size: #&#123;$<span class="selector-tag">i</span>&#125;px;</span><br><span class="line">    <span class="attribute">position</span>: fixed;</span><br><span class="line">    <span class="attribute">width</span>: $size;</span><br><span class="line">    <span class="attribute">height</span>: $size;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#f40</span>;</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="built_in">createShadow</span>($count);</span><br><span class="line">    <span class="attribute">animation</span>: moveUp $duration linear infinite;</span><br><span class="line">    // 为了动画的流畅和无缝衔接，在 &amp;<span class="selector-pseudo">::after</span> 中设置相同的参数</span><br><span class="line">    &amp;<span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">      <span class="attribute">content</span>: <span class="string">&quot;&quot;</span>;</span><br><span class="line">      <span class="attribute">position</span>: fixed;</span><br><span class="line">      <span class="attribute">top</span>: <span class="number">100vh</span>;</span><br><span class="line">      <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">      <span class="attribute">width</span>: inherit;</span><br><span class="line">      <span class="attribute">height</span>: inherit;</span><br><span class="line">      <span class="attribute">box-shadow</span>: inherit;</span><br><span class="line">      <span class="attribute">background</span>: inherit;</span><br><span class="line">      <span class="attribute">border-radius</span>: inherit;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 移动动画</span><br><span class="line"><span class="keyword">@keyframes</span> moveUp &#123;</span><br><span class="line">  <span class="number">100%</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">100vh</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Render-props">Render props</h4>
+<p>官方解释∶</p>
+<p>&quot;render prop&quot;是指一种在 React 组件之间使用一个值为函数的 prop 共享代码的简单技术</p>
+<p>具有render prop 的组件接受一个返回React元素的函数，将render的渲染逻辑注入到组件内部。在这里，&quot;render&quot;的命名可以是任何其他有效的标识符。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DataProvider组件内部的渲染逻辑如下</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DataProvider</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Components</span> &#123;</span><br><span class="line">     state = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;Tom&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">p</span>&gt;</span>共享数据组件自己内部的渲染逻辑<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          &#123; this.props.render(this.state) &#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用方式</span></span><br><span class="line">&lt;<span class="title class_">DataProvider</span> render=&#123;<span class="function"><span class="params">data</span> =&gt;</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello &#123;data.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">)&#125;/&gt;</span><br></pre></td></tr></table></figure>
+<p>由此可以看到，render props的优缺点也很明显∶</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>优点：数据共享、代码复用，将组件内的state作为props传递给调用者，将渲染逻辑交给调用者。</p>
+</li>
+<li class="lvl-2">
+<p>缺点：无法在 return 语句外访问数据、嵌套写法不够优雅</p>
+</li>
+</ul>
+<h4 id="Hooks">Hooks</h4>
+<p>官方解释∶</p>
+<p>Hook是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。通过自定义hook，可以复用代码逻辑。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自定义一个获取订阅数据的hook</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">useSubscription</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> data = <span class="title class_">DataSource</span>.<span class="title function_">getComments</span>();</span><br><span class="line">  <span class="keyword">return</span> [data];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">CommentList</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;data&#125; = props;</span><br><span class="line">  <span class="keyword">const</span> [subData] = <span class="title function_">useSubscription</span>();</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line">&lt;<span class="title class_">CommentList</span> data=<span class="string">&#x27;hello&#x27;</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>以上可以看出，hook解决了hoc的prop覆盖的问题，同时使用的方式解决了render props的嵌套地狱的问题。hook的优点如下∶</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>使用直观；</p>
+</li>
+<li class="lvl-2">
+<p>解决hoc的prop 重名问题；</p>
+</li>
+<li class="lvl-2">
+<p>解决render props 因共享数据 而出现嵌套地狱的问题；</p>
+</li>
+<li class="lvl-2">
+<p>能在return之外使用数据的问题。</p>
+</li>
+</ul>
+<p>需要注意的是：hook只能在组件顶层使用，不可在分支语句中使用。</p>
+<h4 id="总结">总结</h4>
+<p>Hoc、render props和hook都是为了解决代码复用的问题，但是hoc和render props都有特定的使用场景和明显的缺点。hook是react16.8更新的新的API，让组件逻辑复用更简洁明了，同时也解决了hoc和render props的一些缺点。</p>
+
     </div>
 
     
@@ -382,7 +406,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://shtoly.github.io/2024/10/15/SASS%E6%98%9F%E7%A9%BA/" title="SASS星空">https://shtoly.github.io/2024/10/15/SASS星空/</a>
+      <a href="https://shtoly.github.io/2025/09/23/React%20%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6%E3%80%81Render%20props%E3%80%81hooks%20%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%B8%8D%E6%96%AD%E8%BF%AD%E4%BB%A3/" title="React 高阶组件、Render props、hooks 有什么区别，为什么要不断迭代">https://shtoly.github.io/2025/09/23/React 高阶组件、Render props、hooks 有什么区别，为什么要不断迭代/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -391,23 +415,18 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/SASS/" rel="tag"><i class="fa fa-tag"></i> SASS</a>
-              <a href="/tags/CSS/" rel="tag"><i class="fa fa-tag"></i> CSS</a>
-              <a href="/tags/HTML/" rel="tag"><i class="fa fa-tag"></i> HTML</a>
+              <a href="/tags/React/" rel="tag"><i class="fa fa-tag"></i> React</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/10/13/RN%E4%BC%98%E5%8C%96/" rel="prev" title="RN优化">
-                  <i class="fa fa-angle-left"></i> RN优化
+                <a href="/2025/09/23/React%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/" rel="prev" title="React事件机制">
+                  <i class="fa fa-angle-left"></i> React事件机制
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/10/15/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="微信小程序-学习笔记（学习中）">
-                  微信小程序-学习笔记（学习中） <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -590,7 +609,7 @@ darkmode.showWidget();
 </script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"shtoly","repo":"shtoly.github.io","client_id":"Ov23liK31JPQeoo7RowF","client_secret":"1b6ca11cecf9665e1ea7e7f6e7e4a0377f3241b5","admin_user":"shtoly","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"21981ddc883c4aa0d599e9a127445e19"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"shtoly","repo":"shtoly.github.io","client_id":"Ov23liK31JPQeoo7RowF","client_secret":"1b6ca11cecf9665e1ea7e7f6e7e4a0377f3241b5","admin_user":"shtoly","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"70a41c057676da7d04feb2d9d8d7f73e"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":380},"mobile":null});</script></body>
