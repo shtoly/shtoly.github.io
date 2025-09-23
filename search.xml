@@ -116,47 +116,6 @@
       </categories>
   </entry>
   <entry>
-    <title>RN优化</title>
-    <url>/2024/10/13/RN%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="移除不必要权限">移除不必要权限</h2>
-<p>例如，在<code>\[项目名]\android\app\src\main\</code>下<code>AndroidManifest.xml</code>中写入如下代码</p>
-<span id="more"></span>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 移除读取电话状态的权限 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">tools:node</span>=<span class="string">&quot;remove&quot;</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_PHONE_STATE&quot;</span> /&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 移除写入外部存储的权限。 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">tools:node</span>=<span class="string">&quot;remove&quot;</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;</span> /&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 移除读取外部存储的权限 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">tools:node</span>=<span class="string">&quot;remove&quot;</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_EXTERNAL_STORAGE&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<!-- more -->
-<p>我们还需要在<code>AndroidManifest.xml</code>中声明了一个名为tools的XML命名空间<code>xmlns:tools=&quot;http://schemas.android.com/tools&quot;</code></p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">&lt;manifest xmlns:<span class="attribute">android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span> xmlns:<span class="attribute">tools</span>=<span class="string">&quot;http://schemas.android.com/tools&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
-<p><strong>移除不必要权限的好处（文心一言生成）</strong>：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><strong>提升用户隐私保护</strong>：减少不必要的权限请求可以增强用户信任，因为用户越来越关注个人数据的安全与隐私。特别是读取电话状态、读写外部存储这样的敏感权限，移除后表明应用不会侵犯用户的通信记录或存储的数据。</p>
-</li>
-<li class="lvl-2">
-<p><strong>简化权限管理</strong>：对于用户而言，应用程序请求的权限越少，他们在安装和使用过程中遇到的权限提示就越少，从而提升用户体验。用户不再需要为不相关的功能授予权限。</p>
-</li>
-<li class="lvl-2">
-<p><strong>降低潜在的安全风险</strong>：每个权限都可能成为安全漏洞的入口。移除不必要的权限可以减少应用受到攻击的面，提高应用的整体安全性。</p>
-</li>
-<li class="lvl-2">
-<p><strong>合规性增强</strong>：遵循更严格的隐私法规要求，比如GDPR（欧盟通用数据保护条例）或中国的《个人信息保护法》，这些法律强调最小必要原则，即只收集和处理完成业务所必需的最少个人信息。移除多余权限有助于企业符合此类法规要求。</p>
-</li>
-<li class="lvl-2">
-<p><strong>优化应用审核过程</strong>：在Google Play Store或其他应用市场上架时，应用的权限使用是审核的一部分。减少非必要的权限可以简化审核流程，加快应用上架速度。</p>
-</li>
-<li class="lvl-2">
-<p><strong>可能提升性能</strong>：虽然直接关联不大，但理论上减少对存储或硬件资源的访问需求，可能轻微提升应用运行效率，尤其是对于资源紧张的设备。</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>APP</category>
-        <category>React Native</category>
-      </categories>
-      <tags>
-        <tag>React Native</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>RN问题解决</title>
     <url>/2024/10/13/RN%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>2024.6.14时最新版本为 0.74.2，2024.8.1时最新版本为0.74.4，但其相关依赖不太稳定，尝试使用 0.74.2 版本操作</p>
@@ -287,6 +246,32 @@
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2024/10/18/hello-world/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+<h2 id="Quick-Start">Quick Start</h2>
+<h3 id="Create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SASS星空</title>
     <url>/2024/10/15/SASS%E6%98%9F%E7%A9%BA/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p><strong>效果图</strong></p>
@@ -336,29 +321,166 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2024/10/18/hello-world/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+    <title>RN优化</title>
+    <url>/2024/10/13/RN%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="移除不必要权限">移除不必要权限</h2>
+<p>例如，在<code>\[项目名]\android\app\src\main\</code>下<code>AndroidManifest.xml</code>中写入如下代码</p>
 <span id="more"></span>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 移除读取电话状态的权限 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">tools:node</span>=<span class="string">&quot;remove&quot;</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_PHONE_STATE&quot;</span> /&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 移除写入外部存储的权限。 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">tools:node</span>=<span class="string">&quot;remove&quot;</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;</span> /&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 移除读取外部存储的权限 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">tools:node</span>=<span class="string">&quot;remove&quot;</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_EXTERNAL_STORAGE&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<!-- more -->
+<p>我们还需要在<code>AndroidManifest.xml</code>中声明了一个名为tools的XML命名空间<code>xmlns:tools=&quot;http://schemas.android.com/tools&quot;</code></p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">&lt;manifest xmlns:<span class="attribute">android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span> xmlns:<span class="attribute">tools</span>=<span class="string">&quot;http://schemas.android.com/tools&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>移除不必要权限的好处（文心一言生成）</strong>：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>提升用户隐私保护</strong>：减少不必要的权限请求可以增强用户信任，因为用户越来越关注个人数据的安全与隐私。特别是读取电话状态、读写外部存储这样的敏感权限，移除后表明应用不会侵犯用户的通信记录或存储的数据。</p>
+</li>
+<li class="lvl-2">
+<p><strong>简化权限管理</strong>：对于用户而言，应用程序请求的权限越少，他们在安装和使用过程中遇到的权限提示就越少，从而提升用户体验。用户不再需要为不相关的功能授予权限。</p>
+</li>
+<li class="lvl-2">
+<p><strong>降低潜在的安全风险</strong>：每个权限都可能成为安全漏洞的入口。移除不必要的权限可以减少应用受到攻击的面，提高应用的整体安全性。</p>
+</li>
+<li class="lvl-2">
+<p><strong>合规性增强</strong>：遵循更严格的隐私法规要求，比如GDPR（欧盟通用数据保护条例）或中国的《个人信息保护法》，这些法律强调最小必要原则，即只收集和处理完成业务所必需的最少个人信息。移除多余权限有助于企业符合此类法规要求。</p>
+</li>
+<li class="lvl-2">
+<p><strong>优化应用审核过程</strong>：在Google Play Store或其他应用市场上架时，应用的权限使用是审核的一部分。减少非必要的权限可以简化审核流程，加快应用上架速度。</p>
+</li>
+<li class="lvl-2">
+<p><strong>可能提升性能</strong>：虽然直接关联不大，但理论上减少对存储或硬件资源的访问需求，可能轻微提升应用运行效率，尤其是对于资源紧张的设备。</p>
+</li>
+</ul>
 ]]></content>
       <categories>
-        <category>hexo</category>
+        <category>前端</category>
+        <category>APP</category>
+        <category>React Native</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
+        <tag>React Native</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vite 环境变量配置文件</title>
+    <url>/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p><strong>前提文档链接</strong></p>
+<p>Vite 环境变量和模式文档：<a href="https://vitejs.cn/vite3-cn/guide/env-and-mode.html#env-files">https://vitejs.cn/vite3-cn/guide/env-and-mode.html#env-files</a></p>
+<hr>
+<span id="more"></span>
+<h2 id="开发环境与配置文件">开发环境与配置文件</h2>
+<p>在项目开发中，我们往往需要在不同环境下使用不同的配置，比如开发环境、测试环境、生产环境等。</p>
+<p>在项目开发中，常见的环境有</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>dev</code> – 开发环境，外部用户无法访问，开发人员使用，版本变动大。</p>
+</li>
+<li class="lvl-2">
+<p><code>prod</code> – 生产环境，面向外部用户的环境，正式环境。</p>
+</li>
+<li class="lvl-2">
+<p><code>test</code> – 测试环境，外部用户无法访问，专门给测试人员使用的，版本相对稳定。</p>
+</li>
+<li class="lvl-2">
+<p><code>sit (System Integration Test)</code> – 集成环境，系统集成测试，开发人员自己测试流程是否走通。</p>
+</li>
+<li class="lvl-2">
+<p><code>uat (User Acceptance Test environment)</code> – 用户验收测试环境，主要面向要交付的人员进行验证测试。</p>
+</li>
+<li class="lvl-2">
+<p><code>pre</code> – 灰度环境，外部用户可以访问，但是服务器配置相对低，其它和生产一样。</p>
+</li>
+<li class="lvl-2">
+<p><code>fat (Feature Acceptance Test environment)</code> – 功能验收测试环境，用于软件测试者测试使用。在以 <a href="https://vitejs.cn/">Vite</a> 作为构建工具开发项目时，环境变量配置文件名为 <code>.env</code>，文件名后缀为 <code>.env.[mode]</code>，其中 <code>mode</code> 为环境名称，如 <code>dev</code>、<code>prod</code>、<code>test</code> 等。</p>
+</li>
+</ul>
+<p>根据 <code>mode</code> 的不同，可以配置不同的环境变量，例如</p>
+<blockquote>
+<p>.env.development<br>
+.env.production<br>
+.env.test</p>
+</blockquote>
+<p>默认情况下，Vite 会自动读取 <code>.env</code> 文件（通用配置），并根据 <code>NODE_ENV</code> 的值来确定当前环境。</p>
+<p>但对于一份指定模式的文件（例如 .env.production）会比通用形式的优先级更高（例如 .env）。且相同的配置项，指定模式的文件会覆盖通用配置。</p>
+<p>虽说环境有多种，但真正的开发模式只有两种</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>development</code>：开发模式下</p>
+</li>
+<li class="lvl-2">
+<p><code>production</code>：生产模式下</p>
+</li>
+</ul>
+<p>我们可以在不同的开发模式下配置多种环境，基于这种情况下，又习惯性的把 <code>开发环境</code> 和 <code>生产环境</code> 作为主环境，而在主环境下配置各种子环境，显示的把开发模式指定出来，便于开发人员理解，基于此，有些项目的环境目录会出现以下情况</p>
+<blockquote>
+<p>.env.development<br>
+.env.development.sit<br>
+.env.production<br>
+.env.production.uat</p>
+</blockquote>
+<h2 id="环境变量">环境变量</h2>
+<p>在 Vite 中，环境变量的命名规则默认为 <code>VITE_</code> 开头，例如 <code>VITE_API_URL</code>。</p>
+<p><strong>官方解释</strong></p>
+<blockquote>
+<p>为了防止意外地将一些环境变量泄漏到客户端，只有以 VITE_ 为前缀的变量才会暴露给经过 vite 处理的代码。例如下面这些环境变量：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">VITE_SOME_KEY</span>=<span class="number">123</span></span><br><span class="line"><span class="attr">DB_PASSWORD</span>=foobar</span><br></pre></td></tr></table></figure>
+<p>只有 VITE_SOME_KEY 会被暴露为 import.meta.env.VITE_SOME_KEY 提供给客户端源码，而 DB_PASSWORD 则不会。</p>
+<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(<span class="keyword">import</span>.meta.env.VITE_SOME_KEY) <span class="comment">// 123</span></span><br><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(<span class="keyword">import</span>.meta.env.DB_PASSWORD) <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>如果修改默认前缀，请参阅 <a href="https://vitejs.cn/vite3-cn/config/shared-options.html#envprefix">envprefix</a>。</p>
+<h3 id="环境变量的使用">环境变量的使用</h3>
+<p>在项目中，有些公共部分是需要我们抽离出来，作为环境变量进行配置，例如：<code>API_BASE_URL</code>，<code>ROUTE_BASE_URL</code>等等。</p>
+<p>我们可以在 <code>.env.[mode]</code> 配置文件中填写</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">VITE_APP_API_URL</span>=http://x.x.x.x:xx</span><br><span class="line"><span class="attr">VITE_ROUTE_BASE_URL</span>=/xxx</span><br></pre></td></tr></table></figure>
+<p>在项目中，我们可以通过 <code>import.meta.env.[变量名]</code> 来获取这些环境变量。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">env</span>.<span class="property">VITE_APP_API_URL</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">env</span>.<span class="property">VITE_ROUTE_BASE_URL</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="指定开发环境">指定开发环境</h3>
+<p>我们可以通过获取这些环境变量以达到不同环境下使用不同变量的功能，但我们如何确定当前环境或者当前模式呢？</p>
+<h4 id="指定开发环境的模式">指定开发环境的模式</h4>
+<p>开发环境的模式需要在配置文件中配置 <code>NODE_ENV</code> 变量，Vite 会自动读取该变量，并根据该变量的值来确定当前开发模式，默认为 <code>development</code>。</p>
+<p><code>NODE_ENV</code> 有两个值：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>development</code>：开发模式</p>
+</li>
+<li class="lvl-2">
+<p><code>production</code>：生产模式</p>
+</li>
+</ul>
+<p>在有些时候，我们不需要进行显示的配置，Vite 内部会自动根据当前环境来确定开发模式。例如：</p>
+<blockquote>
+<p>默认情况下，开发服务器 (dev 命令) 运行在 development (开发) 模式，而 build 命令（打包命令）则运行在 production (生产) 模式。</p>
+<p>这意味着当执行 vite build 时，它会自动加载 .env.production 中可能存在的环境变量。 ————<a href="https://vitejs.cn/vite3-cn/guide/env-and-mode.html#env-files">官方解释</a></p>
+</blockquote>
+<h4 id="指定环境类型">指定环境类型</h4>
+<p>在上文我们提到了 <code>.env.[mode]</code> ，我们只需要改写 <code>mode</code> 值便可实现环境的创建，在真实情况下，<code>mode</code> 可以是任意值，但为了避免混淆，我们可以遵循以上的软规定。</p>
+<p>通过改变 mode 的值便可创建一个环境，但除了 <code>.env.development</code> 和 .<code>env.production</code> 可以被 Vite 自动识别在 dev命令 和 build 命令情况下读取变量外，其他的 mode 配置只会根据 <code>NODE_ENV</code> 的值来识别其对应的配置文件。</p>
+<p>我们还需要在启动命令中进行模式指定，在项目根目录的 <code>package.json</code> 中的执行脚本 <code>script</code> 中添加一条命令，如</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;dev-test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vite --mode test&quot;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+<p>通过指定 <code>--mode</code> 参数，Vite 就会根据当前启动命令指定的模式来加载对应的 Vite 项目中 <code>.env.[mode]</code> mode 指定的配置文件。</p>
+<h4 id="示例">示例</h4>
+<p>在 <code>.env.development</code> 中配置</p>
+<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-2.png" class="" title="vite 环境变量配置文件">
+<p>我在封装的请求模块中引用 <code>VITE_APP_API_URL</code> 变量</p>
+<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-1.png" class="" title="vite 环境变量配置文件">
+<p>通过 <code>npm run dev</code> 启动项目，在网络请求中的 <code>baseURL</code> 显示为 <code>http://10.111.11.11:8080</code></p>
+<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-3.png" class="" title="vite 环境变量配置文件">
+<p>我们更换环境</p>
+<p>在 <code>.env.test</code> 中配置</p>
+<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-4.png" class="" title="vite 环境变量配置文件">
+<p>在 <code>package.json</code> 中添加一条命令</p>
+<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-5.png" class="" title="vite 环境变量配置文件">
+<p>运行 <code>npm run dev-test</code>，在网络请求中的 <code>baseURL</code> 显示为 <code>http://10.122.22.22:8001</code></p>
+<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-6.png" class="" title="vite 环境变量配置文件">
+<h4 id="注意事项">注意事项</h4>
+<p>当前 <code>Vite</code> 版本执行打包命令时，如果在 <code>.env,production</code> 中指定了 <code>NODE_ENV:production</code>，会报错，只需把该配置删除即可，打包时还是会读取 <code>.env,production</code> 的配置。</p>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>工程化</category>
+      </categories>
+      <tags>
+        <tag>vite</tag>
       </tags>
   </entry>
   <entry>
@@ -703,6 +825,113 @@
       </tags>
   </entry>
   <entry>
+    <title>动态路由+能支持iframe嵌入</title>
+    <url>/2025/09/23/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1+%E8%83%BD%E6%94%AF%E6%8C%81iframe%E5%B5%8C%E5%85%A5/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
+<span id="more"></span>
+<h1>动态路由+能支持iframe嵌入</h1>
+<p>“动态路由 + iframe 内嵌”的工作机制与关键点，帮你快速看清楚从配置→路由注入→渲染的全流程。</p>
+<h3 id="总体流程">总体流程</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>静态和动态菜单源合并后统一转换为可注入的路由对象并注册到路由树。</p>
+</li>
+<li class="lvl-2">
+<p>若路由项的 <code>meta.type</code> 指定为支持内嵌的类型（本项目现有：<code>iframe</code>&lt;打开新标签页&gt; 与 <code>embedding_iframe</code>&lt;页面内嵌&gt;），会被转换为一个内部访问路径 <code>/i/$&#123;name&#125;</code>，并将原始外链地址存入 <code>meta.url</code>。</p>
+</li>
+<li class="lvl-2">
+<p>页面渲染时，真实的页面不是常规 <code>view</code> 组件，而是通过 <code>iframeView</code> 组件读取 <code>meta.url</code>，以 <code>&lt;iframe&gt;</code> 内嵌方式展示。</p>
+</li>
+</ul>
+<h3 id="关键文件与职责">关键文件与职责</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>路由注入与转换：<code>src/router/index.js</code></p>
+<ul class="lvl-2">
+<li class="lvl-4">合并菜单源：
+<ul class="lvl-4">
+<li class="lvl-6">静态：<code>userRoutes</code>（来自 <code>src/config/route.js</code>）</li>
+<li class="lvl-6">动态：<code>MENU</code>（来自 <code>tool.data.get('MENU')</code>）</li>
+</ul>
+</li>
+<li class="lvl-4">鉴权过滤：<code>treeFilter(userRoutes, func)</code> 会按 <code>meta.role</code> 做权限控制。</li>
+<li class="lvl-4">转换核心：<code>filterAsyncRouter(routerMap)</code>
+<ul class="lvl-4">
+<li class="lvl-6">识别外链型菜单并改造为内嵌路由：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//处理外部链接特殊路由</span><br><span class="line">if (item.meta.type == &#x27;iframe&#x27; || item.meta.type == &#x27;embedding_iframe&#x27;) &#123;</span><br><span class="line">  item.meta.url = item.path;</span><br><span class="line">  item.path = `/i/$&#123;item.name&#125;`;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul class="lvl-6">
+<li class="lvl-8">原 <code>path</code>（外链 URL）被保存到 <code>meta.url</code></li>
+<li class="lvl-8">新 <code>path</code> 统一变成 <code>/i/$&#123;name&#125;</code></li>
+</ul>
+</li>
+<li class="lvl-6">统一生成标准路由对象并按 <code>layout</code> 父路由动态注册：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var route = &#123;</span><br><span class="line">  path: item.path,</span><br><span class="line">  name: item.name,</span><br><span class="line">  meta: item.meta,</span><br><span class="line">  redirect: item.redirect,</span><br><span class="line">  children: item.children ? filterAsyncRouter(item.children) : null,</span><br><span class="line">  component: loadComponent(item.component),</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li class="lvl-4">首次进入时的动态注册控制：<code>isGetRouter</code> 保证只注入一次；注入完成后才加 404。</li>
+<li class="lvl-4">注意：如果存在“进入前打开新标签”的逻辑，通常写在 <code>beforeEach</code> 中根据 <code>meta.type==='iframe'</code> 执行 <code>window.open(...)</code>。若你要所有 iframe 内嵌显示，应避免在守卫里拦截打开新页，仅依赖 <code>iframeView</code> 渲染。</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>菜单与链接规范化：<code>src/layout/index.vue</code></p>
+<ul class="lvl-2">
+<li class="lvl-4">菜单二次处理 <code>filterUrl</code>：确保左侧菜单点击时，外链类项的 <code>path</code> 也会落在 <code>/i/$&#123;name&#125;</code>，与路由规则一致。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">if (item.meta.type == &#x27;iframe&#x27; || item.meta.type == &#x27;embedding_iframe&#x27;) &#123;</span><br><span class="line">  item.path = `/i/$&#123;item.name&#125;`;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>iframe 渲染容器：<code>src/layout/components/iframeView.vue</code></p>
+<ul class="lvl-2">
+<li class="lvl-4">只在当前路由 <code>meta.type</code> 为外链内嵌类型时显示 iframe 容器：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div v-show=&quot;$route.meta.type==&#x27;iframe&#x27; || $route.meta.type==&#x27;embedding_iframe&#x27;&quot; class=&quot;iframe-pages&quot;&gt;</span><br><span class="line">  &lt;iframe v-for=&quot;item in iframeList&quot; :key=&quot;item.meta.url&quot; v-show=&quot;$route.meta.url==item.meta.url&quot; :src=&quot;item.meta.url&quot; frameborder=&#x27;0&#x27;&gt;&lt;/iframe&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-4">进入外链路由时，会将当前路由压入 <code>iframeList</code>，从而支持多标签/刷新等行为：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">if(route.meta.type == &#x27;iframe&#x27; || route.meta.type == &#x27;embedding_iframe&#x27;)&#123;</span><br><span class="line">  if(this.ismobile || !this.layoutTags)&#123;</span><br><span class="line">    this.$store.commit(&quot;setIframeList&quot;, route)</span><br><span class="line">  &#125;else&#123;</span><br><span class="line">    this.$store.commit(&quot;pushIframeList&quot;, route)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">  if(this.ismobile || !this.layoutTags)&#123;</span><br><span class="line">    this.$store.commit(&quot;clearIframeList&quot;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-4">对应的持久化列表在 <code>src/store/modules/iframe.js</code>，包含 <code>setIframeList/pushIframeList/refreshIframe/clearIframeList</code> 等。</li>
+</ul>
+</li>
+</ul>
+<h3 id="路由配置怎么写（例）">路由配置怎么写（例）</h3>
+<p>在 <code>src/config/route.js</code> 静态菜单里，外链菜单这样写：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">name</span>: <span class="string">&#x27;compassindustry&#x27;</span>,</span><br><span class="line">	<span class="attr">path</span>: <span class="string">&#x27;https://open.ys7.com/cn/s/index&#x27;</span>,</span><br><span class="line">	<span class="attr">meta</span>: &#123; <span class="attr">title</span>: <span class="string">&#x27;行业指数&#x27;</span>, <span class="attr">icon</span>: <span class="string">&#x27;el-icon-caret-right&#x27;</span>, <span class="attr">type</span>: <span class="string">&#x27;embedding_iframe&#x27;</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>name</code>：必须唯一，用来生成内部访问路径 <code>/i/compassindustry</code></p>
+</li>
+<li class="lvl-2">
+<p><code>path</code>：外部真实 URL</p>
+</li>
+<li class="lvl-2">
+<p><code>meta.type</code>：使用 <code>iframe</code> 或 <code>embedding_iframe</code> 任一都可按当前代码支持内嵌</p>
+</li>
+<li class="lvl-2">
+<p>渲染流程：点击菜单 → 实际跳转到 <code>/i/compassindustry</code> → <code>iframeView</code> 根据 <code>meta.url</code> 内嵌加载外链</p>
+</li>
+</ul>
+<h3 id="常见问题与排查">常见问题与排查</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>“No match found for location with path ‘/i/xxx’”：通常是该项路由尚未被注入。确保：</p>
+<ul class="lvl-2">
+<li class="lvl-4">该菜单项包含在 <code>userRoutes</code> 或后端返回的 <code>MENU</code> 中；</li>
+<li class="lvl-4">名称 <code>name</code> 与菜单里点击的一致（由 <code>name</code> 决定 <code>/i/$&#123;name&#125;</code>）；</li>
+<li class="lvl-4">首次加载时不要过早跳转到尚未注册的 <code>/i/...</code>，或保证动态注入在导航前完成。</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>点击外链被新开标签页：检查路由守卫里是否有针对 <code>meta.type === 'iframe'</code> 的 <code>window.open</code> 拦截。若你希望“全部内嵌”，请移除或改为仅对特定类型生效。</p>
+</li>
+<li class="lvl-2">
+<p>需要新支持的类型：在 <code>filterAsyncRouter</code> 与 <code>iframeView.vue</code> 的判断里加上你的 <code>meta.type</code> 即可。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>动画</title>
     <url>/2025/07/19/%E5%8A%A8%E7%94%BB/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
@@ -825,126 +1054,62 @@
       </tags>
   </entry>
   <entry>
-    <title>vite 环境变量配置文件</title>
-    <url>/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p><strong>前提文档链接</strong></p>
-<p>Vite 环境变量和模式文档：<a href="https://vitejs.cn/vite3-cn/guide/env-and-mode.html#env-files">https://vitejs.cn/vite3-cn/guide/env-and-mode.html#env-files</a></p>
-<hr>
+    <title>带参数的文件上传</title>
+    <url>/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
 <span id="more"></span>
-<h2 id="开发环境与配置文件">开发环境与配置文件</h2>
-<p>在项目开发中，我们往往需要在不同环境下使用不同的配置，比如开发环境、测试环境、生产环境等。</p>
-<p>在项目开发中，常见的环境有</p>
+<h2 id="Element-plus-组件upload-关闭自动上传">Element plus 组件upload 关闭自动上传</h2>
+<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-1.png" class="" title="带参数的文件上传">
+<h2 id="成功后的回调">成功后的回调</h2>
+<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-2.png" class="" title="带参数的文件上传">
+<h2 id="获取实际文件对象">获取实际文件对象</h2>
+<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-3.png" class="" title="带参数的文件上传">
+<h2 id="上传方法">上传方法</h2>
+<h3 id="使用FormData-对象">使用FormData()对象</h3>
+<p><strong>FormData</strong> 接口提供了一种表示表单数据的键值对 <code>key/value</code> 的构造方式，并且可以轻松的将数据通过<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/send"><code>XMLHttpRequest.send()</code></a> 方法发送出去，本接口和此方法都相当简单直接。如果送出时的编码类型被设为 <code>&quot;multipart/form-data&quot;</code>，它会使用和表单一样的格式。</p>
+<h3 id="例子">例子</h3>
+<p>下面的代码将创建一个空的 FormData 对象：</p>
+<p>jsCopy to Clipboard</p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> formData = <span class="keyword">new</span> FormData(); <span class="comment">// 当前为空</span></span><br></pre></td></tr></table></figure>
+<p>你可以使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FormData/append"><code>FormData.append</code></a>来添加键/值对到表单里面；</p>
+<p>jsCopy to Clipboard</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">formData.<span class="built_in">append</span>(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;Chris&quot;</span>);</span><br></pre></td></tr></table></figure>
+<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-4.png" class="" title="带参数的文件上传">]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>本地mock的使用</title>
+    <url>/2025/08/29/%E6%9C%AC%E5%9C%B0mock%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
+<span id="more"></span>
+<h1>mock的使用</h1>
+<img data-src="/2025/08/29/%E6%9C%AC%E5%9C%B0mock%E7%9A%84%E4%BD%BF%E7%94%A8/image-1.png" class="" title="mock 使用地方">
 <ul class="lvl-0">
 <li class="lvl-2">
-<p><code>dev</code> – 开发环境，外部用户无法访问，开发人员使用，版本变动大。</p>
-</li>
-<li class="lvl-2">
-<p><code>prod</code> – 生产环境，面向外部用户的环境，正式环境。</p>
-</li>
-<li class="lvl-2">
-<p><code>test</code> – 测试环境，外部用户无法访问，专门给测试人员使用的，版本相对稳定。</p>
-</li>
-<li class="lvl-2">
-<p><code>sit (System Integration Test)</code> – 集成环境，系统集成测试，开发人员自己测试流程是否走通。</p>
-</li>
-<li class="lvl-2">
-<p><code>uat (User Acceptance Test environment)</code> – 用户验收测试环境，主要面向要交付的人员进行验证测试。</p>
-</li>
-<li class="lvl-2">
-<p><code>pre</code> – 灰度环境，外部用户可以访问，但是服务器配置相对低，其它和生产一样。</p>
-</li>
-<li class="lvl-2">
-<p><code>fat (Feature Acceptance Test environment)</code> – 功能验收测试环境，用于软件测试者测试使用。在以 <a href="https://vitejs.cn/">Vite</a> 作为构建工具开发项目时，环境变量配置文件名为 <code>.env</code>，文件名后缀为 <code>.env.[mode]</code>，其中 <code>mode</code> 为环境名称，如 <code>dev</code>、<code>prod</code>、<code>test</code> 等。</p>
+<p>技术栈</p>
+<ul class="lvl-2">
+<li class="lvl-4">TypeScript+Hono</li>
+<li class="lvl-4">@faker-js/faker （生成虚拟数据的工具）</li>
+</ul>
 </li>
 </ul>
-<p>根据 <code>mode</code> 的不同，可以配置不同的环境变量，例如</p>
-<blockquote>
-<p>.env.development<br>
-.env.production<br>
-.env.test</p>
-</blockquote>
-<p>默认情况下，Vite 会自动读取 <code>.env</code> 文件（通用配置），并根据 <code>NODE_ENV</code> 的值来确定当前环境。</p>
-<p>但对于一份指定模式的文件（例如 .env.production）会比通用形式的优先级更高（例如 .env）。且相同的配置项，指定模式的文件会覆盖通用配置。</p>
-<p>虽说环境有多种，但真正的开发模式只有两种</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><code>development</code>：开发模式下</p>
-</li>
-<li class="lvl-2">
-<p><code>production</code>：生产模式下</p>
-</li>
-</ul>
-<p>我们可以在不同的开发模式下配置多种环境，基于这种情况下，又习惯性的把 <code>开发环境</code> 和 <code>生产环境</code> 作为主环境，而在主环境下配置各种子环境，显示的把开发模式指定出来，便于开发人员理解，基于此，有些项目的环境目录会出现以下情况</p>
-<blockquote>
-<p>.env.development<br>
-.env.development.sit<br>
-.env.production<br>
-.env.production.uat</p>
-</blockquote>
-<h2 id="环境变量">环境变量</h2>
-<p>在 Vite 中，环境变量的命名规则默认为 <code>VITE_</code> 开头，例如 <code>VITE_API_URL</code>。</p>
-<p><strong>官方解释</strong></p>
-<blockquote>
-<p>为了防止意外地将一些环境变量泄漏到客户端，只有以 VITE_ 为前缀的变量才会暴露给经过 vite 处理的代码。例如下面这些环境变量：</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">VITE_SOME_KEY</span>=<span class="number">123</span></span><br><span class="line"><span class="attr">DB_PASSWORD</span>=foobar</span><br></pre></td></tr></table></figure>
-<p>只有 VITE_SOME_KEY 会被暴露为 import.meta.env.VITE_SOME_KEY 提供给客户端源码，而 DB_PASSWORD 则不会。</p>
-<figure class="highlight arcade"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(<span class="keyword">import</span>.meta.env.VITE_SOME_KEY) <span class="comment">// 123</span></span><br><span class="line"><span class="built_in">console</span>.<span class="built_in">log</span>(<span class="keyword">import</span>.meta.env.DB_PASSWORD) <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>如果修改默认前缀，请参阅 <a href="https://vitejs.cn/vite3-cn/config/shared-options.html#envprefix">envprefix</a>。</p>
-<h3 id="环境变量的使用">环境变量的使用</h3>
-<p>在项目中，有些公共部分是需要我们抽离出来，作为环境变量进行配置，例如：<code>API_BASE_URL</code>，<code>ROUTE_BASE_URL</code>等等。</p>
-<p>我们可以在 <code>.env.[mode]</code> 配置文件中填写</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">VITE_APP_API_URL</span>=http://x.x.x.x:xx</span><br><span class="line"><span class="attr">VITE_ROUTE_BASE_URL</span>=/xxx</span><br></pre></td></tr></table></figure>
-<p>在项目中，我们可以通过 <code>import.meta.env.[变量名]</code> 来获取这些环境变量。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">env</span>.<span class="property">VITE_APP_API_URL</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">env</span>.<span class="property">VITE_ROUTE_BASE_URL</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="指定开发环境">指定开发环境</h3>
-<p>我们可以通过获取这些环境变量以达到不同环境下使用不同变量的功能，但我们如何确定当前环境或者当前模式呢？</p>
-<h4 id="指定开发环境的模式">指定开发环境的模式</h4>
-<p>开发环境的模式需要在配置文件中配置 <code>NODE_ENV</code> 变量，Vite 会自动读取该变量，并根据该变量的值来确定当前开发模式，默认为 <code>development</code>。</p>
-<p><code>NODE_ENV</code> 有两个值：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><code>development</code>：开发模式</p>
-</li>
-<li class="lvl-2">
-<p><code>production</code>：生产模式</p>
-</li>
-</ul>
-<p>在有些时候，我们不需要进行显示的配置，Vite 内部会自动根据当前环境来确定开发模式。例如：</p>
-<blockquote>
-<p>默认情况下，开发服务器 (dev 命令) 运行在 development (开发) 模式，而 build 命令（打包命令）则运行在 production (生产) 模式。</p>
-<p>这意味着当执行 vite build 时，它会自动加载 .env.production 中可能存在的环境变量。 ————<a href="https://vitejs.cn/vite3-cn/guide/env-and-mode.html#env-files">官方解释</a></p>
-</blockquote>
-<h4 id="指定环境类型">指定环境类型</h4>
-<p>在上文我们提到了 <code>.env.[mode]</code> ，我们只需要改写 <code>mode</code> 值便可实现环境的创建，在真实情况下，<code>mode</code> 可以是任意值，但为了避免混淆，我们可以遵循以上的软规定。</p>
-<p>通过改变 mode 的值便可创建一个环境，但除了 <code>.env.development</code> 和 .<code>env.production</code> 可以被 Vite 自动识别在 dev命令 和 build 命令情况下读取变量外，其他的 mode 配置只会根据 <code>NODE_ENV</code> 的值来识别其对应的配置文件。</p>
-<p>我们还需要在启动命令中进行模式指定，在项目根目录的 <code>package.json</code> 中的执行脚本 <code>script</code> 中添加一条命令，如</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;dev-test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vite --mode test&quot;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
-<p>通过指定 <code>--mode</code> 参数，Vite 就会根据当前启动命令指定的模式来加载对应的 Vite 项目中 <code>.env.[mode]</code> mode 指定的配置文件。</p>
-<h4 id="示例">示例</h4>
-<p>在 <code>.env.development</code> 中配置</p>
-<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-2.png" class="" title="vite 环境变量配置文件">
-<p>我在封装的请求模块中引用 <code>VITE_APP_API_URL</code> 变量</p>
-<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-1.png" class="" title="vite 环境变量配置文件">
-<p>通过 <code>npm run dev</code> 启动项目，在网络请求中的 <code>baseURL</code> 显示为 <code>http://10.111.11.11:8080</code></p>
-<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-3.png" class="" title="vite 环境变量配置文件">
-<p>我们更换环境</p>
-<p>在 <code>.env.test</code> 中配置</p>
-<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-4.png" class="" title="vite 环境变量配置文件">
-<p>在 <code>package.json</code> 中添加一条命令</p>
-<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-5.png" class="" title="vite 环境变量配置文件">
-<p>运行 <code>npm run dev-test</code>，在网络请求中的 <code>baseURL</code> 显示为 <code>http://10.122.22.22:8001</code></p>
-<img data-src="/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/image-6.png" class="" title="vite 环境变量配置文件">
-<h4 id="注意事项">注意事项</h4>
-<p>当前 <code>Vite</code> 版本执行打包命令时，如果在 <code>.env,production</code> 中指定了 <code>NODE_ENV:production</code>，会报错，只需把该配置删除即可，打包时还是会读取 <code>.env,production</code> 的配置。</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">npm create hono@latest my-app</span><br><span class="line">npm install @hono/node-server</span><br><span class="line">npm install @faker-js/faker --save-dev</span><br></pre></td></tr></table></figure>
+<img data-src="/2025/08/29/%E6%9C%AC%E5%9C%B0mock%E7%9A%84%E4%BD%BF%E7%94%A8/image-2.png" class="" title="创建hono项目">
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">// index.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; serve &#125; <span class="keyword">from</span> <span class="string">&quot;@hono/node-server&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Hono</span> &#125; <span class="keyword">from</span> <span class="string">&quot;hono&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; cors &#125; <span class="keyword">from</span> <span class="string">&quot;hono/cors&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; proxy &#125; <span class="keyword">from</span> <span class="string">&quot;hono/proxy&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; fakerZH_CN &#125; <span class="keyword">from</span> <span class="string">&quot;@faker-js/faker&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Hono</span>();</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">use</span>(<span class="title function_">cors</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义的mock接口</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&quot;/api/user&quot;</span>, <span class="function">(<span class="params">c</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> c.<span class="title function_">json</span>(&#123;</span><br><span class="line">    <span class="attr">data</span>: &#123;</span><br><span class="line">      <span class="attr">name</span>: fakerZH_CN.<span class="property">person</span>.<span class="title function_">fullName</span>(),</span><br><span class="line">      <span class="attr">age</span>: fakerZH_CN.<span class="property">person</span>.<span class="title function_">sex</span>()</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">code</span>: <span class="number">200</span>,</span><br><span class="line">    <span class="attr">message</span>: <span class="string">&#x27;success&#x27;</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 代理中间件：转发未定义的接口到 localhost:3000</span></span><br><span class="line">app.<span class="title function_">all</span>(<span class="string">&quot;*&quot;</span>, <span class="title function_">async</span> (c) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> targetUrl = <span class="keyword">new</span> <span class="title function_">URL</span>(c.<span class="property">req</span>.<span class="property">url</span>);</span><br><span class="line">  targetUrl.<span class="property">host</span> = <span class="string">&quot;localhost:3000&quot;</span>;<span class="comment">//这个是兜底代理的目标（后端服务器地址）</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">proxy</span>(targetUrl, c.<span class="property">req</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">serve</span>(</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">fetch</span>: app.<span class="property">fetch</span>,</span><br><span class="line">    <span class="attr">port</span>: <span class="number">3001</span>,<span class="comment">//启动入口</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function">(<span class="params">info</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Server is running on http://localhost:<span class="subst">$&#123;info.port&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>自己的项目进行代理</p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//.env.development</span></span><br><span class="line">VITE_API_BASE_URL=http:<span class="comment">//localhost:3000</span></span><br><span class="line">VITE_MOCK=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">// vite.config.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; defineConfig, loadEnv &#125; <span class="keyword">from</span> <span class="string">&quot;vite&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> vue <span class="keyword">from</span> <span class="string">&quot;@vitejs/plugin-vue&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// https://vite.dev/config/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(<span class="function">(<span class="params">&#123; mode &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> env = <span class="title function_">loadEnv</span>(mode, process.<span class="title function_">cwd</span>(), <span class="string">&quot;&quot;</span>);</span><br><span class="line">  <span class="keyword">const</span> target = env.<span class="property">VITE_API_BASE_URL</span>;</span><br><span class="line">  <span class="keyword">const</span> isMock = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(env.<span class="property">VITE_MOCK</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(target);</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">plugins</span>: [<span class="title function_">vue</span>()],</span><br><span class="line">    <span class="attr">server</span>: &#123;</span><br><span class="line">      <span class="attr">proxy</span>: &#123;</span><br><span class="line">        <span class="string">&quot;/api&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">target</span>: isMock</span><br><span class="line">            ? <span class="string">&quot;http://localhost:3001&quot;</span> <span class="comment">// 本地mock服务</span></span><br><span class="line">            : target,</span><br><span class="line">          <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const userInfo = ref()</span><br><span class="line">const fetchUserInfo = async () =&gt; &#123;</span><br><span class="line">  const res = await fetch(&quot;/api/user&quot;);</span><br><span class="line">  userInfo.value = await res.json();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>前端</category>
-        <category>工程化</category>
+        <category>本地mock的使用</category>
       </categories>
-      <tags>
-        <tag>vite</tag>
-      </tags>
   </entry>
   <entry>
     <title>微信小程序-学习笔记（学习中）</title>
@@ -987,63 +1152,6 @@
       </categories>
       <tags>
         <tag>微信小程序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>本地mock的使用</title>
-    <url>/2025/08/29/%E6%9C%AC%E5%9C%B0mock%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
-<span id="more"></span>
-<h1>mock的使用</h1>
-<img data-src="/2025/08/29/%E6%9C%AC%E5%9C%B0mock%E7%9A%84%E4%BD%BF%E7%94%A8/image-1.png" class="" title="mock 使用地方">
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>技术栈</p>
-<ul class="lvl-2">
-<li class="lvl-4">TypeScript+Hono</li>
-<li class="lvl-4">@faker-js/faker （生成虚拟数据的工具）</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">npm create hono@latest my-app</span><br><span class="line">npm install @hono/node-server</span><br><span class="line">npm install @faker-js/faker --save-dev</span><br></pre></td></tr></table></figure>
-<img data-src="/2025/08/29/%E6%9C%AC%E5%9C%B0mock%E7%9A%84%E4%BD%BF%E7%94%A8/image-2.png" class="" title="创建hono项目">
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">// index.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; serve &#125; <span class="keyword">from</span> <span class="string">&quot;@hono/node-server&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Hono</span> &#125; <span class="keyword">from</span> <span class="string">&quot;hono&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; cors &#125; <span class="keyword">from</span> <span class="string">&quot;hono/cors&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; proxy &#125; <span class="keyword">from</span> <span class="string">&quot;hono/proxy&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; fakerZH_CN &#125; <span class="keyword">from</span> <span class="string">&quot;@faker-js/faker&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Hono</span>();</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">use</span>(<span class="title function_">cors</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义的mock接口</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&quot;/api/user&quot;</span>, <span class="function">(<span class="params">c</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> c.<span class="title function_">json</span>(&#123;</span><br><span class="line">    <span class="attr">data</span>: &#123;</span><br><span class="line">      <span class="attr">name</span>: fakerZH_CN.<span class="property">person</span>.<span class="title function_">fullName</span>(),</span><br><span class="line">      <span class="attr">age</span>: fakerZH_CN.<span class="property">person</span>.<span class="title function_">sex</span>()</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">code</span>: <span class="number">200</span>,</span><br><span class="line">    <span class="attr">message</span>: <span class="string">&#x27;success&#x27;</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 代理中间件：转发未定义的接口到 localhost:3000</span></span><br><span class="line">app.<span class="title function_">all</span>(<span class="string">&quot;*&quot;</span>, <span class="title function_">async</span> (c) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> targetUrl = <span class="keyword">new</span> <span class="title function_">URL</span>(c.<span class="property">req</span>.<span class="property">url</span>);</span><br><span class="line">  targetUrl.<span class="property">host</span> = <span class="string">&quot;localhost:3000&quot;</span>;<span class="comment">//这个是兜底代理的目标（后端服务器地址）</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">proxy</span>(targetUrl, c.<span class="property">req</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">serve</span>(</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">fetch</span>: app.<span class="property">fetch</span>,</span><br><span class="line">    <span class="attr">port</span>: <span class="number">3001</span>,<span class="comment">//启动入口</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function">(<span class="params">info</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Server is running on http://localhost:<span class="subst">$&#123;info.port&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>自己的项目进行代理</p>
-<figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//.env.development</span></span><br><span class="line">VITE_API_BASE_URL=http:<span class="comment">//localhost:3000</span></span><br><span class="line">VITE_MOCK=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">// vite.config.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; defineConfig, loadEnv &#125; <span class="keyword">from</span> <span class="string">&quot;vite&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> vue <span class="keyword">from</span> <span class="string">&quot;@vitejs/plugin-vue&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// https://vite.dev/config/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(<span class="function">(<span class="params">&#123; mode &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> env = <span class="title function_">loadEnv</span>(mode, process.<span class="title function_">cwd</span>(), <span class="string">&quot;&quot;</span>);</span><br><span class="line">  <span class="keyword">const</span> target = env.<span class="property">VITE_API_BASE_URL</span>;</span><br><span class="line">  <span class="keyword">const</span> isMock = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(env.<span class="property">VITE_MOCK</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(target);</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">plugins</span>: [<span class="title function_">vue</span>()],</span><br><span class="line">    <span class="attr">server</span>: &#123;</span><br><span class="line">      <span class="attr">proxy</span>: &#123;</span><br><span class="line">        <span class="string">&quot;/api&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">target</span>: isMock</span><br><span class="line">            ? <span class="string">&quot;http://localhost:3001&quot;</span> <span class="comment">// 本地mock服务</span></span><br><span class="line">            : target,</span><br><span class="line">          <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>本地mock的使用</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>带参数的文件上传</title>
-    <url>/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
-<span id="more"></span>
-<h2 id="Element-plus-组件upload-关闭自动上传">Element plus 组件upload 关闭自动上传</h2>
-<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-1.png" class="" title="带参数的文件上传">
-<h2 id="成功后的回调">成功后的回调</h2>
-<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-2.png" class="" title="带参数的文件上传">
-<h2 id="获取实际文件对象">获取实际文件对象</h2>
-<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-3.png" class="" title="带参数的文件上传">
-<h2 id="上传方法">上传方法</h2>
-<h3 id="使用FormData-对象">使用FormData()对象</h3>
-<p><strong>FormData</strong> 接口提供了一种表示表单数据的键值对 <code>key/value</code> 的构造方式，并且可以轻松的将数据通过<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/send"><code>XMLHttpRequest.send()</code></a> 方法发送出去，本接口和此方法都相当简单直接。如果送出时的编码类型被设为 <code>&quot;multipart/form-data&quot;</code>，它会使用和表单一样的格式。</p>
-<h3 id="例子">例子</h3>
-<p>下面的代码将创建一个空的 FormData 对象：</p>
-<p>jsCopy to Clipboard</p>
-<figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> formData = <span class="keyword">new</span> FormData(); <span class="comment">// 当前为空</span></span><br></pre></td></tr></table></figure>
-<p>你可以使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FormData/append"><code>FormData.append</code></a>来添加键/值对到表单里面；</p>
-<p>jsCopy to Clipboard</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">formData.<span class="built_in">append</span>(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;Chris&quot;</span>);</span><br></pre></td></tr></table></figure>
-<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-4.png" class="" title="带参数的文件上传">]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
       </tags>
   </entry>
 </search>
