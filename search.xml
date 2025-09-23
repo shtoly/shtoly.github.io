@@ -1,6 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>RN优化</title>
+    <url>/2024/10/13/RN%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="移除不必要权限">移除不必要权限</h2>
+<p>例如，在<code>\[项目名]\android\app\src\main\</code>下<code>AndroidManifest.xml</code>中写入如下代码</p>
+<span id="more"></span>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 移除读取电话状态的权限 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">tools:node</span>=<span class="string">&quot;remove&quot;</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_PHONE_STATE&quot;</span> /&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 移除写入外部存储的权限。 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">tools:node</span>=<span class="string">&quot;remove&quot;</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;</span> /&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 移除读取外部存储的权限 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">tools:node</span>=<span class="string">&quot;remove&quot;</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_EXTERNAL_STORAGE&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<!-- more -->
+<p>我们还需要在<code>AndroidManifest.xml</code>中声明了一个名为tools的XML命名空间<code>xmlns:tools=&quot;http://schemas.android.com/tools&quot;</code></p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">&lt;manifest xmlns:<span class="attribute">android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span> xmlns:<span class="attribute">tools</span>=<span class="string">&quot;http://schemas.android.com/tools&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>移除不必要权限的好处（文心一言生成）</strong>：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>提升用户隐私保护</strong>：减少不必要的权限请求可以增强用户信任，因为用户越来越关注个人数据的安全与隐私。特别是读取电话状态、读写外部存储这样的敏感权限，移除后表明应用不会侵犯用户的通信记录或存储的数据。</p>
+</li>
+<li class="lvl-2">
+<p><strong>简化权限管理</strong>：对于用户而言，应用程序请求的权限越少，他们在安装和使用过程中遇到的权限提示就越少，从而提升用户体验。用户不再需要为不相关的功能授予权限。</p>
+</li>
+<li class="lvl-2">
+<p><strong>降低潜在的安全风险</strong>：每个权限都可能成为安全漏洞的入口。移除不必要的权限可以减少应用受到攻击的面，提高应用的整体安全性。</p>
+</li>
+<li class="lvl-2">
+<p><strong>合规性增强</strong>：遵循更严格的隐私法规要求，比如GDPR（欧盟通用数据保护条例）或中国的《个人信息保护法》，这些法律强调最小必要原则，即只收集和处理完成业务所必需的最少个人信息。移除多余权限有助于企业符合此类法规要求。</p>
+</li>
+<li class="lvl-2">
+<p><strong>优化应用审核过程</strong>：在Google Play Store或其他应用市场上架时，应用的权限使用是审核的一部分。减少非必要的权限可以简化审核流程，加快应用上架速度。</p>
+</li>
+<li class="lvl-2">
+<p><strong>可能提升性能</strong>：虽然直接关联不大，但理论上减少对存储或硬件资源的访问需求，可能轻微提升应用运行效率，尤其是对于资源紧张的设备。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>APP</category>
+        <category>React Native</category>
+      </categories>
+      <tags>
+        <tag>React Native</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>React事件机制</title>
+    <url>/2025/09/23/React%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
+<span id="more"></span>
+<h1>React 事件机制</h1>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;div onClick=&#123;<span class="variable language_">this</span>.<span class="property">handleClick</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>)&#125;&gt;点我&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>​	React并不是将click事件绑定到了div的真实DOM上，而是在document处监听了所有的事件，当事件发生并且冒泡到document处的时候，React将事件内容封装并交由真正的处理函数运行。这样的方式不仅仅减少了内存的消耗，还能在组件挂在销毁时统一订阅和移除事件。</p>
+<p>​	除此之外，冒泡到document上的事件也不是原生的浏览器事件，而是由react自己实现的合成事件（SyntheticEvent）。因此如果不想要是事件冒泡的话应该调用event.preventDefault()方法，而不是调用event.stopProppagation()方法。</p>
+<img data-src="/2025/09/23/React%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/image-1.png" class="" title="React事件机制图">
+<p>​	JSX 上写的事件并没有绑定在对应的真实 DOM 上，而是通过事件代理的方式，将所有的事件都统一绑定在了 <code>document</code> 上。这样的方式不仅减少了内存消耗，还能在组件挂载销毁时统一订阅和移除事件。</p>
+<p>​	另外冒泡到 <code>document</code> 上的事件也不是原生浏览器事件，而是 React 自己实现的合成事件（SyntheticEvent）。因此我们如果不想要事件冒泡的话，调用 <code>event.stopPropagation</code> 是无效的，而应该调用 <code>event.preventDefault</code>。</p>
+<p>实现合成事件的目的如下：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>合成事件首先抹平了浏览器之间的兼容问题，另外这是一个跨浏览器原生事件包装器，赋予了跨浏览器开发的能力；</p>
+</li>
+<li class="lvl-2">
+<p>对于原生浏览器事件来说，浏览器会给监听器创建一个事件对象。如果你有很多的事件监听，那么就需要分配很多的事件对象，造成高额的内存分配问题。但是对于合成事件来说，有一个事件池专门来管理它们的创建和销毁，当事件需要被使用时，就会从池子中复用对象，事件回调结束后，就会销毁事件对象上的属性，从而便于下次复用事件对象。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>React事件机制</category>
+      </categories>
+      <tags>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Clipboard API</title>
     <url>/2025/07/19/Clipboard%20API/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
@@ -321,44 +392,81 @@
       </tags>
   </entry>
   <entry>
-    <title>RN优化</title>
-    <url>/2024/10/13/RN%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="移除不必要权限">移除不必要权限</h2>
-<p>例如，在<code>\[项目名]\android\app\src\main\</code>下<code>AndroidManifest.xml</code>中写入如下代码</p>
+    <title>immer中间件</title>
+    <url>/2025/09/05/immer%E4%B8%AD%E9%97%B4%E4%BB%B6/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
 <span id="more"></span>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 移除读取电话状态的权限 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">tools:node</span>=<span class="string">&quot;remove&quot;</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_PHONE_STATE&quot;</span> /&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 移除写入外部存储的权限。 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">tools:node</span>=<span class="string">&quot;remove&quot;</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;</span> /&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 移除读取外部存储的权限 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">tools:node</span>=<span class="string">&quot;remove&quot;</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_EXTERNAL_STORAGE&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<!-- more -->
-<p>我们还需要在<code>AndroidManifest.xml</code>中声明了一个名为tools的XML命名空间<code>xmlns:tools=&quot;http://schemas.android.com/tools&quot;</code></p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">&lt;manifest xmlns:<span class="attribute">android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span> xmlns:<span class="attribute">tools</span>=<span class="string">&quot;http://schemas.android.com/tools&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
-<p><strong>移除不必要权限的好处（文心一言生成）</strong>：</p>
+<h1>immer中间件</h1>
+<h2 id="immer好处">immer好处</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p><strong>提升用户隐私保护</strong>：减少不必要的权限请求可以增强用户信任，因为用户越来越关注个人数据的安全与隐私。特别是读取电话状态、读写外部存储这样的敏感权限，移除后表明应用不会侵犯用户的通信记录或存储的数据。</p>
+<p>遵循不可变数据范式，同时使用普通的 JavaScript 对象、数组、Sets 和 Maps。无需学习新的 API 或 “mutations patterns”！</p>
 </li>
 <li class="lvl-2">
-<p><strong>简化权限管理</strong>：对于用户而言，应用程序请求的权限越少，他们在安装和使用过程中遇到的权限提示就越少，从而提升用户体验。用户不再需要为不相关的功能授予权限。</p>
+<p>强类型，无基于字符串的路径选择器等</p>
 </li>
 <li class="lvl-2">
-<p><strong>降低潜在的安全风险</strong>：每个权限都可能成为安全漏洞的入口。移除不必要的权限可以减少应用受到攻击的面，提高应用的整体安全性。</p>
+<p>开箱即用的结构共享</p>
 </li>
 <li class="lvl-2">
-<p><strong>合规性增强</strong>：遵循更严格的隐私法规要求，比如GDPR（欧盟通用数据保护条例）或中国的《个人信息保护法》，这些法律强调最小必要原则，即只收集和处理完成业务所必需的最少个人信息。移除多余权限有助于企业符合此类法规要求。</p>
+<p>开箱即用的对象冻结</p>
 </li>
 <li class="lvl-2">
-<p><strong>优化应用审核过程</strong>：在Google Play Store或其他应用市场上架时，应用的权限使用是审核的一部分。减少非必要的权限可以简化审核流程，加快应用上架速度。</p>
+<p>深度更新轻而易举</p>
 </li>
 <li class="lvl-2">
-<p><strong>可能提升性能</strong>：虽然直接关联不大，但理论上减少对存储或硬件资源的访问需求，可能轻微提升应用运行效率，尤其是对于资源紧张的设备。</p>
+<p>样板代码减少。更少的噪音，更简洁的代码</p>
+</li>
+<li class="lvl-2">
+<p>对 JSON 补丁的一流支持</p>
+</li>
+<li class="lvl-2">
+<p>小：3KB gzip</p>
 </li>
 </ul>
+<h2 id="react-TODO-Demo">react   TODO Demo</h2>
+<p>优化前：勾选任一条item，所以的item都会被重新render</p>
+<p>优化后：勾选哪条item，哪条item重新item</p>
+<img data-src="/2025/09/05/immer%E4%B8%AD%E9%97%B4%E4%BB%B6/image-1.png" class="" title="优化后效果图">
+<img data-src="/2025/09/05/immer%E4%B8%AD%E9%97%B4%E4%BB%B6/image-2.png" class="" title="immer使用">
+<p>用了immer之后可以直接操作state里面的数据</p>
+<img data-src="/2025/09/05/immer%E4%B8%AD%E9%97%B4%E4%BB%B6/image-3.png" class="" title="使用immer之后数据操作">
+<p><strong>immer官网：<a href="https://immerjs.github.io/immer/zh-CN/">https://immerjs.github.io/immer/zh-CN/</a></strong></p>
 ]]></content>
       <categories>
         <category>前端</category>
-        <category>APP</category>
-        <category>React Native</category>
+        <category>immer中间件</category>
       </categories>
       <tags>
-        <tag>React Native</tag>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue首屏加载优化</title>
+    <url>/2025/07/08/vue%E9%A6%96%E5%B1%8F%E5%8A%A0%E8%BD%BD%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
+<span id="more"></span>
+<h2 id="怎样在代码中将首屏加载时间计算出来">怎样在代码中将首屏加载时间计算出来</h2>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 首屏时间的计算</span></span><br><span class="line">    <span class="comment">// console.log(performance.timing.domComplete - performance.timing.navigationStart, &#x27;times&#x27;)//已弃用</span></span><br><span class="line">    </span><br><span class="line">   <span class="keyword">const</span> observer = <span class="keyword">new</span> <span class="title class_">PerformanceObserver</span>(<span class="function">(<span class="params">list</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(list.<span class="title function_">getEntries</span>())</span><br><span class="line">    &#125;)</span><br><span class="line">    observer.<span class="title function_">observe</span>(&#123; <span class="attr">entryTypes</span>: [<span class="string">&#x27;navigation&#x27;</span>] &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="vue中的异步组件">vue中的异步组件</h2>
+<p>在vue框架中怎么实现当用到这个组件时才会加载</p>
+<p>异步组件（在打包的时候单独形成分包）</p>
+<h3 id="正常普通导入组件">正常普通导入组件</h3>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> cs <span class="keyword">from</span> <span class="string">&quot;./cs.vue&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="异步组件">异步组件</h3>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 异步组件</span></span><br><span class="line"><span class="keyword">const</span> cs = <span class="title function_">defineAsyncComponent</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">import</span>(<span class="string">&#x27;./cs.vue&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="首页图片">首页图片</h2>
+<p>接口返回的图片为网络图片，在页面加载的时候不会占用加载时间</p>
+<h2 id="优化白屏显示-骨架屏">优化白屏显示-骨架屏</h2>
+<p>在vue页面没加载出来之前显示骨架屏</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 35%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 50%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 60%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 80%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>首屏加载优化</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -484,56 +592,6 @@
       </tags>
   </entry>
   <entry>
-    <title>immer中间件</title>
-    <url>/2025/09/05/immer%E4%B8%AD%E9%97%B4%E4%BB%B6/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
-<span id="more"></span>
-<h1>immer中间件</h1>
-<h2 id="immer好处">immer好处</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>遵循不可变数据范式，同时使用普通的 JavaScript 对象、数组、Sets 和 Maps。无需学习新的 API 或 “mutations patterns”！</p>
-</li>
-<li class="lvl-2">
-<p>强类型，无基于字符串的路径选择器等</p>
-</li>
-<li class="lvl-2">
-<p>开箱即用的结构共享</p>
-</li>
-<li class="lvl-2">
-<p>开箱即用的对象冻结</p>
-</li>
-<li class="lvl-2">
-<p>深度更新轻而易举</p>
-</li>
-<li class="lvl-2">
-<p>样板代码减少。更少的噪音，更简洁的代码</p>
-</li>
-<li class="lvl-2">
-<p>对 JSON 补丁的一流支持</p>
-</li>
-<li class="lvl-2">
-<p>小：3KB gzip</p>
-</li>
-</ul>
-<h2 id="react-TODO-Demo">react   TODO Demo</h2>
-<p>优化前：勾选任一条item，所以的item都会被重新render</p>
-<p>优化后：勾选哪条item，哪条item重新item</p>
-<img data-src="/2025/09/05/immer%E4%B8%AD%E9%97%B4%E4%BB%B6/image-1.png" class="" title="优化后效果图">
-<img data-src="/2025/09/05/immer%E4%B8%AD%E9%97%B4%E4%BB%B6/image-2.png" class="" title="immer使用">
-<p>用了immer之后可以直接操作state里面的数据</p>
-<img data-src="/2025/09/05/immer%E4%B8%AD%E9%97%B4%E4%BB%B6/image-3.png" class="" title="使用immer之后数据操作">
-<p><strong>immer官网：<a href="https://immerjs.github.io/immer/zh-CN/">https://immerjs.github.io/immer/zh-CN/</a></strong></p>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>immer中间件</category>
-      </categories>
-      <tags>
-        <tag>React</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vue中的插槽slot</title>
     <url>/2025/07/15/vue%E4%B8%AD%E6%8F%92%E6%A7%BDslot/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
@@ -552,34 +610,6 @@
       <categories>
         <category>前端</category>
         <category>vue中的插槽slot</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vue首屏加载优化</title>
-    <url>/2025/07/08/vue%E9%A6%96%E5%B1%8F%E5%8A%A0%E8%BD%BD%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
-<span id="more"></span>
-<h2 id="怎样在代码中将首屏加载时间计算出来">怎样在代码中将首屏加载时间计算出来</h2>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 首屏时间的计算</span></span><br><span class="line">    <span class="comment">// console.log(performance.timing.domComplete - performance.timing.navigationStart, &#x27;times&#x27;)//已弃用</span></span><br><span class="line">    </span><br><span class="line">   <span class="keyword">const</span> observer = <span class="keyword">new</span> <span class="title class_">PerformanceObserver</span>(<span class="function">(<span class="params">list</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(list.<span class="title function_">getEntries</span>())</span><br><span class="line">    &#125;)</span><br><span class="line">    observer.<span class="title function_">observe</span>(&#123; <span class="attr">entryTypes</span>: [<span class="string">&#x27;navigation&#x27;</span>] &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="vue中的异步组件">vue中的异步组件</h2>
-<p>在vue框架中怎么实现当用到这个组件时才会加载</p>
-<p>异步组件（在打包的时候单独形成分包）</p>
-<h3 id="正常普通导入组件">正常普通导入组件</h3>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> cs <span class="keyword">from</span> <span class="string">&quot;./cs.vue&quot;</span></span><br></pre></td></tr></table></figure>
-<h3 id="异步组件">异步组件</h3>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 异步组件</span></span><br><span class="line"><span class="keyword">const</span> cs = <span class="title function_">defineAsyncComponent</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">import</span>(<span class="string">&#x27;./cs.vue&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="首页图片">首页图片</h2>
-<p>接口返回的图片为网络图片，在页面加载的时候不会占用加载时间</p>
-<h2 id="优化白屏显示-骨架屏">优化白屏显示-骨架屏</h2>
-<p>在vue页面没加载出来之前显示骨架屏</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 35%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 50%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 60%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 80%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>首屏加载优化</category>
       </categories>
       <tags>
         <tag>vue</tag>
@@ -617,6 +647,336 @@
       <tags>
         <tag>React Native</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>动态路由+能支持iframe嵌入</title>
+    <url>/2025/09/23/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1+%E8%83%BD%E6%94%AF%E6%8C%81iframe%E5%B5%8C%E5%85%A5/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
+<span id="more"></span>
+<h1>动态路由+能支持iframe嵌入</h1>
+<p>“动态路由 + iframe 内嵌”的工作机制与关键点，帮你快速看清楚从配置→路由注入→渲染的全流程。</p>
+<h3 id="总体流程">总体流程</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>静态和动态菜单源合并后统一转换为可注入的路由对象并注册到路由树。</p>
+</li>
+<li class="lvl-2">
+<p>若路由项的 <code>meta.type</code> 指定为支持内嵌的类型（本项目现有：<code>iframe</code>&lt;打开新标签页&gt; 与 <code>embedding_iframe</code>&lt;页面内嵌&gt;），会被转换为一个内部访问路径 <code>/i/$&#123;name&#125;</code>，并将原始外链地址存入 <code>meta.url</code>。</p>
+</li>
+<li class="lvl-2">
+<p>页面渲染时，真实的页面不是常规 <code>view</code> 组件，而是通过 <code>iframeView</code> 组件读取 <code>meta.url</code>，以 <code>&lt;iframe&gt;</code> 内嵌方式展示。</p>
+</li>
+</ul>
+<h3 id="关键文件与职责">关键文件与职责</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>路由注入与转换：<code>src/router/index.js</code></p>
+<ul class="lvl-2">
+<li class="lvl-4">合并菜单源：
+<ul class="lvl-4">
+<li class="lvl-6">静态：<code>userRoutes</code>（来自 <code>src/config/route.js</code>）</li>
+<li class="lvl-6">动态：<code>MENU</code>（来自 <code>tool.data.get('MENU')</code>）</li>
+</ul>
+</li>
+<li class="lvl-4">鉴权过滤：<code>treeFilter(userRoutes, func)</code> 会按 <code>meta.role</code> 做权限控制。</li>
+<li class="lvl-4">转换核心：<code>filterAsyncRouter(routerMap)</code>
+<ul class="lvl-4">
+<li class="lvl-6">识别外链型菜单并改造为内嵌路由：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//处理外部链接特殊路由</span><br><span class="line">if (item.meta.type == &#x27;iframe&#x27; || item.meta.type == &#x27;embedding_iframe&#x27;) &#123;</span><br><span class="line">  item.meta.url = item.path;</span><br><span class="line">  item.path = `/i/$&#123;item.name&#125;`;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul class="lvl-6">
+<li class="lvl-8">原 <code>path</code>（外链 URL）被保存到 <code>meta.url</code></li>
+<li class="lvl-8">新 <code>path</code> 统一变成 <code>/i/$&#123;name&#125;</code></li>
+</ul>
+</li>
+<li class="lvl-6">统一生成标准路由对象并按 <code>layout</code> 父路由动态注册：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var route = &#123;</span><br><span class="line">  path: item.path,</span><br><span class="line">  name: item.name,</span><br><span class="line">  meta: item.meta,</span><br><span class="line">  redirect: item.redirect,</span><br><span class="line">  children: item.children ? filterAsyncRouter(item.children) : null,</span><br><span class="line">  component: loadComponent(item.component),</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li class="lvl-4">首次进入时的动态注册控制：<code>isGetRouter</code> 保证只注入一次；注入完成后才加 404。</li>
+<li class="lvl-4">注意：如果存在“进入前打开新标签”的逻辑，通常写在 <code>beforeEach</code> 中根据 <code>meta.type==='iframe'</code> 执行 <code>window.open(...)</code>。若你要所有 iframe 内嵌显示，应避免在守卫里拦截打开新页，仅依赖 <code>iframeView</code> 渲染。</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>菜单与链接规范化：<code>src/layout/index.vue</code></p>
+<ul class="lvl-2">
+<li class="lvl-4">菜单二次处理 <code>filterUrl</code>：确保左侧菜单点击时，外链类项的 <code>path</code> 也会落在 <code>/i/$&#123;name&#125;</code>，与路由规则一致。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">if (item.meta.type == &#x27;iframe&#x27; || item.meta.type == &#x27;embedding_iframe&#x27;) &#123;</span><br><span class="line">  item.path = `/i/$&#123;item.name&#125;`;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>iframe 渲染容器：<code>src/layout/components/iframeView.vue</code></p>
+<ul class="lvl-2">
+<li class="lvl-4">只在当前路由 <code>meta.type</code> 为外链内嵌类型时显示 iframe 容器：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div v-show=&quot;$route.meta.type==&#x27;iframe&#x27; || $route.meta.type==&#x27;embedding_iframe&#x27;&quot; class=&quot;iframe-pages&quot;&gt;</span><br><span class="line">  &lt;iframe v-for=&quot;item in iframeList&quot; :key=&quot;item.meta.url&quot; v-show=&quot;$route.meta.url==item.meta.url&quot; :src=&quot;item.meta.url&quot; frameborder=&#x27;0&#x27;&gt;&lt;/iframe&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-4">进入外链路由时，会将当前路由压入 <code>iframeList</code>，从而支持多标签/刷新等行为：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">if(route.meta.type == &#x27;iframe&#x27; || route.meta.type == &#x27;embedding_iframe&#x27;)&#123;</span><br><span class="line">  if(this.ismobile || !this.layoutTags)&#123;</span><br><span class="line">    this.$store.commit(&quot;setIframeList&quot;, route)</span><br><span class="line">  &#125;else&#123;</span><br><span class="line">    this.$store.commit(&quot;pushIframeList&quot;, route)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">  if(this.ismobile || !this.layoutTags)&#123;</span><br><span class="line">    this.$store.commit(&quot;clearIframeList&quot;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-4">对应的持久化列表在 <code>src/store/modules/iframe.js</code>，包含 <code>setIframeList/pushIframeList/refreshIframe/clearIframeList</code> 等。</li>
+</ul>
+</li>
+</ul>
+<h3 id="路由配置怎么写（例）">路由配置怎么写（例）</h3>
+<p>在 <code>src/config/route.js</code> 静态菜单里，外链菜单这样写：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">name</span>: <span class="string">&#x27;compassindustry&#x27;</span>,</span><br><span class="line">	<span class="attr">path</span>: <span class="string">&#x27;https://open.ys7.com/cn/s/index&#x27;</span>,</span><br><span class="line">	<span class="attr">meta</span>: &#123; <span class="attr">title</span>: <span class="string">&#x27;行业指数&#x27;</span>, <span class="attr">icon</span>: <span class="string">&#x27;el-icon-caret-right&#x27;</span>, <span class="attr">type</span>: <span class="string">&#x27;embedding_iframe&#x27;</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>name</code>：必须唯一，用来生成内部访问路径 <code>/i/compassindustry</code></p>
+</li>
+<li class="lvl-2">
+<p><code>path</code>：外部真实 URL</p>
+</li>
+<li class="lvl-2">
+<p><code>meta.type</code>：使用 <code>iframe</code> 或 <code>embedding_iframe</code> 任一都可按当前代码支持内嵌</p>
+</li>
+<li class="lvl-2">
+<p>渲染流程：点击菜单 → 实际跳转到 <code>/i/compassindustry</code> → <code>iframeView</code> 根据 <code>meta.url</code> 内嵌加载外链</p>
+</li>
+</ul>
+<h3 id="常见问题与排查">常见问题与排查</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>“No match found for location with path ‘/i/xxx’”：通常是该项路由尚未被注入。确保：</p>
+<ul class="lvl-2">
+<li class="lvl-4">该菜单项包含在 <code>userRoutes</code> 或后端返回的 <code>MENU</code> 中；</li>
+<li class="lvl-4">名称 <code>name</code> 与菜单里点击的一致（由 <code>name</code> 决定 <code>/i/$&#123;name&#125;</code>）；</li>
+<li class="lvl-4">首次加载时不要过早跳转到尚未注册的 <code>/i/...</code>，或保证动态注入在导航前完成。</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>点击外链被新开标签页：检查路由守卫里是否有针对 <code>meta.type === 'iframe'</code> 的 <code>window.open</code> 拦截。若你希望“全部内嵌”，请移除或改为仅对特定类型生效。</p>
+</li>
+<li class="lvl-2">
+<p>需要新支持的类型：在 <code>filterAsyncRouter</code> 与 <code>iframeView.vue</code> 的判断里加上你的 <code>meta.type</code> 即可。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>带参数的文件上传</title>
+    <url>/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
+<span id="more"></span>
+<h2 id="Element-plus-组件upload-关闭自动上传">Element plus 组件upload 关闭自动上传</h2>
+<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-1.png" class="" title="带参数的文件上传">
+<h2 id="成功后的回调">成功后的回调</h2>
+<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-2.png" class="" title="带参数的文件上传">
+<h2 id="获取实际文件对象">获取实际文件对象</h2>
+<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-3.png" class="" title="带参数的文件上传">
+<h2 id="上传方法">上传方法</h2>
+<h3 id="使用FormData-对象">使用FormData()对象</h3>
+<p><strong>FormData</strong> 接口提供了一种表示表单数据的键值对 <code>key/value</code> 的构造方式，并且可以轻松的将数据通过<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/send"><code>XMLHttpRequest.send()</code></a> 方法发送出去，本接口和此方法都相当简单直接。如果送出时的编码类型被设为 <code>&quot;multipart/form-data&quot;</code>，它会使用和表单一样的格式。</p>
+<h3 id="例子">例子</h3>
+<p>下面的代码将创建一个空的 FormData 对象：</p>
+<p>jsCopy to Clipboard</p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> formData = <span class="keyword">new</span> FormData(); <span class="comment">// 当前为空</span></span><br></pre></td></tr></table></figure>
+<p>你可以使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FormData/append"><code>FormData.append</code></a>来添加键/值对到表单里面；</p>
+<p>jsCopy to Clipboard</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">formData.<span class="built_in">append</span>(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;Chris&quot;</span>);</span><br></pre></td></tr></table></figure>
+<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-4.png" class="" title="带参数的文件上传">]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>微信小程序-学习笔记（学习中）</title>
+    <url>/2024/10/15/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="1-图片懒加载没生效问题">1. 图片懒加载没生效问题</h2>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">&quot;/assets/xxx.png&quot;</span> <span class="attr">mode</span>=<span class="string">&quot;&quot;</span> <span class="attr">show-menu-by-longpress</span> <span class="attr">lazy-load</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<img data-src="/2024/10/15/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image.png" class="" title="图片懒加载没生效问题">
+<p>lazy-load的图片不是出现在屏幕上才会开始加载，而是提前3个屏幕高度就会加载。所以说三个屏幕高度以内的图片是不会懒加载的，上下三屏即为三个屏幕高度。</p>
+<h2 id="2-text-组件">2. text 组件</h2>
+<img data-src="/2024/10/15/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-1.png" class="" title="text 组件">
+<h2 id="3-navigator组件中的-open-type">3. navigator组件中的 open-type</h2>
+<img data-src="/2024/10/15/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-2.png" class="" title="navigator中的 open-type">
+<p>注意：</p>
+<blockquote>
+<p>在进行页面跳转时，需要在路径的前面添加 / 斜线，否则跳转不成功<navigator url="/pages/list/list?id=10&num=hue" open-type="navigate">到商品列表页面</navigator></p>
+</blockquote>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>navigate：只能跳转到非 TabBar 页面，不能跳转到 TabBar 页面，保留上一级页面</p>
+</li>
+<li class="lvl-2">
+<p>redirect：只能跳转到非 TabBar 页面，不能跳转到 TabBar 页面，关闭上一级页面</p>
+</li>
+<li class="lvl-2">
+<p>switchTab：只能跳转到 TabBar 页面，不能跳转到非 TabBar 页面，关闭其他所有的非 TabBar 页面</p>
+</li>
+<li class="lvl-2">
+<p>reLaunch：关闭所有页面，然后打开小程序中某一个页面</p>
+</li>
+<li class="lvl-2">
+<p>navigateBack返回上一页或者返回前几页，默认只能返回上一页</p>
+<ul class="lvl-2">
+<li class="lvl-6">delte：返回的层级，默认是 1，如果想返回几级，就写几</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>微信小程序</category>
+      </categories>
+      <tags>
+        <tag>微信小程序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>动画</title>
+    <url>/2025/07/19/%E5%8A%A8%E7%94%BB/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
+<span id="more"></span>
+<h1>再也不能用定时器做动画</h1>
+<h2 id="CSS动画">CSS动画</h2>
+<p>CSS动画是浏览器原生支持的动画实现方式，具有以下特点：</p>
+<ol>
+<li class="lvl-3">
+<p><strong>硬件加速</strong>：浏览器会自动优化，使用GPU加速</p>
+</li>
+<li class="lvl-3">
+<p><strong>流畅度高</strong>：由浏览器内部调度，与刷新率同步</p>
+</li>
+<li class="lvl-3">
+<p><strong>简单易用</strong>：只需定义关键帧和动画属性</p>
+</li>
+<li class="lvl-3">
+<p><strong>性能优异</strong>：不会阻塞主线程</p>
+</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: move <span class="number">2s</span> ease-in-out infinite;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@keyframes</span> move &#123;</span><br><span class="line">  <span class="number">0%</span> &#123; <span class="attribute">transform</span>: <span class="built_in">translateX</span>(<span class="number">0</span>); &#125;</span><br><span class="line">  <span class="number">100%</span> &#123; <span class="attribute">transform</span>: <span class="built_in">translateX</span>(<span class="number">100px</span>); &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="JS动画">JS动画</h2>
+<h3 id="计时器动画（setTimeout-setInterval）">计时器动画（setTimeout/setInterval）</h3>
+<p>使用计时器实现动画存在严重问题：</p>
+<ol>
+<li class="lvl-3">
+<p><strong>时间不精准</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-5">受事件循环机制影响，回调可能被延迟执行</li>
+<li class="lvl-5">最小间隔时间受限（通常4ms）</li>
+</ul>
+</li>
+<li class="lvl-3">
+<p><strong>帧率不稳定</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-5">无法与屏幕刷新率同步</li>
+<li class="lvl-5">可能导致动画卡顿或跳帧</li>
+</ul>
+</li>
+<li class="lvl-3">
+<p><strong>性能问题</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-5">即使页面不可见也会继续执行</li>
+<li class="lvl-5">增加不必要的CPU负担</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 不推荐的实现方式</span></span><br><span class="line"><span class="keyword">let</span> pos = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> timer = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  pos += <span class="number">1</span>;</span><br><span class="line">  element.<span class="property">style</span>.<span class="property">left</span> = pos + <span class="string">&#x27;px&#x27;</span>;</span><br><span class="line">  <span class="keyword">if</span>(pos &gt;= <span class="number">100</span>) <span class="built_in">clearInterval</span>(timer);</span><br><span class="line">&#125;, <span class="number">16</span>); <span class="comment">// 试图模拟60fps</span></span><br></pre></td></tr></table></figure>
+<h3 id="requestAnimationFrame-RAF">requestAnimationFrame (RAF)</h3>
+<p>RAF是专为动画设计的API，特点包括：</p>
+<ol>
+<li class="lvl-3">
+<p><strong>与刷新率同步</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-5">自动匹配显示器刷新率（通常60fps）</li>
+<li class="lvl-5">每次重绘前调用回调函数</li>
+</ul>
+</li>
+<li class="lvl-3">
+<p><strong>高效节能</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-5">页面不可见时自动暂停</li>
+<li class="lvl-5">浏览器可以优化执行</li>
+</ul>
+</li>
+<li class="lvl-3">
+<p><strong>更流畅的动画</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-5">避免过度渲染</li>
+<li class="lvl-5">减少不必要的计算</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">animate</span>(<span class="params"></span>) &#123;</span><br><span class="line">  element.<span class="property">style</span>.<span class="property">left</span> = (pos += <span class="number">1</span>) + <span class="string">&#x27;px&#x27;</span>;</span><br><span class="line">  <span class="keyword">if</span>(pos &lt; <span class="number">100</span>) &#123;</span><br><span class="line">    <span class="title function_">requestAnimationFrame</span>(animate);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">requestAnimationFrame</span>(animate);</span><br></pre></td></tr></table></figure>
+<h3 id="Web-Animations-API">Web Animations API</h3>
+<p>现代浏览器提供的强大动画API：</p>
+<ol>
+<li class="lvl-3">
+<p><strong>声明式语法</strong>：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">element.<span class="title function_">animate</span>([</span><br><span class="line">  &#123; <span class="attr">transform</span>: <span class="string">&#x27;translateX(0)&#x27;</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">transform</span>: <span class="string">&#x27;translateX(100px)&#x27;</span> &#125;</span><br><span class="line">], &#123;</span><br><span class="line">  <span class="attr">duration</span>: <span class="number">1000</span>,</span><br><span class="line">  <span class="attr">easing</span>: <span class="string">&#x27;ease-in-out&#x27;</span>,</span><br><span class="line">  <span class="attr">iterations</span>: <span class="title class_">Infinity</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-3">
+<p><strong>优势特性</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-5">与CSS动画相同的性能优势</li>
+<li class="lvl-5">提供精细控制（暂停、反转、变速等）</li>
+<li class="lvl-5">可以监听动画事件</li>
+<li class="lvl-5">返回Animation对象便于控制</li>
+</ul>
+</li>
+<li class="lvl-3">
+<p><strong>时间轴控制</strong>：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> animation = element.<span class="title function_">animate</span>(<span class="comment">/* ... */</span>);</span><br><span class="line">animation.<span class="title function_">pause</span>(); <span class="comment">// 暂停</span></span><br><span class="line">animation.<span class="title function_">play</span>();  <span class="comment">// 播放</span></span><br><span class="line">animation.<span class="title function_">cancel</span>(); <span class="comment">// 取消</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="最佳实践建议">最佳实践建议</h2>
+<ol>
+<li class="lvl-3">
+<p><strong>优先使用CSS动画</strong>：简单动画首选CSS实现</p>
+</li>
+<li class="lvl-3">
+<p><strong>复杂动画使用Web Animations API</strong>：需要程序控制时选择</p>
+</li>
+<li class="lvl-3">
+<p><strong>必要时使用RAF</strong>：需要完全控制动画流程时</p>
+</li>
+<li class="lvl-3">
+<p><strong>避免使用定时器动画</strong>：性能差且不精准</p>
+</li>
+</ol>
+<p>现代浏览器提供了多种高性能动画方案，开发者应该摒弃传统的定时器动画方式，选择更高效、更精准的动画实现技术。</p>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>动画</category>
+      </categories>
+      <tags>
+        <tag>面经</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>本地mock的使用</title>
+    <url>/2025/08/29/%E6%9C%AC%E5%9C%B0mock%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
+<span id="more"></span>
+<h1>mock的使用</h1>
+<img data-src="/2025/08/29/%E6%9C%AC%E5%9C%B0mock%E7%9A%84%E4%BD%BF%E7%94%A8/image-1.png" class="" title="mock 使用地方">
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>技术栈</p>
+<ul class="lvl-2">
+<li class="lvl-4">TypeScript+Hono</li>
+<li class="lvl-4">@faker-js/faker （生成虚拟数据的工具）</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">npm create hono@latest my-app</span><br><span class="line">npm install @hono/node-server</span><br><span class="line">npm install @faker-js/faker --save-dev</span><br></pre></td></tr></table></figure>
+<img data-src="/2025/08/29/%E6%9C%AC%E5%9C%B0mock%E7%9A%84%E4%BD%BF%E7%94%A8/image-2.png" class="" title="创建hono项目">
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">// index.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; serve &#125; <span class="keyword">from</span> <span class="string">&quot;@hono/node-server&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Hono</span> &#125; <span class="keyword">from</span> <span class="string">&quot;hono&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; cors &#125; <span class="keyword">from</span> <span class="string">&quot;hono/cors&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; proxy &#125; <span class="keyword">from</span> <span class="string">&quot;hono/proxy&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; fakerZH_CN &#125; <span class="keyword">from</span> <span class="string">&quot;@faker-js/faker&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Hono</span>();</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">use</span>(<span class="title function_">cors</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义的mock接口</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&quot;/api/user&quot;</span>, <span class="function">(<span class="params">c</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> c.<span class="title function_">json</span>(&#123;</span><br><span class="line">    <span class="attr">data</span>: &#123;</span><br><span class="line">      <span class="attr">name</span>: fakerZH_CN.<span class="property">person</span>.<span class="title function_">fullName</span>(),</span><br><span class="line">      <span class="attr">age</span>: fakerZH_CN.<span class="property">person</span>.<span class="title function_">sex</span>()</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">code</span>: <span class="number">200</span>,</span><br><span class="line">    <span class="attr">message</span>: <span class="string">&#x27;success&#x27;</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 代理中间件：转发未定义的接口到 localhost:3000</span></span><br><span class="line">app.<span class="title function_">all</span>(<span class="string">&quot;*&quot;</span>, <span class="title function_">async</span> (c) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> targetUrl = <span class="keyword">new</span> <span class="title function_">URL</span>(c.<span class="property">req</span>.<span class="property">url</span>);</span><br><span class="line">  targetUrl.<span class="property">host</span> = <span class="string">&quot;localhost:3000&quot;</span>;<span class="comment">//这个是兜底代理的目标（后端服务器地址）</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">proxy</span>(targetUrl, c.<span class="property">req</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">serve</span>(</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">fetch</span>: app.<span class="property">fetch</span>,</span><br><span class="line">    <span class="attr">port</span>: <span class="number">3001</span>,<span class="comment">//启动入口</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function">(<span class="params">info</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Server is running on http://localhost:<span class="subst">$&#123;info.port&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>自己的项目进行代理</p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//.env.development</span></span><br><span class="line">VITE_API_BASE_URL=http:<span class="comment">//localhost:3000</span></span><br><span class="line">VITE_MOCK=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">// vite.config.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; defineConfig, loadEnv &#125; <span class="keyword">from</span> <span class="string">&quot;vite&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> vue <span class="keyword">from</span> <span class="string">&quot;@vitejs/plugin-vue&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// https://vite.dev/config/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(<span class="function">(<span class="params">&#123; mode &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> env = <span class="title function_">loadEnv</span>(mode, process.<span class="title function_">cwd</span>(), <span class="string">&quot;&quot;</span>);</span><br><span class="line">  <span class="keyword">const</span> target = env.<span class="property">VITE_API_BASE_URL</span>;</span><br><span class="line">  <span class="keyword">const</span> isMock = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(env.<span class="property">VITE_MOCK</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(target);</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">plugins</span>: [<span class="title function_">vue</span>()],</span><br><span class="line">    <span class="attr">server</span>: &#123;</span><br><span class="line">      <span class="attr">proxy</span>: &#123;</span><br><span class="line">        <span class="string">&quot;/api&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">target</span>: isMock</span><br><span class="line">            ? <span class="string">&quot;http://localhost:3001&quot;</span> <span class="comment">// 本地mock服务</span></span><br><span class="line">            : target,</span><br><span class="line">          <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const userInfo = ref()</span><br><span class="line">const fetchUserInfo = async () =&gt; &#123;</span><br><span class="line">  const res = await fetch(&quot;/api/user&quot;);</span><br><span class="line">  userInfo.value = await res.json();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>本地mock的使用</category>
+      </categories>
   </entry>
   <entry>
     <title>前端面试题-类型判断（补充中）</title>
@@ -822,336 +1182,6 @@
       </categories>
       <tags>
         <tag>面经</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>动态路由+能支持iframe嵌入</title>
-    <url>/2025/09/23/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1+%E8%83%BD%E6%94%AF%E6%8C%81iframe%E5%B5%8C%E5%85%A5/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
-<span id="more"></span>
-<h1>动态路由+能支持iframe嵌入</h1>
-<p>“动态路由 + iframe 内嵌”的工作机制与关键点，帮你快速看清楚从配置→路由注入→渲染的全流程。</p>
-<h3 id="总体流程">总体流程</h3>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>静态和动态菜单源合并后统一转换为可注入的路由对象并注册到路由树。</p>
-</li>
-<li class="lvl-2">
-<p>若路由项的 <code>meta.type</code> 指定为支持内嵌的类型（本项目现有：<code>iframe</code>&lt;打开新标签页&gt; 与 <code>embedding_iframe</code>&lt;页面内嵌&gt;），会被转换为一个内部访问路径 <code>/i/$&#123;name&#125;</code>，并将原始外链地址存入 <code>meta.url</code>。</p>
-</li>
-<li class="lvl-2">
-<p>页面渲染时，真实的页面不是常规 <code>view</code> 组件，而是通过 <code>iframeView</code> 组件读取 <code>meta.url</code>，以 <code>&lt;iframe&gt;</code> 内嵌方式展示。</p>
-</li>
-</ul>
-<h3 id="关键文件与职责">关键文件与职责</h3>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>路由注入与转换：<code>src/router/index.js</code></p>
-<ul class="lvl-2">
-<li class="lvl-4">合并菜单源：
-<ul class="lvl-4">
-<li class="lvl-6">静态：<code>userRoutes</code>（来自 <code>src/config/route.js</code>）</li>
-<li class="lvl-6">动态：<code>MENU</code>（来自 <code>tool.data.get('MENU')</code>）</li>
-</ul>
-</li>
-<li class="lvl-4">鉴权过滤：<code>treeFilter(userRoutes, func)</code> 会按 <code>meta.role</code> 做权限控制。</li>
-<li class="lvl-4">转换核心：<code>filterAsyncRouter(routerMap)</code>
-<ul class="lvl-4">
-<li class="lvl-6">识别外链型菜单并改造为内嵌路由：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//处理外部链接特殊路由</span><br><span class="line">if (item.meta.type == &#x27;iframe&#x27; || item.meta.type == &#x27;embedding_iframe&#x27;) &#123;</span><br><span class="line">  item.meta.url = item.path;</span><br><span class="line">  item.path = `/i/$&#123;item.name&#125;`;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul class="lvl-6">
-<li class="lvl-8">原 <code>path</code>（外链 URL）被保存到 <code>meta.url</code></li>
-<li class="lvl-8">新 <code>path</code> 统一变成 <code>/i/$&#123;name&#125;</code></li>
-</ul>
-</li>
-<li class="lvl-6">统一生成标准路由对象并按 <code>layout</code> 父路由动态注册：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var route = &#123;</span><br><span class="line">  path: item.path,</span><br><span class="line">  name: item.name,</span><br><span class="line">  meta: item.meta,</span><br><span class="line">  redirect: item.redirect,</span><br><span class="line">  children: item.children ? filterAsyncRouter(item.children) : null,</span><br><span class="line">  component: loadComponent(item.component),</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li class="lvl-4">首次进入时的动态注册控制：<code>isGetRouter</code> 保证只注入一次；注入完成后才加 404。</li>
-<li class="lvl-4">注意：如果存在“进入前打开新标签”的逻辑，通常写在 <code>beforeEach</code> 中根据 <code>meta.type==='iframe'</code> 执行 <code>window.open(...)</code>。若你要所有 iframe 内嵌显示，应避免在守卫里拦截打开新页，仅依赖 <code>iframeView</code> 渲染。</li>
-</ul>
-</li>
-<li class="lvl-2">
-<p>菜单与链接规范化：<code>src/layout/index.vue</code></p>
-<ul class="lvl-2">
-<li class="lvl-4">菜单二次处理 <code>filterUrl</code>：确保左侧菜单点击时，外链类项的 <code>path</code> 也会落在 <code>/i/$&#123;name&#125;</code>，与路由规则一致。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">if (item.meta.type == &#x27;iframe&#x27; || item.meta.type == &#x27;embedding_iframe&#x27;) &#123;</span><br><span class="line">  item.path = `/i/$&#123;item.name&#125;`;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li class="lvl-2">
-<p>iframe 渲染容器：<code>src/layout/components/iframeView.vue</code></p>
-<ul class="lvl-2">
-<li class="lvl-4">只在当前路由 <code>meta.type</code> 为外链内嵌类型时显示 iframe 容器：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div v-show=&quot;$route.meta.type==&#x27;iframe&#x27; || $route.meta.type==&#x27;embedding_iframe&#x27;&quot; class=&quot;iframe-pages&quot;&gt;</span><br><span class="line">  &lt;iframe v-for=&quot;item in iframeList&quot; :key=&quot;item.meta.url&quot; v-show=&quot;$route.meta.url==item.meta.url&quot; :src=&quot;item.meta.url&quot; frameborder=&#x27;0&#x27;&gt;&lt;/iframe&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li class="lvl-4">进入外链路由时，会将当前路由压入 <code>iframeList</code>，从而支持多标签/刷新等行为：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">if(route.meta.type == &#x27;iframe&#x27; || route.meta.type == &#x27;embedding_iframe&#x27;)&#123;</span><br><span class="line">  if(this.ismobile || !this.layoutTags)&#123;</span><br><span class="line">    this.$store.commit(&quot;setIframeList&quot;, route)</span><br><span class="line">  &#125;else&#123;</span><br><span class="line">    this.$store.commit(&quot;pushIframeList&quot;, route)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">  if(this.ismobile || !this.layoutTags)&#123;</span><br><span class="line">    this.$store.commit(&quot;clearIframeList&quot;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li class="lvl-4">对应的持久化列表在 <code>src/store/modules/iframe.js</code>，包含 <code>setIframeList/pushIframeList/refreshIframe/clearIframeList</code> 等。</li>
-</ul>
-</li>
-</ul>
-<h3 id="路由配置怎么写（例）">路由配置怎么写（例）</h3>
-<p>在 <code>src/config/route.js</code> 静态菜单里，外链菜单这样写：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">name</span>: <span class="string">&#x27;compassindustry&#x27;</span>,</span><br><span class="line">	<span class="attr">path</span>: <span class="string">&#x27;https://open.ys7.com/cn/s/index&#x27;</span>,</span><br><span class="line">	<span class="attr">meta</span>: &#123; <span class="attr">title</span>: <span class="string">&#x27;行业指数&#x27;</span>, <span class="attr">icon</span>: <span class="string">&#x27;el-icon-caret-right&#x27;</span>, <span class="attr">type</span>: <span class="string">&#x27;embedding_iframe&#x27;</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><code>name</code>：必须唯一，用来生成内部访问路径 <code>/i/compassindustry</code></p>
-</li>
-<li class="lvl-2">
-<p><code>path</code>：外部真实 URL</p>
-</li>
-<li class="lvl-2">
-<p><code>meta.type</code>：使用 <code>iframe</code> 或 <code>embedding_iframe</code> 任一都可按当前代码支持内嵌</p>
-</li>
-<li class="lvl-2">
-<p>渲染流程：点击菜单 → 实际跳转到 <code>/i/compassindustry</code> → <code>iframeView</code> 根据 <code>meta.url</code> 内嵌加载外链</p>
-</li>
-</ul>
-<h3 id="常见问题与排查">常见问题与排查</h3>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>“No match found for location with path ‘/i/xxx’”：通常是该项路由尚未被注入。确保：</p>
-<ul class="lvl-2">
-<li class="lvl-4">该菜单项包含在 <code>userRoutes</code> 或后端返回的 <code>MENU</code> 中；</li>
-<li class="lvl-4">名称 <code>name</code> 与菜单里点击的一致（由 <code>name</code> 决定 <code>/i/$&#123;name&#125;</code>）；</li>
-<li class="lvl-4">首次加载时不要过早跳转到尚未注册的 <code>/i/...</code>，或保证动态注入在导航前完成。</li>
-</ul>
-</li>
-<li class="lvl-2">
-<p>点击外链被新开标签页：检查路由守卫里是否有针对 <code>meta.type === 'iframe'</code> 的 <code>window.open</code> 拦截。若你希望“全部内嵌”，请移除或改为仅对特定类型生效。</p>
-</li>
-<li class="lvl-2">
-<p>需要新支持的类型：在 <code>filterAsyncRouter</code> 与 <code>iframeView.vue</code> 的判断里加上你的 <code>meta.type</code> 即可。</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>动画</title>
-    <url>/2025/07/19/%E5%8A%A8%E7%94%BB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
-<span id="more"></span>
-<h1>再也不能用定时器做动画</h1>
-<h2 id="CSS动画">CSS动画</h2>
-<p>CSS动画是浏览器原生支持的动画实现方式，具有以下特点：</p>
-<ol>
-<li class="lvl-3">
-<p><strong>硬件加速</strong>：浏览器会自动优化，使用GPU加速</p>
-</li>
-<li class="lvl-3">
-<p><strong>流畅度高</strong>：由浏览器内部调度，与刷新率同步</p>
-</li>
-<li class="lvl-3">
-<p><strong>简单易用</strong>：只需定义关键帧和动画属性</p>
-</li>
-<li class="lvl-3">
-<p><strong>性能优异</strong>：不会阻塞主线程</p>
-</li>
-</ol>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: move <span class="number">2s</span> ease-in-out infinite;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@keyframes</span> move &#123;</span><br><span class="line">  <span class="number">0%</span> &#123; <span class="attribute">transform</span>: <span class="built_in">translateX</span>(<span class="number">0</span>); &#125;</span><br><span class="line">  <span class="number">100%</span> &#123; <span class="attribute">transform</span>: <span class="built_in">translateX</span>(<span class="number">100px</span>); &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="JS动画">JS动画</h2>
-<h3 id="计时器动画（setTimeout-setInterval）">计时器动画（setTimeout/setInterval）</h3>
-<p>使用计时器实现动画存在严重问题：</p>
-<ol>
-<li class="lvl-3">
-<p><strong>时间不精准</strong>：</p>
-<ul class="lvl-2">
-<li class="lvl-5">受事件循环机制影响，回调可能被延迟执行</li>
-<li class="lvl-5">最小间隔时间受限（通常4ms）</li>
-</ul>
-</li>
-<li class="lvl-3">
-<p><strong>帧率不稳定</strong>：</p>
-<ul class="lvl-2">
-<li class="lvl-5">无法与屏幕刷新率同步</li>
-<li class="lvl-5">可能导致动画卡顿或跳帧</li>
-</ul>
-</li>
-<li class="lvl-3">
-<p><strong>性能问题</strong>：</p>
-<ul class="lvl-2">
-<li class="lvl-5">即使页面不可见也会继续执行</li>
-<li class="lvl-5">增加不必要的CPU负担</li>
-</ul>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 不推荐的实现方式</span></span><br><span class="line"><span class="keyword">let</span> pos = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> timer = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  pos += <span class="number">1</span>;</span><br><span class="line">  element.<span class="property">style</span>.<span class="property">left</span> = pos + <span class="string">&#x27;px&#x27;</span>;</span><br><span class="line">  <span class="keyword">if</span>(pos &gt;= <span class="number">100</span>) <span class="built_in">clearInterval</span>(timer);</span><br><span class="line">&#125;, <span class="number">16</span>); <span class="comment">// 试图模拟60fps</span></span><br></pre></td></tr></table></figure>
-<h3 id="requestAnimationFrame-RAF">requestAnimationFrame (RAF)</h3>
-<p>RAF是专为动画设计的API，特点包括：</p>
-<ol>
-<li class="lvl-3">
-<p><strong>与刷新率同步</strong>：</p>
-<ul class="lvl-2">
-<li class="lvl-5">自动匹配显示器刷新率（通常60fps）</li>
-<li class="lvl-5">每次重绘前调用回调函数</li>
-</ul>
-</li>
-<li class="lvl-3">
-<p><strong>高效节能</strong>：</p>
-<ul class="lvl-2">
-<li class="lvl-5">页面不可见时自动暂停</li>
-<li class="lvl-5">浏览器可以优化执行</li>
-</ul>
-</li>
-<li class="lvl-3">
-<p><strong>更流畅的动画</strong>：</p>
-<ul class="lvl-2">
-<li class="lvl-5">避免过度渲染</li>
-<li class="lvl-5">减少不必要的计算</li>
-</ul>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">animate</span>(<span class="params"></span>) &#123;</span><br><span class="line">  element.<span class="property">style</span>.<span class="property">left</span> = (pos += <span class="number">1</span>) + <span class="string">&#x27;px&#x27;</span>;</span><br><span class="line">  <span class="keyword">if</span>(pos &lt; <span class="number">100</span>) &#123;</span><br><span class="line">    <span class="title function_">requestAnimationFrame</span>(animate);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">requestAnimationFrame</span>(animate);</span><br></pre></td></tr></table></figure>
-<h3 id="Web-Animations-API">Web Animations API</h3>
-<p>现代浏览器提供的强大动画API：</p>
-<ol>
-<li class="lvl-3">
-<p><strong>声明式语法</strong>：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">element.<span class="title function_">animate</span>([</span><br><span class="line">  &#123; <span class="attr">transform</span>: <span class="string">&#x27;translateX(0)&#x27;</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">transform</span>: <span class="string">&#x27;translateX(100px)&#x27;</span> &#125;</span><br><span class="line">], &#123;</span><br><span class="line">  <span class="attr">duration</span>: <span class="number">1000</span>,</span><br><span class="line">  <span class="attr">easing</span>: <span class="string">&#x27;ease-in-out&#x27;</span>,</span><br><span class="line">  <span class="attr">iterations</span>: <span class="title class_">Infinity</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li class="lvl-3">
-<p><strong>优势特性</strong>：</p>
-<ul class="lvl-2">
-<li class="lvl-5">与CSS动画相同的性能优势</li>
-<li class="lvl-5">提供精细控制（暂停、反转、变速等）</li>
-<li class="lvl-5">可以监听动画事件</li>
-<li class="lvl-5">返回Animation对象便于控制</li>
-</ul>
-</li>
-<li class="lvl-3">
-<p><strong>时间轴控制</strong>：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> animation = element.<span class="title function_">animate</span>(<span class="comment">/* ... */</span>);</span><br><span class="line">animation.<span class="title function_">pause</span>(); <span class="comment">// 暂停</span></span><br><span class="line">animation.<span class="title function_">play</span>();  <span class="comment">// 播放</span></span><br><span class="line">animation.<span class="title function_">cancel</span>(); <span class="comment">// 取消</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="最佳实践建议">最佳实践建议</h2>
-<ol>
-<li class="lvl-3">
-<p><strong>优先使用CSS动画</strong>：简单动画首选CSS实现</p>
-</li>
-<li class="lvl-3">
-<p><strong>复杂动画使用Web Animations API</strong>：需要程序控制时选择</p>
-</li>
-<li class="lvl-3">
-<p><strong>必要时使用RAF</strong>：需要完全控制动画流程时</p>
-</li>
-<li class="lvl-3">
-<p><strong>避免使用定时器动画</strong>：性能差且不精准</p>
-</li>
-</ol>
-<p>现代浏览器提供了多种高性能动画方案，开发者应该摒弃传统的定时器动画方式，选择更高效、更精准的动画实现技术。</p>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>动画</category>
-      </categories>
-      <tags>
-        <tag>面经</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>带参数的文件上传</title>
-    <url>/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
-<span id="more"></span>
-<h2 id="Element-plus-组件upload-关闭自动上传">Element plus 组件upload 关闭自动上传</h2>
-<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-1.png" class="" title="带参数的文件上传">
-<h2 id="成功后的回调">成功后的回调</h2>
-<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-2.png" class="" title="带参数的文件上传">
-<h2 id="获取实际文件对象">获取实际文件对象</h2>
-<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-3.png" class="" title="带参数的文件上传">
-<h2 id="上传方法">上传方法</h2>
-<h3 id="使用FormData-对象">使用FormData()对象</h3>
-<p><strong>FormData</strong> 接口提供了一种表示表单数据的键值对 <code>key/value</code> 的构造方式，并且可以轻松的将数据通过<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/send"><code>XMLHttpRequest.send()</code></a> 方法发送出去，本接口和此方法都相当简单直接。如果送出时的编码类型被设为 <code>&quot;multipart/form-data&quot;</code>，它会使用和表单一样的格式。</p>
-<h3 id="例子">例子</h3>
-<p>下面的代码将创建一个空的 FormData 对象：</p>
-<p>jsCopy to Clipboard</p>
-<figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> formData = <span class="keyword">new</span> FormData(); <span class="comment">// 当前为空</span></span><br></pre></td></tr></table></figure>
-<p>你可以使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FormData/append"><code>FormData.append</code></a>来添加键/值对到表单里面；</p>
-<p>jsCopy to Clipboard</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">formData.<span class="built_in">append</span>(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;Chris&quot;</span>);</span><br></pre></td></tr></table></figure>
-<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-4.png" class="" title="带参数的文件上传">]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>本地mock的使用</title>
-    <url>/2025/08/29/%E6%9C%AC%E5%9C%B0mock%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
-<span id="more"></span>
-<h1>mock的使用</h1>
-<img data-src="/2025/08/29/%E6%9C%AC%E5%9C%B0mock%E7%9A%84%E4%BD%BF%E7%94%A8/image-1.png" class="" title="mock 使用地方">
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>技术栈</p>
-<ul class="lvl-2">
-<li class="lvl-4">TypeScript+Hono</li>
-<li class="lvl-4">@faker-js/faker （生成虚拟数据的工具）</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">npm create hono@latest my-app</span><br><span class="line">npm install @hono/node-server</span><br><span class="line">npm install @faker-js/faker --save-dev</span><br></pre></td></tr></table></figure>
-<img data-src="/2025/08/29/%E6%9C%AC%E5%9C%B0mock%E7%9A%84%E4%BD%BF%E7%94%A8/image-2.png" class="" title="创建hono项目">
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">// index.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; serve &#125; <span class="keyword">from</span> <span class="string">&quot;@hono/node-server&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Hono</span> &#125; <span class="keyword">from</span> <span class="string">&quot;hono&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; cors &#125; <span class="keyword">from</span> <span class="string">&quot;hono/cors&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; proxy &#125; <span class="keyword">from</span> <span class="string">&quot;hono/proxy&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; fakerZH_CN &#125; <span class="keyword">from</span> <span class="string">&quot;@faker-js/faker&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Hono</span>();</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">use</span>(<span class="title function_">cors</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义的mock接口</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&quot;/api/user&quot;</span>, <span class="function">(<span class="params">c</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> c.<span class="title function_">json</span>(&#123;</span><br><span class="line">    <span class="attr">data</span>: &#123;</span><br><span class="line">      <span class="attr">name</span>: fakerZH_CN.<span class="property">person</span>.<span class="title function_">fullName</span>(),</span><br><span class="line">      <span class="attr">age</span>: fakerZH_CN.<span class="property">person</span>.<span class="title function_">sex</span>()</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">code</span>: <span class="number">200</span>,</span><br><span class="line">    <span class="attr">message</span>: <span class="string">&#x27;success&#x27;</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 代理中间件：转发未定义的接口到 localhost:3000</span></span><br><span class="line">app.<span class="title function_">all</span>(<span class="string">&quot;*&quot;</span>, <span class="title function_">async</span> (c) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> targetUrl = <span class="keyword">new</span> <span class="title function_">URL</span>(c.<span class="property">req</span>.<span class="property">url</span>);</span><br><span class="line">  targetUrl.<span class="property">host</span> = <span class="string">&quot;localhost:3000&quot;</span>;<span class="comment">//这个是兜底代理的目标（后端服务器地址）</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">proxy</span>(targetUrl, c.<span class="property">req</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">serve</span>(</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">fetch</span>: app.<span class="property">fetch</span>,</span><br><span class="line">    <span class="attr">port</span>: <span class="number">3001</span>,<span class="comment">//启动入口</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function">(<span class="params">info</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Server is running on http://localhost:<span class="subst">$&#123;info.port&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>自己的项目进行代理</p>
-<figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//.env.development</span></span><br><span class="line">VITE_API_BASE_URL=http:<span class="comment">//localhost:3000</span></span><br><span class="line">VITE_MOCK=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="comment">// vite.config.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; defineConfig, loadEnv &#125; <span class="keyword">from</span> <span class="string">&quot;vite&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> vue <span class="keyword">from</span> <span class="string">&quot;@vitejs/plugin-vue&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// https://vite.dev/config/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(<span class="function">(<span class="params">&#123; mode &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> env = <span class="title function_">loadEnv</span>(mode, process.<span class="title function_">cwd</span>(), <span class="string">&quot;&quot;</span>);</span><br><span class="line">  <span class="keyword">const</span> target = env.<span class="property">VITE_API_BASE_URL</span>;</span><br><span class="line">  <span class="keyword">const</span> isMock = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(env.<span class="property">VITE_MOCK</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(target);</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">plugins</span>: [<span class="title function_">vue</span>()],</span><br><span class="line">    <span class="attr">server</span>: &#123;</span><br><span class="line">      <span class="attr">proxy</span>: &#123;</span><br><span class="line">        <span class="string">&quot;/api&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">target</span>: isMock</span><br><span class="line">            ? <span class="string">&quot;http://localhost:3001&quot;</span> <span class="comment">// 本地mock服务</span></span><br><span class="line">            : target,</span><br><span class="line">          <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const userInfo = ref()</span><br><span class="line">const fetchUserInfo = async () =&gt; &#123;</span><br><span class="line">  const res = await fetch(&quot;/api/user&quot;);</span><br><span class="line">  userInfo.value = await res.json();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>本地mock的使用</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>微信小程序-学习笔记（学习中）</title>
-    <url>/2024/10/15/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="1-图片懒加载没生效问题">1. 图片懒加载没生效问题</h2>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">&quot;/assets/xxx.png&quot;</span> <span class="attr">mode</span>=<span class="string">&quot;&quot;</span> <span class="attr">show-menu-by-longpress</span> <span class="attr">lazy-load</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<img data-src="/2024/10/15/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image.png" class="" title="图片懒加载没生效问题">
-<p>lazy-load的图片不是出现在屏幕上才会开始加载，而是提前3个屏幕高度就会加载。所以说三个屏幕高度以内的图片是不会懒加载的，上下三屏即为三个屏幕高度。</p>
-<h2 id="2-text-组件">2. text 组件</h2>
-<img data-src="/2024/10/15/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-1.png" class="" title="text 组件">
-<h2 id="3-navigator组件中的-open-type">3. navigator组件中的 open-type</h2>
-<img data-src="/2024/10/15/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-2.png" class="" title="navigator中的 open-type">
-<p>注意：</p>
-<blockquote>
-<p>在进行页面跳转时，需要在路径的前面添加 / 斜线，否则跳转不成功<navigator url="/pages/list/list?id=10&num=hue" open-type="navigate">到商品列表页面</navigator></p>
-</blockquote>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>navigate：只能跳转到非 TabBar 页面，不能跳转到 TabBar 页面，保留上一级页面</p>
-</li>
-<li class="lvl-2">
-<p>redirect：只能跳转到非 TabBar 页面，不能跳转到 TabBar 页面，关闭上一级页面</p>
-</li>
-<li class="lvl-2">
-<p>switchTab：只能跳转到 TabBar 页面，不能跳转到非 TabBar 页面，关闭其他所有的非 TabBar 页面</p>
-</li>
-<li class="lvl-2">
-<p>reLaunch：关闭所有页面，然后打开小程序中某一个页面</p>
-</li>
-<li class="lvl-2">
-<p>navigateBack返回上一页或者返回前几页，默认只能返回上一页</p>
-<ul class="lvl-2">
-<li class="lvl-6">delte：返回的层级，默认是 1，如果想返回几级，就写几</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>微信小程序</category>
-      </categories>
-      <tags>
-        <tag>微信小程序</tag>
       </tags>
   </entry>
 </search>

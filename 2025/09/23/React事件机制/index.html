@@ -22,27 +22,27 @@
 <script class="next-config" data-name="main" type="application/json">{"hostname":"shtoly.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta property="og:type" content="article">
-<meta property="og:title" content="本地mock的使用">
-<meta property="og:url" content="https://shtoly.github.io/2025/08/29/%E6%9C%AC%E5%9C%B0mock%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:title" content="React事件机制">
+<meta property="og:url" content="https://shtoly.github.io/2025/09/23/React%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/index.html">
 <meta property="og:site_name" content="Shtoly&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://shtoly.github.io/2025/08/29/%E6%9C%AC%E5%9C%B0mock%E7%9A%84%E4%BD%BF%E7%94%A8/image-1.png">
-<meta property="og:image" content="https://shtoly.github.io/2025/08/29/%E6%9C%AC%E5%9C%B0mock%E7%9A%84%E4%BD%BF%E7%94%A8/image-2.png">
-<meta property="article:published_time" content="2025-08-29T10:49:18.148Z">
-<meta property="article:modified_time" content="2025-09-16T08:31:19.735Z">
+<meta property="og:image" content="https://shtoly.github.io/2025/09/23/React%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/image-1.png">
+<meta property="article:published_time" content="2025-09-23T02:31:52.777Z">
+<meta property="article:modified_time" content="2025-09-23T02:34:30.470Z">
 <meta property="article:author" content="Shtoly">
+<meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://shtoly.github.io/2025/08/29/%E6%9C%AC%E5%9C%B0mock%E7%9A%84%E4%BD%BF%E7%94%A8/image-1.png">
+<meta name="twitter:image" content="https://shtoly.github.io/2025/09/23/React%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/image-1.png">
 
 
-<link rel="canonical" href="https://shtoly.github.io/2025/08/29/%E6%9C%AC%E5%9C%B0mock%E7%9A%84%E4%BD%BF%E7%94%A8/">
+<link rel="canonical" href="https://shtoly.github.io/2025/09/23/React%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://shtoly.github.io/2025/08/29/%E6%9C%AC%E5%9C%B0mock%E7%9A%84%E4%BD%BF%E7%94%A8/","path":"2025/08/29/本地mock的使用/","title":"本地mock的使用"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://shtoly.github.io/2025/09/23/React%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/","path":"2025/09/23/React事件机制/","title":"React事件机制"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>本地mock的使用 | Shtoly's Blog</title>
+<title>React事件机制 | Shtoly's Blog</title>
   
 
 
@@ -139,7 +139,7 @@
     <div class="sidebar-panel-container">
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-        <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">mock的使用</span></a></li></ol></div>
+        <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">React 事件机制</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -232,7 +232,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://shtoly.github.io/2025/08/29/%E6%9C%AC%E5%9C%B0mock%E7%9A%84%E4%BD%BF%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="https://shtoly.github.io/2025/09/23/React%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -245,12 +245,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="本地mock的使用 | Shtoly's Blog">
+      <meta itemprop="name" content="React事件机制 | Shtoly's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          本地mock的使用
+          React事件机制
         </h1>
 
         <div class="post-meta-container">
@@ -260,15 +260,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2025-08-29 18:49:18" itemprop="dateCreated datePublished" datetime="2025-08-29T18:49:18+08:00">2025-08-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-09-16 16:31:19" itemprop="dateModified" datetime="2025-09-16T16:31:19+08:00">2025-09-16</time>
+      <time title="创建时间：2025-09-23 10:31:52 / 修改时间：10:34:30" itemprop="dateCreated datePublished" datetime="2025-09-23T10:31:52+08:00">2025-09-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -280,7 +274,7 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%89%8D%E7%AB%AF/%E6%9C%AC%E5%9C%B0mock%E7%9A%84%E4%BD%BF%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">本地mock的使用</span></a>
+          <a href="/categories/%E5%89%8D%E7%AB%AF/React%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/" itemprop="url" rel="index"><span itemprop="name">React事件机制</span></a>
         </span>
     </span>
 
@@ -298,14 +292,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>257</span>
+      <span>527</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -317,24 +311,22 @@
     
     <div class="post-body" itemprop="articleBody"><hr>
 <span id="more"></span>
-<h1>mock的使用</h1>
-<img data-src="/2025/08/29/%E6%9C%AC%E5%9C%B0mock%E7%9A%84%E4%BD%BF%E7%94%A8/image-1.png" class="" title="mock 使用地方">
+<h1>React 事件机制</h1>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div onClick=&#123;<span class="variable language_">this</span>.<span class="property">handleClick</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>)&#125;&gt;点我&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>​	React并不是将click事件绑定到了div的真实DOM上，而是在document处监听了所有的事件，当事件发生并且冒泡到document处的时候，React将事件内容封装并交由真正的处理函数运行。这样的方式不仅仅减少了内存的消耗，还能在组件挂在销毁时统一订阅和移除事件。</p>
+<p>​	除此之外，冒泡到document上的事件也不是原生的浏览器事件，而是由react自己实现的合成事件（SyntheticEvent）。因此如果不想要是事件冒泡的话应该调用event.preventDefault()方法，而不是调用event.stopProppagation()方法。</p>
+<img data-src="/2025/09/23/React%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/image-1.png" class="" title="React事件机制图">
+<p>​	JSX 上写的事件并没有绑定在对应的真实 DOM 上，而是通过事件代理的方式，将所有的事件都统一绑定在了 <code>document</code> 上。这样的方式不仅减少了内存消耗，还能在组件挂载销毁时统一订阅和移除事件。</p>
+<p>​	另外冒泡到 <code>document</code> 上的事件也不是原生浏览器事件，而是 React 自己实现的合成事件（SyntheticEvent）。因此我们如果不想要事件冒泡的话，调用 <code>event.stopPropagation</code> 是无效的，而应该调用 <code>event.preventDefault</code>。</p>
+<p>实现合成事件的目的如下：</p>
 <ul class="lvl-0">
 <li class="lvl-2">
-<p>技术栈</p>
-<ul class="lvl-2">
-<li class="lvl-4">TypeScript+Hono</li>
-<li class="lvl-4">@faker-js/faker （生成虚拟数据的工具）</li>
-</ul>
+<p>合成事件首先抹平了浏览器之间的兼容问题，另外这是一个跨浏览器原生事件包装器，赋予了跨浏览器开发的能力；</p>
+</li>
+<li class="lvl-2">
+<p>对于原生浏览器事件来说，浏览器会给监听器创建一个事件对象。如果你有很多的事件监听，那么就需要分配很多的事件对象，造成高额的内存分配问题。但是对于合成事件来说，有一个事件池专门来管理它们的创建和销毁，当事件需要被使用时，就会从池子中复用对象，事件回调结束后，就会销毁事件对象上的属性，从而便于下次复用事件对象。</p>
 </li>
 </ul>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm create hono@latest my-app</span><br><span class="line">npm install @hono/node-server</span><br><span class="line">npm install @faker-js/faker --save-dev</span><br></pre></td></tr></table></figure>
-<img data-src="/2025/08/29/%E6%9C%AC%E5%9C%B0mock%E7%9A%84%E4%BD%BF%E7%94%A8/image-2.png" class="" title="创建hono项目">
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; serve &#125; <span class="keyword">from</span> <span class="string">&quot;@hono/node-server&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Hono</span> &#125; <span class="keyword">from</span> <span class="string">&quot;hono&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; cors &#125; <span class="keyword">from</span> <span class="string">&quot;hono/cors&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; proxy &#125; <span class="keyword">from</span> <span class="string">&quot;hono/proxy&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; fakerZH_CN &#125; <span class="keyword">from</span> <span class="string">&quot;@faker-js/faker&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Hono</span>();</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">use</span>(<span class="title function_">cors</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义的mock接口</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&quot;/api/user&quot;</span>, <span class="function">(<span class="params">c</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> c.<span class="title function_">json</span>(&#123;</span><br><span class="line">    <span class="attr">data</span>: &#123;</span><br><span class="line">      <span class="attr">name</span>: fakerZH_CN.<span class="property">person</span>.<span class="title function_">fullName</span>(),</span><br><span class="line">      <span class="attr">age</span>: fakerZH_CN.<span class="property">person</span>.<span class="title function_">sex</span>()</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">code</span>: <span class="number">200</span>,</span><br><span class="line">    <span class="attr">message</span>: <span class="string">&#x27;success&#x27;</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 代理中间件：转发未定义的接口到 localhost:3000</span></span><br><span class="line">app.<span class="title function_">all</span>(<span class="string">&quot;*&quot;</span>, <span class="title function_">async</span> (c) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> targetUrl = <span class="keyword">new</span> <span class="title function_">URL</span>(c.<span class="property">req</span>.<span class="property">url</span>);</span><br><span class="line">  targetUrl.<span class="property">host</span> = <span class="string">&quot;localhost:3000&quot;</span>;<span class="comment">//这个是兜底代理的目标（后端服务器地址）</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">proxy</span>(targetUrl, c.<span class="property">req</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">serve</span>(</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">fetch</span>: app.<span class="property">fetch</span>,</span><br><span class="line">    <span class="attr">port</span>: <span class="number">3001</span>,<span class="comment">//启动入口</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function">(<span class="params">info</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Server is running on http://localhost:<span class="subst">$&#123;info.port&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>自己的项目进行代理</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//.env.development</span></span><br><span class="line">VITE_API_BASE_URL=http:<span class="comment">//localhost:3000</span></span><br><span class="line">VITE_MOCK=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// vite.config.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; defineConfig, loadEnv &#125; <span class="keyword">from</span> <span class="string">&quot;vite&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> vue <span class="keyword">from</span> <span class="string">&quot;@vitejs/plugin-vue&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// https://vite.dev/config/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(<span class="function">(<span class="params">&#123; mode &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> env = <span class="title function_">loadEnv</span>(mode, process.<span class="title function_">cwd</span>(), <span class="string">&quot;&quot;</span>);</span><br><span class="line">  <span class="keyword">const</span> target = env.<span class="property">VITE_API_BASE_URL</span>;</span><br><span class="line">  <span class="keyword">const</span> isMock = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(env.<span class="property">VITE_MOCK</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(target);</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">plugins</span>: [<span class="title function_">vue</span>()],</span><br><span class="line">    <span class="attr">server</span>: &#123;</span><br><span class="line">      <span class="attr">proxy</span>: &#123;</span><br><span class="line">        <span class="string">&quot;/api&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">target</span>: isMock</span><br><span class="line">            ? <span class="string">&quot;http://localhost:3001&quot;</span> <span class="comment">// 本地mock服务</span></span><br><span class="line">            : target,</span><br><span class="line">          <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const userInfo = ref()</span><br><span class="line">const fetchUserInfo = async () =&gt; &#123;</span><br><span class="line">  const res = await fetch(&quot;/api/user&quot;);</span><br><span class="line">  userInfo.value = await res.json();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -369,7 +361,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://shtoly.github.io/2025/08/29/%E6%9C%AC%E5%9C%B0mock%E7%9A%84%E4%BD%BF%E7%94%A8/" title="本地mock的使用">https://shtoly.github.io/2025/08/29/本地mock的使用/</a>
+      <a href="https://shtoly.github.io/2025/09/23/React%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/" title="React事件机制">https://shtoly.github.io/2025/09/23/React事件机制/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -377,19 +369,19 @@
 </ul>
 </div>
 
+          <div class="post-tags">
+              <a href="/tags/React/" rel="tag"><i class="fa fa-tag"></i> React</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2025/07/19/Clipboard%20API/" rel="prev" title="Clipboard API">
-                  <i class="fa fa-angle-left"></i> Clipboard API
+                <a href="/2025/09/23/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1+%E8%83%BD%E6%94%AF%E6%8C%81iframe%E5%B5%8C%E5%85%A5/" rel="prev" title="动态路由+能支持iframe嵌入">
+                  <i class="fa fa-angle-left"></i> 动态路由+能支持iframe嵌入
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2025/09/05/immer%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="next" title="immer中间件">
-                  immer中间件 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -572,7 +564,7 @@ darkmode.showWidget();
 </script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"shtoly","repo":"shtoly.github.io","client_id":"Ov23liK31JPQeoo7RowF","client_secret":"1b6ca11cecf9665e1ea7e7f6e7e4a0377f3241b5","admin_user":"shtoly","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"02089af73e46ec34c7b51f69a45a753f"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"shtoly","repo":"shtoly.github.io","client_id":"Ov23liK31JPQeoo7RowF","client_secret":"1b6ca11cecf9665e1ea7e7f6e7e4a0377f3241b5","admin_user":"shtoly","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"95e99b3169ca0ebfb9f6fa26c9dcba70"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":380},"mobile":null});</script></body>
