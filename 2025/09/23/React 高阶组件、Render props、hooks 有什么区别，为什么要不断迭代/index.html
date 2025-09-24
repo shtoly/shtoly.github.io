@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="Shtoly&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-09-23T02:44:49.660Z">
-<meta property="article:modified_time" content="2025-09-23T03:03:38.406Z">
+<meta property="article:modified_time" content="2025-09-24T05:39:05.173Z">
 <meta property="article:author" content="Shtoly">
 <meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary">
@@ -258,9 +258,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-09-23 10:44:49 / 修改时间：11:03:38" itemprop="dateCreated datePublished" datetime="2025-09-23T10:44:49+08:00">2025-09-23</time>
+      <time title="创建时间：2025-09-23 10:44:49" itemprop="dateCreated datePublished" datetime="2025-09-23T10:44:49+08:00">2025-09-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-09-24 13:39:05" itemprop="dateModified" datetime="2025-09-24T13:39:05+08:00">2025-09-24</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -290,14 +296,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1k</span>
+      <span>1.5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
+      <span>5 分钟</span>
     </span>
 </div>
 
@@ -325,17 +331,53 @@
 <h4 id="HOC">HOC</h4>
 <p>官方解释∶</p>
 <p>高阶组件（HOC）是 React 中用于复用组件逻辑的一种高级技巧。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。</p>
+<p>高阶组件（HOC）就是一个函数，且该函数接受一个组件作为参数，并返回一个新的组件，它只是一种组件的设计模式，这种设计模式是由react自身的组合性质必然产生的。我们将它们称为纯组件，因为它们可以接受任何动态提供的子组件，但它们不会修改或复制其输入组件中的任何行为。</p>
 <p>简言之，HOC是一种组件的设计模式，HOC接受一个组件和额外的参数（如果需要），返回一个新的组件。HOC 是纯函数，没有副作用。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// hoc的定义</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">withSubscription</span>(<span class="params">WrappedComponent, selectData</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">class</span> <span class="title class_">extends</span> <span class="title class_">React</span>.<span class="property">Component</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">      <span class="variable language_">super</span>(props);</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">        <span class="attr">data</span>: <span class="title function_">selectData</span>(<span class="title class_">DataSource</span>, props)</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 一些通用的逻辑处理</span></span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// ... 并使用新数据渲染被包装的组件!</span></span><br><span class="line">      <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">WrappedComponent</span> <span class="attr">data</span>=<span class="string">&#123;this.state.data&#125;</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">BlogPostWithSubscription</span> = <span class="title function_">withSubscription</span>(<span class="title class_">BlogPost</span>,</span><br><span class="line">  <span class="function">(<span class="params">DataSource, props</span>) =&gt;</span> <span class="title class_">DataSource</span>.<span class="title function_">getBlogPost</span>(props.<span class="property">id</span>));</span><br></pre></td></tr></table></figure>
-<p>HOC的优缺点∶</p>
+<p><strong>1）HOC的优缺点</strong></p>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>优点∶ 逻辑服用、不影响被包裹组件的内部逻辑。</p>
 </li>
 <li class="lvl-2">
-<p>缺点∶ hoc传递给被包裹组件的props容易和被包裹后的组件重名，进而被覆盖</p>
+<p>缺点∶hoc传递给被包裹组件的props容易和被包裹后的组件重名，进而被覆盖</p>
 </li>
 </ul>
+<p><strong>2）适用场景</strong></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>代码复用，逻辑抽象</p>
+</li>
+<li class="lvl-2">
+<p>渲染劫持</p>
+</li>
+<li class="lvl-2">
+<p>State 抽象和更改</p>
+</li>
+<li class="lvl-2">
+<p>Props 更改</p>
+</li>
+</ul>
+<p><strong>3）具体应用例子</strong></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>**权限控制：**利用高阶组件的 <strong>条件渲染</strong> 特性可以对页面进行权限控制，权限控制一般分为两个维度：页面级别和 页面元素级别</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// HOC.js</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">withAdminAuth</span>(<span class="params">WrappedComponent</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">class</span> <span class="title class_">extends</span> <span class="title class_">React</span>.<span class="property">Component</span> &#123;</span><br><span class="line">        state = &#123;</span><br><span class="line">            <span class="attr">isAdmin</span>: <span class="literal">false</span>,</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">async</span> <span class="title function_">UNSAFE_componentWillMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> currentRole = <span class="keyword">await</span> <span class="title function_">getCurrentUserRole</span>();</span><br><span class="line">            <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;</span><br><span class="line">                <span class="attr">isAdmin</span>: currentRole === <span class="string">&#x27;Admin&#x27;</span>,</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">isAdmin</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">WrappedComponent</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span></span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> (<span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>您没有权限查看该页面，请联系管理员！<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// pages/page-a.js</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PageA</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">        <span class="variable language_">super</span>(props);</span><br><span class="line">        <span class="comment">// something here...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">UNSAFE_componentWillMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="comment">// fetching data</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="comment">// render page with data</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">withAdminAuth</span>(<span class="title class_">PageA</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// pages/page-b.js</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PageB</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">        <span class="variable language_">super</span>(props);</span><br><span class="line">    <span class="comment">// something here...</span></span><br><span class="line">        &#125;</span><br><span class="line">    <span class="title function_">UNSAFE_componentWillMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// fetching data</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// render page with data</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">withAdminAuth</span>(<span class="title class_">PageB</span>);</span><br></pre></td></tr></table></figure>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>**组件渲染性能追踪：**借助父组件子组件生命周期规则捕获子组件的生命周期，可以方便的对某个组件的渲染时间进行记录∶</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Home</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">        <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> (<span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello World.<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">withTiming</span>(<span class="params">WrappedComponent</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">class</span> <span class="title class_">extends</span> <span class="title class_">WrappedComponent</span> &#123;</span><br><span class="line">            <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">                <span class="variable language_">super</span>(props);</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">start</span> = <span class="number">0</span>;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">end</span> = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="title function_">UNSAFE_componentWillMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">                <span class="variable language_">super</span>.<span class="property">componentWillMount</span> &amp;&amp; <span class="variable language_">super</span>.<span class="title function_">componentWillMount</span>();</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">start</span> = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="title function_">componentDidMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">                <span class="variable language_">super</span>.<span class="property">componentDidMount</span> &amp;&amp; <span class="variable language_">super</span>.<span class="title function_">componentDidMount</span>();</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">end</span> = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;WrappedComponent.name&#125;</span> 组件渲染时间为 <span class="subst">$&#123;<span class="variable language_">this</span>.end - <span class="variable language_">this</span>.start&#125;</span> ms`</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="variable language_">super</span>.<span class="title function_">render</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">withTiming</span>(<span class="title class_">Home</span>);   </span><br></pre></td></tr></table></figure>
+<p>注意：withTiming 是利用 反向继承 实现的一个高阶组件，功能是计算被包裹组件（这里是 Home 组件）的渲染时间。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>页面复用</strong></p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">withFetching</span> = fetching =&gt; <span class="function"><span class="params">WrappedComponent</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">class</span> <span class="title class_">extends</span> <span class="title class_">React</span>.<span class="property">Component</span> &#123;</span><br><span class="line">        state = &#123;</span><br><span class="line">            <span class="attr">data</span>: [],</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">async</span> <span class="title function_">UNSAFE_componentWillMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> data = <span class="keyword">await</span> <span class="title function_">fetching</span>();</span><br><span class="line">            <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;</span><br><span class="line">                data,</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">WrappedComponent</span> <span class="attr">data</span>=<span class="string">&#123;this.state.data&#125;</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span></span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// pages/page-a.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">withFetching</span>(<span class="title function_">fetching</span>(<span class="string">&#x27;science-fiction&#x27;</span>))(<span class="title class_">MovieList</span>);</span><br><span class="line"><span class="comment">// pages/page-b.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">withFetching</span>(<span class="title function_">fetching</span>(<span class="string">&#x27;action&#x27;</span>))(<span class="title class_">MovieList</span>);</span><br><span class="line"><span class="comment">// pages/page-other.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">withFetching</span>(<span class="title function_">fetching</span>(<span class="string">&#x27;some-other-type&#x27;</span>))(<span class="title class_">MovieList</span>);</span><br></pre></td></tr></table></figure>
 <h4 id="Render-props">Render props</h4>
 <p>官方解释∶</p>
 <p>&quot;render prop&quot;是指一种在 React 组件之间使用一个值为函数的 prop 共享代码的简单技术</p>
@@ -494,14 +536,14 @@ window.SeniverseWeatherWidget('show', {
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">12k</span>
+    <span title="站点总字数">13k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">45 分钟</span>
+    <span title="站点阅读时长">47 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
