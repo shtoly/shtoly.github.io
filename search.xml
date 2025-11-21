@@ -256,121 +256,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Clipboard API</title>
-    <url>/2025/07/19/Clipboard%20API/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
-<span id="more"></span>
-<h1>Clipboard API</h1>
-<h2 id="基本介绍">基本介绍</h2>
-<p>Clipboard API 是现代浏览器提供的 JavaScript API，允许网页以安全可控的方式访问系统剪贴板。它提供了以下核心功能：</p>
-<ol>
-<li class="lvl-3">
-<p><strong>读取剪贴板内容</strong>（粘贴操作）</p>
-</li>
-<li class="lvl-3">
-<p><strong>写入剪贴板内容</strong>（复制操作）</p>
-</li>
-<li class="lvl-3">
-<p><strong>监听剪贴板事件</strong></p>
-</li>
-<li class="lvl-3">
-<p><strong>处理多种数据类型</strong>（文本、HTML、图片等）</p>
-</li>
-</ol>
-<h2 id="主要应用场景">主要应用场景</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>向网页上粘贴图片</p>
-</li>
-<li class="lvl-2">
-<p>复制一些内容，当粘贴后变成另一段文字（比如：不让粘贴之类的文字）</p>
-</li>
-<li class="lvl-2">
-<p>某些购物网站会读取粘贴板上的数据进行读取对应的商品</p>
-</li>
-</ul>
-<h3 id="1-向网页上粘贴图片">1. 向网页上粘贴图片</h3>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;editor&quot;</span> <span class="attr">contenteditable</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> editor = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.editor&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">    </span></span><br><span class="line"><span class="language-javascript">    editor.<span class="title function_">addEventListener</span>(<span class="string">&#x27;paste&#x27;</span>, <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">if</span> (e.<span class="property">clipboardData</span>.<span class="property">files</span>.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        e.<span class="title function_">preventDefault</span>();</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> file = e.<span class="property">clipboardData</span>.<span class="property">files</span>[<span class="number">0</span>];</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> img = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;img&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">        img.<span class="property">src</span> = <span class="variable constant_">URL</span>.<span class="title function_">createObjectURL</span>(file);</span></span><br><span class="line"><span class="language-javascript">        editor.<span class="title function_">appendChild</span>(img);</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;);</span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>代码功能说明：</p>
-<ol>
-<li class="lvl-3">
-<p>创建一个可编辑的div元素（<code>contenteditable</code>属性）</p>
-</li>
-<li class="lvl-3">
-<p>监听粘贴事件，检查剪贴板中是否有文件</p>
-</li>
-<li class="lvl-3">
-<p>如果检测到文件（如图片），则：</p>
-<ul class="lvl-2">
-<li class="lvl-5">阻止默认粘贴行为</li>
-<li class="lvl-5">获取第一个文件</li>
-<li class="lvl-5">创建img元素并设置src为文件对象URL</li>
-<li class="lvl-5">将图片插入到编辑器中</li>
-</ul>
-</li>
-</ol>
-<h3 id="2-复制-粘贴内容转换">2. 复制/粘贴内容转换</h3>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 复制时转换内容</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;copy&#x27;</span>, <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">  e.<span class="title function_">preventDefault</span>(); <span class="comment">// 阻止默认复制行为</span></span><br><span class="line">  navigator.<span class="property">clipboard</span>.<span class="title function_">weiteText</span>(<span class="string">&quot;不准复制，打钱！！！&quot;</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="3-读取剪贴板数据">3. 读取剪贴板数据</h3>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;editor&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 修正后的剪贴板读取代码</span></span></span><br><span class="line"><span class="language-javascript">        navigator.<span class="property">clipboard</span>.<span class="title function_">readText</span>()</span></span><br><span class="line"><span class="language-javascript">            .<span class="title function_">then</span>(<span class="function">(<span class="params">text</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.editor&#x27;</span>).<span class="property">innerHTML</span> = text;</span></span><br><span class="line"><span class="language-javascript">            &#125;)</span></span><br><span class="line"><span class="language-javascript">            .<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;读取剪贴板失败:&#x27;</span>, error);</span></span><br><span class="line"><span class="language-javascript">                <span class="title function_">alert</span>(<span class="string">&#x27;无法读取剪贴板内容&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">            &#125;);</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="高级用法">高级用法</h2>
-<h3 id="异步-Clipboard-API">异步 Clipboard API</h3>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 写入剪贴板</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">copyToClipboard</span>(<span class="params">text</span>) &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> navigator.<span class="property">clipboard</span>.<span class="title function_">writeText</span>(text);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;复制成功&#x27;</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;复制失败:&#x27;</span>, err);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 读取剪贴板</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">pasteFromClipboard</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> text = <span class="keyword">await</span> navigator.<span class="property">clipboard</span>.<span class="title function_">readText</span>();</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;粘贴内容:&#x27;</span>, text);</span><br><span class="line">    <span class="keyword">return</span> text;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;读取剪贴板失败:&#x27;</span>, err);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="安全限制">安全限制</h2>
-<ol>
-<li class="lvl-3">
-<p><strong>权限要求</strong>：</p>
-<ul class="lvl-2">
-<li class="lvl-5">写入操作通常不需要特殊权限</li>
-<li class="lvl-5">读取操作需要用户明确授权（通过权限API请求<code>clipboard-read</code>权限）</li>
-</ul>
-</li>
-<li class="lvl-3">
-<p><strong>用户交互要求</strong>：</p>
-<ul class="lvl-2">
-<li class="lvl-5">剪贴板访问必须在用户触发的事件（如点击）中执行</li>
-<li class="lvl-5">不能在没有用户交互的情况下自动访问剪贴板</li>
-</ul>
-</li>
-<li class="lvl-3">
-<p><strong>HTTPS要求</strong>：</p>
-<ul class="lvl-2">
-<li class="lvl-5">大多数浏览器要求页面通过HTTPS提供服务才能使用Clipboard API</li>
-</ul>
-</li>
-</ol>
-<h2 id="浏览器兼容性">浏览器兼容性</h2>
-<ol>
-<li class="lvl-3">
-<p><strong>现代浏览器</strong>：Chrome、Edge、Firefox、Safari等主流浏览器均已支持</p>
-</li>
-<li class="lvl-3">
-<p><strong>兼容性检测</strong>：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (!navigator.<span class="property">clipboard</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;您的浏览器不支持Clipboard API&#x27;</span>);</span><br><span class="line">  <span class="comment">// 提供回退方案</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="实际应用建议">实际应用建议</h2>
-<ol>
-<li class="lvl-3">
-<p><strong>提供回退方案</strong>：对于不支持Clipboard API的浏览器，可以使用<code>document.execCommand</code></p>
-</li>
-<li class="lvl-3">
-<p><strong>清晰的用户提示</strong>：当需要读取剪贴板时，明确告知用户并请求权限</p>
-</li>
-<li class="lvl-3">
-<p><strong>错误处理</strong>：妥善处理权限被拒绝的情况</p>
-</li>
-<li class="lvl-3">
-<p><strong>性能考虑</strong>：处理大文件（如图片）时要注意内存使用</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>Clipboard API</category>
-      </categories>
-  </entry>
-  <entry>
     <title>RN问题解决</title>
     <url>/2024/10/13/RN%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>2024.6.14时最新版本为 0.74.2，2024.8.1时最新版本为0.74.4，但其相关依赖不太稳定，尝试使用 0.74.2 版本操作</p>
@@ -501,151 +386,6 @@
       </tags>
   </entry>
   <entry>
-    <title>React 高阶组件、Render props、hooks 有什么区别</title>
-    <url>/2025/09/23/React%20%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6%E3%80%81Render%20props%E3%80%81hooks%20%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%B8%8D%E6%96%AD%E8%BF%AD%E4%BB%A3/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
-<span id="more"></span>
-<h3 id="React-高阶组件、Render-props、hooks-有什么区别，为什么要不断迭代">React 高阶组件、Render props、hooks 有什么区别，为什么要不断迭代</h3>
-<p>这三者是目前react解决代码复用的主要方式：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>高阶组件（HOC）是 React 中用于复用组件逻辑的一种高级技巧。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。具体而言，高阶组件是参数为组件，返回值为新组件的函数。</p>
-</li>
-<li class="lvl-2">
-<p>render props是指一种在 React 组件之间使用一个值为函数的 prop 共享代码的简单技术，更具体的说，render prop 是一个用于告知组件需要渲染什么内容的函数 prop。</p>
-</li>
-<li class="lvl-2">
-<p>通常，render props 和高阶组件只渲染一个子节点。让 Hook 来服务这个使用场景更加简单。这两种模式仍有用武之地，（例如，一个虚拟滚动条组件或许会有一个 renderltem 属性，或是一个可见的容器组件或许会有它自己的 DOM 结构）。但在大部分场景下，Hook 足够了，并且能够帮助减少嵌套。</p>
-</li>
-</ul>
-<h4 id="HOC">HOC</h4>
-<p>官方解释∶</p>
-<p>高阶组件（HOC）是 React 中用于复用组件逻辑的一种高级技巧。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。</p>
-<p>高阶组件（HOC）就是一个函数，且该函数接受一个组件作为参数，并返回一个新的组件，它只是一种组件的设计模式，这种设计模式是由react自身的组合性质必然产生的。我们将它们称为纯组件，因为它们可以接受任何动态提供的子组件，但它们不会修改或复制其输入组件中的任何行为。</p>
-<p>简言之，HOC是一种组件的设计模式，HOC接受一个组件和额外的参数（如果需要），返回一个新的组件。HOC 是纯函数，没有副作用。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// hoc的定义</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">withSubscription</span>(<span class="params">WrappedComponent, selectData</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">class</span> <span class="title class_">extends</span> <span class="title class_">React</span>.<span class="property">Component</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">      <span class="variable language_">super</span>(props);</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">        <span class="attr">data</span>: <span class="title function_">selectData</span>(<span class="title class_">DataSource</span>, props)</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 一些通用的逻辑处理</span></span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// ... 并使用新数据渲染被包装的组件!</span></span><br><span class="line">      <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">WrappedComponent</span> <span class="attr">data</span>=<span class="string">&#123;this.state.data&#125;</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">BlogPostWithSubscription</span> = <span class="title function_">withSubscription</span>(<span class="title class_">BlogPost</span>,</span><br><span class="line">  <span class="function">(<span class="params">DataSource, props</span>) =&gt;</span> <span class="title class_">DataSource</span>.<span class="title function_">getBlogPost</span>(props.<span class="property">id</span>));</span><br></pre></td></tr></table></figure>
-<p><strong>1）HOC的优缺点</strong></p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>优点∶ 逻辑服用、不影响被包裹组件的内部逻辑。</p>
-</li>
-<li class="lvl-2">
-<p>缺点∶hoc传递给被包裹组件的props容易和被包裹后的组件重名，进而被覆盖</p>
-</li>
-</ul>
-<p><strong>2）适用场景</strong></p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>代码复用，逻辑抽象</p>
-</li>
-<li class="lvl-2">
-<p>渲染劫持</p>
-</li>
-<li class="lvl-2">
-<p>State 抽象和更改</p>
-</li>
-<li class="lvl-2">
-<p>Props 更改</p>
-</li>
-</ul>
-<p><strong>3）具体应用例子</strong></p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>**权限控制：**利用高阶组件的 <strong>条件渲染</strong> 特性可以对页面进行权限控制，权限控制一般分为两个维度：页面级别和 页面元素级别</p>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// HOC.js</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">withAdminAuth</span>(<span class="params">WrappedComponent</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">class</span> <span class="title class_">extends</span> <span class="title class_">React</span>.<span class="property">Component</span> &#123;</span><br><span class="line">        state = &#123;</span><br><span class="line">            <span class="attr">isAdmin</span>: <span class="literal">false</span>,</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">async</span> <span class="title function_">UNSAFE_componentWillMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> currentRole = <span class="keyword">await</span> <span class="title function_">getCurrentUserRole</span>();</span><br><span class="line">            <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;</span><br><span class="line">                <span class="attr">isAdmin</span>: currentRole === <span class="string">&#x27;Admin&#x27;</span>,</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">isAdmin</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">WrappedComponent</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span></span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> (<span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>您没有权限查看该页面，请联系管理员！<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// pages/page-a.js</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PageA</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">        <span class="variable language_">super</span>(props);</span><br><span class="line">        <span class="comment">// something here...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">UNSAFE_componentWillMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="comment">// fetching data</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="comment">// render page with data</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">withAdminAuth</span>(<span class="title class_">PageA</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// pages/page-b.js</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PageB</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">        <span class="variable language_">super</span>(props);</span><br><span class="line">    <span class="comment">// something here...</span></span><br><span class="line">        &#125;</span><br><span class="line">    <span class="title function_">UNSAFE_componentWillMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// fetching data</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// render page with data</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">withAdminAuth</span>(<span class="title class_">PageB</span>);</span><br></pre></td></tr></table></figure>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>**组件渲染性能追踪：**借助父组件子组件生命周期规则捕获子组件的生命周期，可以方便的对某个组件的渲染时间进行记录∶</p>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Home</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">        <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> (<span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello World.<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">withTiming</span>(<span class="params">WrappedComponent</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">class</span> <span class="title class_">extends</span> <span class="title class_">WrappedComponent</span> &#123;</span><br><span class="line">            <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">                <span class="variable language_">super</span>(props);</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">start</span> = <span class="number">0</span>;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">end</span> = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="title function_">UNSAFE_componentWillMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">                <span class="variable language_">super</span>.<span class="property">componentWillMount</span> &amp;&amp; <span class="variable language_">super</span>.<span class="title function_">componentWillMount</span>();</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">start</span> = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="title function_">componentDidMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">                <span class="variable language_">super</span>.<span class="property">componentDidMount</span> &amp;&amp; <span class="variable language_">super</span>.<span class="title function_">componentDidMount</span>();</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">end</span> = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;WrappedComponent.name&#125;</span> 组件渲染时间为 <span class="subst">$&#123;<span class="variable language_">this</span>.end - <span class="variable language_">this</span>.start&#125;</span> ms`</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="variable language_">super</span>.<span class="title function_">render</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">withTiming</span>(<span class="title class_">Home</span>);   </span><br></pre></td></tr></table></figure>
-<p>注意：withTiming 是利用 反向继承 实现的一个高阶组件，功能是计算被包裹组件（这里是 Home 组件）的渲染时间。</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><strong>页面复用</strong></p>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">withFetching</span> = fetching =&gt; <span class="function"><span class="params">WrappedComponent</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">class</span> <span class="title class_">extends</span> <span class="title class_">React</span>.<span class="property">Component</span> &#123;</span><br><span class="line">        state = &#123;</span><br><span class="line">            <span class="attr">data</span>: [],</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">async</span> <span class="title function_">UNSAFE_componentWillMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> data = <span class="keyword">await</span> <span class="title function_">fetching</span>();</span><br><span class="line">            <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;</span><br><span class="line">                data,</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">WrappedComponent</span> <span class="attr">data</span>=<span class="string">&#123;this.state.data&#125;</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span></span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// pages/page-a.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">withFetching</span>(<span class="title function_">fetching</span>(<span class="string">&#x27;science-fiction&#x27;</span>))(<span class="title class_">MovieList</span>);</span><br><span class="line"><span class="comment">// pages/page-b.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">withFetching</span>(<span class="title function_">fetching</span>(<span class="string">&#x27;action&#x27;</span>))(<span class="title class_">MovieList</span>);</span><br><span class="line"><span class="comment">// pages/page-other.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">withFetching</span>(<span class="title function_">fetching</span>(<span class="string">&#x27;some-other-type&#x27;</span>))(<span class="title class_">MovieList</span>);</span><br></pre></td></tr></table></figure>
-<h4 id="Render-props">Render props</h4>
-<p>官方解释∶</p>
-<p>&quot;render prop&quot;是指一种在 React 组件之间使用一个值为函数的 prop 共享代码的简单技术</p>
-<p>具有render prop 的组件接受一个返回React元素的函数，将render的渲染逻辑注入到组件内部。在这里，&quot;render&quot;的命名可以是任何其他有效的标识符。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// DataProvider组件内部的渲染逻辑如下</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DataProvider</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Components</span> &#123;</span><br><span class="line">     state = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;Tom&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">p</span>&gt;</span>共享数据组件自己内部的渲染逻辑<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          &#123; this.props.render(this.state) &#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用方式</span></span><br><span class="line">&lt;<span class="title class_">DataProvider</span> render=&#123;<span class="function"><span class="params">data</span> =&gt;</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello &#123;data.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">)&#125;/&gt;</span><br></pre></td></tr></table></figure>
-<p>由此可以看到，render props的优缺点也很明显∶</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>优点：数据共享、代码复用，将组件内的state作为props传递给调用者，将渲染逻辑交给调用者。</p>
-</li>
-<li class="lvl-2">
-<p>缺点：无法在 return 语句外访问数据、嵌套写法不够优雅</p>
-</li>
-</ul>
-<h4 id="Hooks">Hooks</h4>
-<p>官方解释∶</p>
-<p>Hook是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。通过自定义hook，可以复用代码逻辑。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 自定义一个获取订阅数据的hook</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">useSubscription</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> data = <span class="title class_">DataSource</span>.<span class="title function_">getComments</span>();</span><br><span class="line">  <span class="keyword">return</span> [data];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">CommentList</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;data&#125; = props;</span><br><span class="line">  <span class="keyword">const</span> [subData] = <span class="title function_">useSubscription</span>();</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line">&lt;<span class="title class_">CommentList</span> data=<span class="string">&#x27;hello&#x27;</span> /&gt;</span><br></pre></td></tr></table></figure>
-<p>以上可以看出，hook解决了hoc的prop覆盖的问题，同时使用的方式解决了render props的嵌套地狱的问题。hook的优点如下∶</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>使用直观；</p>
-</li>
-<li class="lvl-2">
-<p>解决hoc的prop 重名问题；</p>
-</li>
-<li class="lvl-2">
-<p>解决render props 因共享数据 而出现嵌套地狱的问题；</p>
-</li>
-<li class="lvl-2">
-<p>能在return之外使用数据的问题。</p>
-</li>
-</ul>
-<p>需要注意的是：hook只能在组件顶层使用，不可在分支语句中使用。</p>
-<h4 id="总结">总结</h4>
-<p>Hoc、render props和hook都是为了解决代码复用的问题，但是hoc和render props都有特定的使用场景和明显的缺点。hook是react16.8更新的新的API，让组件逻辑复用更简洁明了，同时也解决了hoc和render props的一些缺点。</p>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>React</category>
-        <category>React 高阶组件、Render props、hooks 有什么区别</category>
-      </categories>
-      <tags>
-        <tag>React</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>React事件机制</title>
-    <url>/2025/09/23/React%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
-<span id="more"></span>
-<h3 id="React-事件机制">React 事件机制</h3>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;div onClick=&#123;<span class="variable language_">this</span>.<span class="property">handleClick</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>)&#125;&gt;点我&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-<p>​	React并不是将click事件绑定到了div的真实DOM上，而是在document处监听了所有的事件，当事件发生并且冒泡到document处的时候，React将事件内容封装并交由真正的处理函数运行。这样的方式不仅仅减少了内存的消耗，还能在组件挂在销毁时统一订阅和移除事件。</p>
-<p>​	除此之外，冒泡到document上的事件也不是原生的浏览器事件，而是由react自己实现的合成事件（SyntheticEvent）。因此如果不想要是事件冒泡的话应该调用event.preventDefault()方法，而不是调用event.stopProppagation()方法。</p>
-<img data-src="/2025/09/23/React%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/image-1.png" class="" title="React事件机制图">
-<p>​	JSX 上写的事件并没有绑定在对应的真实 DOM 上，而是通过事件代理的方式，将所有的事件都统一绑定在了 <code>document</code> 上。这样的方式不仅减少了内存消耗，还能在组件挂载销毁时统一订阅和移除事件。</p>
-<p>​	另外冒泡到 <code>document</code> 上的事件也不是原生浏览器事件，而是 React 自己实现的合成事件（SyntheticEvent）。因此我们如果不想要事件冒泡的话，调用 <code>event.stopPropagation</code> 是无效的，而应该调用 <code>event.preventDefault</code>。</p>
-<p>实现合成事件的目的如下：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>合成事件首先抹平了浏览器之间的兼容问题，另外这是一个跨浏览器原生事件包装器，赋予了跨浏览器开发的能力；</p>
-</li>
-<li class="lvl-2">
-<p>对于原生浏览器事件来说，浏览器会给监听器创建一个事件对象。如果你有很多的事件监听，那么就需要分配很多的事件对象，造成高额的内存分配问题。但是对于合成事件来说，有一个事件池专门来管理它们的创建和销毁，当事件需要被使用时，就会从池子中复用对象，事件回调结束后，就会销毁事件对象上的属性，从而便于下次复用事件对象。</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>React</category>
-        <category>React事件机制</category>
-      </categories>
-      <tags>
-        <tag>React</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SASS星空</title>
     <url>/2024/10/15/SASS%E6%98%9F%E7%A9%BA/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p><strong>效果图</strong></p>
@@ -772,6 +512,24 @@
       </tags>
   </entry>
   <entry>
+    <title>js手写题</title>
+    <url>/2025/11/21/js%E6%89%8B%E5%86%99%E9%A2%98/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
+<span id="more"></span>
+<h2 id="高级应用题">高级应用题</h2>
+<h3 id="写一个函数实现防抖（debounce）">写一个函数实现防抖（debounce）</h3>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 防抖函数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">myDebounce</span>(<span class="params">fn,delay</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> timer = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params">...args</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (timer) <span class="built_in">clearTimeout</span>(timer);</span><br><span class="line">    timer = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>,args)</span><br><span class="line">    &#125;, delay);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="如何实现一个简单的Promise？">如何实现一个简单的Promise？</h3>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">mySimplePromise</span>&#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">exector</span>)&#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span> = <span class="string">&#x27;pending&#x27;</span> <span class="comment">// 初始状态</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">value</span> = <span class="literal">undefined</span>  <span class="comment">// 存储结果值或失败原因</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">onresolvedCallbacks</span> = []  <span class="comment">// 成功的回调队列</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">onRejectedCallbacks</span> = []  <span class="comment">// 失败的回调队列</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">resolve</span> = (<span class="params">value</span>) =&gt;&#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span> == <span class="string">&#x27;pending&#x27;</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">state</span> = <span class="string">&#x27;resolved&#x27;</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">value</span> = value</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">onresolvedCallbacks</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">fn</span> =&gt;</span> <span class="title function_">fn</span>());</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">reject</span> = (<span class="params">reson</span>) =&gt;&#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span> == <span class="string">&#x27;pending&#x27;</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">state</span> = <span class="string">&#x27;rejected&#x27;</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">value</span> = reson</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">onRejectedCallbacks</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">fn</span> =&gt;</span> <span class="title function_">fn</span>());</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">exector</span>(resolve,reject)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">then</span>(<span class="params">onResolved,onRejected</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span> == <span class="string">&#x27;resolved&#x27;</span>) &#123;</span><br><span class="line">      <span class="title function_">resolve</span>(onResolved)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span> == <span class="string">&#x27;rejected&#x27;</span>) &#123;</span><br><span class="line">      <span class="title function_">reject</span>(onRejected)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span> == <span class="string">&#x27;pending&#x27;</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">onresolvedCallbacks</span>.<span class="title function_">push</span>(<span class="function">() =&gt;</span> <span class="title function_">onResolved</span>(<span class="variable language_">this</span>.<span class="property">value</span>))</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">onRejectedCallbacks</span>.<span class="title function_">push</span>(<span class="function">() =&gt;</span> <span class="title function_">onRejected</span>(<span class="variable language_">this</span>.<span class="property">value</span>))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promise1 = <span class="keyword">new</span> <span class="title function_">myPromise</span>(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span>&#123;</span><br><span class="line">  <span class="title function_">resolve</span>(<span class="string">&#x27;成功&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promise2 = <span class="keyword">new</span> <span class="title function_">myPromise</span>(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span>&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">resolve</span>(<span class="string">&#x27;延迟成功&#x27;</span>)</span><br><span class="line">  &#125;, <span class="number">2000</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">promise1.<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span>&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);  <span class="comment">//立即输出‘成功’</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">promise2.<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span>&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);  <span class="comment">//延迟2s输出‘延迟成功’</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="写一个函数实现柯里化（curry）">写一个函数实现柯里化（curry）</h3>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">myCurry</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> <span class="title function_">curried</span>(<span class="params">...args</span>) &#123;</span><br><span class="line">     <span class="comment">// 检查当前参数数量是否达到原函数需要的参数数量</span></span><br><span class="line">    <span class="keyword">if</span> (args.<span class="property">length</span> &gt;= fn.<span class="property">length</span>) &#123;</span><br><span class="line">      <span class="comment">// 参数足够，直接执行原函数</span></span><br><span class="line">      <span class="keyword">return</span> fn.<span class="title function_">apply</span>(<span class="variable language_">this</span>,args)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="comment">// 参数不足，返回一个新函数继续收集参数</span></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params">...args2</span>) &#123;</span><br><span class="line">        <span class="comment">// 递归调用 curried，合并已有参数和新参数</span></span><br><span class="line">        <span class="keyword">return</span> curried.<span class="title function_">apply</span>(<span class="variable language_">this</span>,args.<span class="title function_">concat</span>(args2))</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">add</span>(<span class="params">a,b,c</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> a+b+c</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> curriedAdd = <span class="title function_">myCurry</span>(add)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">curriedAdd</span>(<span class="number">1</span>)(<span class="number">2</span>)(<span class="number">3</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">curriedAdd</span>(<span class="number">1</span>,<span class="number">2</span>)(<span class="number">3</span>));</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">curriedAdd</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>面经</category>
+        <category>js手写题</category>
+      </categories>
+  </entry>
+  <entry>
     <title>vite 环境变量配置文件</title>
     <url>/2024/10/18/vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p><strong>前提文档链接</strong></p>
@@ -894,55 +652,296 @@
       </tags>
   </entry>
   <entry>
-    <title>Vue首屏加载优化</title>
-    <url>/2025/07/08/vue%E9%A6%96%E5%B1%8F%E5%8A%A0%E8%BD%BD%E4%BC%98%E5%8C%96/</url>
+    <title>React 高阶组件、Render props、hooks 有什么区别</title>
+    <url>/2025/09/23/React%20%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6%E3%80%81Render%20props%E3%80%81hooks%20%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%B8%8D%E6%96%AD%E8%BF%AD%E4%BB%A3/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
 <span id="more"></span>
-<h2 id="怎样在代码中将首屏加载时间计算出来">怎样在代码中将首屏加载时间计算出来</h2>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 首屏时间的计算</span></span><br><span class="line">    <span class="comment">// console.log(performance.timing.domComplete - performance.timing.navigationStart, &#x27;times&#x27;)//已弃用</span></span><br><span class="line">    </span><br><span class="line">   <span class="keyword">const</span> observer = <span class="keyword">new</span> <span class="title class_">PerformanceObserver</span>(<span class="function">(<span class="params">list</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(list.<span class="title function_">getEntries</span>())</span><br><span class="line">    &#125;)</span><br><span class="line">    observer.<span class="title function_">observe</span>(&#123; <span class="attr">entryTypes</span>: [<span class="string">&#x27;navigation&#x27;</span>] &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="vue中的异步组件">vue中的异步组件</h2>
-<p>在vue框架中怎么实现当用到这个组件时才会加载</p>
-<p>异步组件（在打包的时候单独形成分包）</p>
-<h3 id="正常普通导入组件">正常普通导入组件</h3>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> cs <span class="keyword">from</span> <span class="string">&quot;./cs.vue&quot;</span></span><br></pre></td></tr></table></figure>
-<h3 id="异步组件">异步组件</h3>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 异步组件</span></span><br><span class="line"><span class="keyword">const</span> cs = <span class="title function_">defineAsyncComponent</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">import</span>(<span class="string">&#x27;./cs.vue&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="首页图片">首页图片</h2>
-<p>接口返回的图片为网络图片，在页面加载的时候不会占用加载时间</p>
-<h2 id="优化白屏显示-骨架屏">优化白屏显示-骨架屏</h2>
-<p>在vue页面没加载出来之前显示骨架屏</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 35%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 50%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 60%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 80%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="React-高阶组件、Render-props、hooks-有什么区别，为什么要不断迭代">React 高阶组件、Render props、hooks 有什么区别，为什么要不断迭代</h3>
+<p>这三者是目前react解决代码复用的主要方式：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>高阶组件（HOC）是 React 中用于复用组件逻辑的一种高级技巧。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。具体而言，高阶组件是参数为组件，返回值为新组件的函数。</p>
+</li>
+<li class="lvl-2">
+<p>render props是指一种在 React 组件之间使用一个值为函数的 prop 共享代码的简单技术，更具体的说，render prop 是一个用于告知组件需要渲染什么内容的函数 prop。</p>
+</li>
+<li class="lvl-2">
+<p>通常，render props 和高阶组件只渲染一个子节点。让 Hook 来服务这个使用场景更加简单。这两种模式仍有用武之地，（例如，一个虚拟滚动条组件或许会有一个 renderltem 属性，或是一个可见的容器组件或许会有它自己的 DOM 结构）。但在大部分场景下，Hook 足够了，并且能够帮助减少嵌套。</p>
+</li>
+</ul>
+<h4 id="HOC">HOC</h4>
+<p>官方解释∶</p>
+<p>高阶组件（HOC）是 React 中用于复用组件逻辑的一种高级技巧。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。</p>
+<p>高阶组件（HOC）就是一个函数，且该函数接受一个组件作为参数，并返回一个新的组件，它只是一种组件的设计模式，这种设计模式是由react自身的组合性质必然产生的。我们将它们称为纯组件，因为它们可以接受任何动态提供的子组件，但它们不会修改或复制其输入组件中的任何行为。</p>
+<p>简言之，HOC是一种组件的设计模式，HOC接受一个组件和额外的参数（如果需要），返回一个新的组件。HOC 是纯函数，没有副作用。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// hoc的定义</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">withSubscription</span>(<span class="params">WrappedComponent, selectData</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">class</span> <span class="title class_">extends</span> <span class="title class_">React</span>.<span class="property">Component</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">      <span class="variable language_">super</span>(props);</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">        <span class="attr">data</span>: <span class="title function_">selectData</span>(<span class="title class_">DataSource</span>, props)</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 一些通用的逻辑处理</span></span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// ... 并使用新数据渲染被包装的组件!</span></span><br><span class="line">      <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">WrappedComponent</span> <span class="attr">data</span>=<span class="string">&#123;this.state.data&#125;</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">BlogPostWithSubscription</span> = <span class="title function_">withSubscription</span>(<span class="title class_">BlogPost</span>,</span><br><span class="line">  <span class="function">(<span class="params">DataSource, props</span>) =&gt;</span> <span class="title class_">DataSource</span>.<span class="title function_">getBlogPost</span>(props.<span class="property">id</span>));</span><br></pre></td></tr></table></figure>
+<p><strong>1）HOC的优缺点</strong></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>优点∶ 逻辑服用、不影响被包裹组件的内部逻辑。</p>
+</li>
+<li class="lvl-2">
+<p>缺点∶hoc传递给被包裹组件的props容易和被包裹后的组件重名，进而被覆盖</p>
+</li>
+</ul>
+<p><strong>2）适用场景</strong></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>代码复用，逻辑抽象</p>
+</li>
+<li class="lvl-2">
+<p>渲染劫持</p>
+</li>
+<li class="lvl-2">
+<p>State 抽象和更改</p>
+</li>
+<li class="lvl-2">
+<p>Props 更改</p>
+</li>
+</ul>
+<p><strong>3）具体应用例子</strong></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>**权限控制：**利用高阶组件的 <strong>条件渲染</strong> 特性可以对页面进行权限控制，权限控制一般分为两个维度：页面级别和 页面元素级别</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// HOC.js</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">withAdminAuth</span>(<span class="params">WrappedComponent</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">class</span> <span class="title class_">extends</span> <span class="title class_">React</span>.<span class="property">Component</span> &#123;</span><br><span class="line">        state = &#123;</span><br><span class="line">            <span class="attr">isAdmin</span>: <span class="literal">false</span>,</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">async</span> <span class="title function_">UNSAFE_componentWillMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> currentRole = <span class="keyword">await</span> <span class="title function_">getCurrentUserRole</span>();</span><br><span class="line">            <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;</span><br><span class="line">                <span class="attr">isAdmin</span>: currentRole === <span class="string">&#x27;Admin&#x27;</span>,</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">isAdmin</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">WrappedComponent</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span></span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> (<span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>您没有权限查看该页面，请联系管理员！<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// pages/page-a.js</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PageA</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">        <span class="variable language_">super</span>(props);</span><br><span class="line">        <span class="comment">// something here...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">UNSAFE_componentWillMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="comment">// fetching data</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="comment">// render page with data</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">withAdminAuth</span>(<span class="title class_">PageA</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// pages/page-b.js</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PageB</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">        <span class="variable language_">super</span>(props);</span><br><span class="line">    <span class="comment">// something here...</span></span><br><span class="line">        &#125;</span><br><span class="line">    <span class="title function_">UNSAFE_componentWillMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// fetching data</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// render page with data</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">withAdminAuth</span>(<span class="title class_">PageB</span>);</span><br></pre></td></tr></table></figure>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>**组件渲染性能追踪：**借助父组件子组件生命周期规则捕获子组件的生命周期，可以方便的对某个组件的渲染时间进行记录∶</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Home</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">        <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> (<span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello World.<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">withTiming</span>(<span class="params">WrappedComponent</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">class</span> <span class="title class_">extends</span> <span class="title class_">WrappedComponent</span> &#123;</span><br><span class="line">            <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">                <span class="variable language_">super</span>(props);</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">start</span> = <span class="number">0</span>;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">end</span> = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="title function_">UNSAFE_componentWillMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">                <span class="variable language_">super</span>.<span class="property">componentWillMount</span> &amp;&amp; <span class="variable language_">super</span>.<span class="title function_">componentWillMount</span>();</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">start</span> = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="title function_">componentDidMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">                <span class="variable language_">super</span>.<span class="property">componentDidMount</span> &amp;&amp; <span class="variable language_">super</span>.<span class="title function_">componentDidMount</span>();</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">end</span> = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;WrappedComponent.name&#125;</span> 组件渲染时间为 <span class="subst">$&#123;<span class="variable language_">this</span>.end - <span class="variable language_">this</span>.start&#125;</span> ms`</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="variable language_">super</span>.<span class="title function_">render</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">withTiming</span>(<span class="title class_">Home</span>);   </span><br></pre></td></tr></table></figure>
+<p>注意：withTiming 是利用 反向继承 实现的一个高阶组件，功能是计算被包裹组件（这里是 Home 组件）的渲染时间。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>页面复用</strong></p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">withFetching</span> = fetching =&gt; <span class="function"><span class="params">WrappedComponent</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">class</span> <span class="title class_">extends</span> <span class="title class_">React</span>.<span class="property">Component</span> &#123;</span><br><span class="line">        state = &#123;</span><br><span class="line">            <span class="attr">data</span>: [],</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">async</span> <span class="title function_">UNSAFE_componentWillMount</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> data = <span class="keyword">await</span> <span class="title function_">fetching</span>();</span><br><span class="line">            <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;</span><br><span class="line">                data,</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">WrappedComponent</span> <span class="attr">data</span>=<span class="string">&#123;this.state.data&#125;</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span></span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// pages/page-a.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">withFetching</span>(<span class="title function_">fetching</span>(<span class="string">&#x27;science-fiction&#x27;</span>))(<span class="title class_">MovieList</span>);</span><br><span class="line"><span class="comment">// pages/page-b.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">withFetching</span>(<span class="title function_">fetching</span>(<span class="string">&#x27;action&#x27;</span>))(<span class="title class_">MovieList</span>);</span><br><span class="line"><span class="comment">// pages/page-other.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">withFetching</span>(<span class="title function_">fetching</span>(<span class="string">&#x27;some-other-type&#x27;</span>))(<span class="title class_">MovieList</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="Render-props">Render props</h4>
+<p>官方解释∶</p>
+<p>&quot;render prop&quot;是指一种在 React 组件之间使用一个值为函数的 prop 共享代码的简单技术</p>
+<p>具有render prop 的组件接受一个返回React元素的函数，将render的渲染逻辑注入到组件内部。在这里，&quot;render&quot;的命名可以是任何其他有效的标识符。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// DataProvider组件内部的渲染逻辑如下</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DataProvider</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Components</span> &#123;</span><br><span class="line">     state = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;Tom&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">p</span>&gt;</span>共享数据组件自己内部的渲染逻辑<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          &#123; this.props.render(this.state) &#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用方式</span></span><br><span class="line">&lt;<span class="title class_">DataProvider</span> render=&#123;<span class="function"><span class="params">data</span> =&gt;</span> (</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello &#123;data.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">)&#125;/&gt;</span><br></pre></td></tr></table></figure>
+<p>由此可以看到，render props的优缺点也很明显∶</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>优点：数据共享、代码复用，将组件内的state作为props传递给调用者，将渲染逻辑交给调用者。</p>
+</li>
+<li class="lvl-2">
+<p>缺点：无法在 return 语句外访问数据、嵌套写法不够优雅</p>
+</li>
+</ul>
+<h4 id="Hooks">Hooks</h4>
+<p>官方解释∶</p>
+<p>Hook是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。通过自定义hook，可以复用代码逻辑。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 自定义一个获取订阅数据的hook</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">useSubscription</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> data = <span class="title class_">DataSource</span>.<span class="title function_">getComments</span>();</span><br><span class="line">  <span class="keyword">return</span> [data];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">CommentList</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;data&#125; = props;</span><br><span class="line">  <span class="keyword">const</span> [subData] = <span class="title function_">useSubscription</span>();</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line">&lt;<span class="title class_">CommentList</span> data=<span class="string">&#x27;hello&#x27;</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>以上可以看出，hook解决了hoc的prop覆盖的问题，同时使用的方式解决了render props的嵌套地狱的问题。hook的优点如下∶</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>使用直观；</p>
+</li>
+<li class="lvl-2">
+<p>解决hoc的prop 重名问题；</p>
+</li>
+<li class="lvl-2">
+<p>解决render props 因共享数据 而出现嵌套地狱的问题；</p>
+</li>
+<li class="lvl-2">
+<p>能在return之外使用数据的问题。</p>
+</li>
+</ul>
+<p>需要注意的是：hook只能在组件顶层使用，不可在分支语句中使用。</p>
+<h4 id="总结">总结</h4>
+<p>Hoc、render props和hook都是为了解决代码复用的问题，但是hoc和render props都有特定的使用场景和明显的缺点。hook是react16.8更新的新的API，让组件逻辑复用更简洁明了，同时也解决了hoc和render props的一些缺点。</p>
 ]]></content>
       <categories>
         <category>前端</category>
-        <category>首屏加载优化</category>
+        <category>React</category>
+        <category>React 高阶组件、Render props、hooks 有什么区别</category>
       </categories>
       <tags>
-        <tag>vue</tag>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
-    <title>vue中的插槽slot</title>
-    <url>/2025/07/15/vue%E4%B8%AD%E6%8F%92%E6%A7%BDslot/</url>
+    <title>Clipboard API</title>
+    <url>/2025/07/19/Clipboard%20API/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
 <span id="more"></span>
-<h1>vue中的插槽slot</h1>
-<p>为了让组件具备更强的通用性</p>
-<h2 id="子组件">子组件</h2>
-<p>声明插槽的Comp组件</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">slot</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span> //默认插槽，调用default()，将返回的虚拟节点放到这里</span><br><span class="line">    <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">&#x27;slot1&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span>  //具名插槽，调用slot1()，将返回的虚拟节点放到这里</span><br><span class="line">    <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">&#x27;slot2&#x27;</span> <span class="attr">msg</span>=<span class="string">&#x27;hello world&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span>  //作用域插槽，调用slot2(&#123;msg:&#x27;hello world&#x27;&#125;)，将返回的虚拟节点放到这里</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="父组件">父组件</h2>
-<p>使用具有插槽的子组件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Comp&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">        default slot</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">    &lt;template #slot1&gt;</span><br><span class="line">      &lt;p&gt;</span><br><span class="line">        slot1</span><br><span class="line">      &lt;/p&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">    &lt;template #slot2=&#x27;slotData&#x27;&gt;</span><br><span class="line">      &lt;p&gt;</span><br><span class="line">        slot2:&#123;&#123;slotData.msg&#125;&#125;</span><br><span class="line">      &lt;/p&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">&lt;/Comp&gt;</span><br></pre></td></tr></table></figure>
-<p>插槽向组件Comp传递一个对象，对象里面的属性名就是插槽名</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">default</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;,</span><br><span class="line">    <span class="attr">slot1</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;,</span><br><span class="line">    <span class="attr">slot2</span>:<span class="keyword">function</span>(<span class="params">slotData</span>)&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用这些函数就会返回对应的虚拟节点</span></span><br></pre></td></tr></table></figure>
+<h1>Clipboard API</h1>
+<h2 id="基本介绍">基本介绍</h2>
+<p>Clipboard API 是现代浏览器提供的 JavaScript API，允许网页以安全可控的方式访问系统剪贴板。它提供了以下核心功能：</p>
+<ol>
+<li class="lvl-3">
+<p><strong>读取剪贴板内容</strong>（粘贴操作）</p>
+</li>
+<li class="lvl-3">
+<p><strong>写入剪贴板内容</strong>（复制操作）</p>
+</li>
+<li class="lvl-3">
+<p><strong>监听剪贴板事件</strong></p>
+</li>
+<li class="lvl-3">
+<p><strong>处理多种数据类型</strong>（文本、HTML、图片等）</p>
+</li>
+</ol>
+<h2 id="主要应用场景">主要应用场景</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>向网页上粘贴图片</p>
+</li>
+<li class="lvl-2">
+<p>复制一些内容，当粘贴后变成另一段文字（比如：不让粘贴之类的文字）</p>
+</li>
+<li class="lvl-2">
+<p>某些购物网站会读取粘贴板上的数据进行读取对应的商品</p>
+</li>
+</ul>
+<h3 id="1-向网页上粘贴图片">1. 向网页上粘贴图片</h3>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;editor&quot;</span> <span class="attr">contenteditable</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">const</span> editor = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.editor&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">    </span></span><br><span class="line"><span class="language-javascript">    editor.<span class="title function_">addEventListener</span>(<span class="string">&#x27;paste&#x27;</span>, <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">if</span> (e.<span class="property">clipboardData</span>.<span class="property">files</span>.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        e.<span class="title function_">preventDefault</span>();</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> file = e.<span class="property">clipboardData</span>.<span class="property">files</span>[<span class="number">0</span>];</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> img = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;img&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">        img.<span class="property">src</span> = <span class="variable constant_">URL</span>.<span class="title function_">createObjectURL</span>(file);</span></span><br><span class="line"><span class="language-javascript">        editor.<span class="title function_">appendChild</span>(img);</span></span><br><span class="line"><span class="language-javascript">      &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;);</span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>代码功能说明：</p>
+<ol>
+<li class="lvl-3">
+<p>创建一个可编辑的div元素（<code>contenteditable</code>属性）</p>
+</li>
+<li class="lvl-3">
+<p>监听粘贴事件，检查剪贴板中是否有文件</p>
+</li>
+<li class="lvl-3">
+<p>如果检测到文件（如图片），则：</p>
+<ul class="lvl-2">
+<li class="lvl-5">阻止默认粘贴行为</li>
+<li class="lvl-5">获取第一个文件</li>
+<li class="lvl-5">创建img元素并设置src为文件对象URL</li>
+<li class="lvl-5">将图片插入到编辑器中</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-复制-粘贴内容转换">2. 复制/粘贴内容转换</h3>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 复制时转换内容</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;copy&#x27;</span>, <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">  e.<span class="title function_">preventDefault</span>(); <span class="comment">// 阻止默认复制行为</span></span><br><span class="line">  navigator.<span class="property">clipboard</span>.<span class="title function_">weiteText</span>(<span class="string">&quot;不准复制，打钱！！！&quot;</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="3-读取剪贴板数据">3. 读取剪贴板数据</h3>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;editor&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 修正后的剪贴板读取代码</span></span></span><br><span class="line"><span class="language-javascript">        navigator.<span class="property">clipboard</span>.<span class="title function_">readText</span>()</span></span><br><span class="line"><span class="language-javascript">            .<span class="title function_">then</span>(<span class="function">(<span class="params">text</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.editor&#x27;</span>).<span class="property">innerHTML</span> = text;</span></span><br><span class="line"><span class="language-javascript">            &#125;)</span></span><br><span class="line"><span class="language-javascript">            .<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;读取剪贴板失败:&#x27;</span>, error);</span></span><br><span class="line"><span class="language-javascript">                <span class="title function_">alert</span>(<span class="string">&#x27;无法读取剪贴板内容&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">            &#125;);</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="高级用法">高级用法</h2>
+<h3 id="异步-Clipboard-API">异步 Clipboard API</h3>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 写入剪贴板</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">copyToClipboard</span>(<span class="params">text</span>) &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> navigator.<span class="property">clipboard</span>.<span class="title function_">writeText</span>(text);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;复制成功&#x27;</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;复制失败:&#x27;</span>, err);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 读取剪贴板</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">pasteFromClipboard</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> text = <span class="keyword">await</span> navigator.<span class="property">clipboard</span>.<span class="title function_">readText</span>();</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;粘贴内容:&#x27;</span>, text);</span><br><span class="line">    <span class="keyword">return</span> text;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;读取剪贴板失败:&#x27;</span>, err);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="安全限制">安全限制</h2>
+<ol>
+<li class="lvl-3">
+<p><strong>权限要求</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-5">写入操作通常不需要特殊权限</li>
+<li class="lvl-5">读取操作需要用户明确授权（通过权限API请求<code>clipboard-read</code>权限）</li>
+</ul>
+</li>
+<li class="lvl-3">
+<p><strong>用户交互要求</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-5">剪贴板访问必须在用户触发的事件（如点击）中执行</li>
+<li class="lvl-5">不能在没有用户交互的情况下自动访问剪贴板</li>
+</ul>
+</li>
+<li class="lvl-3">
+<p><strong>HTTPS要求</strong>：</p>
+<ul class="lvl-2">
+<li class="lvl-5">大多数浏览器要求页面通过HTTPS提供服务才能使用Clipboard API</li>
+</ul>
+</li>
+</ol>
+<h2 id="浏览器兼容性">浏览器兼容性</h2>
+<ol>
+<li class="lvl-3">
+<p><strong>现代浏览器</strong>：Chrome、Edge、Firefox、Safari等主流浏览器均已支持</p>
+</li>
+<li class="lvl-3">
+<p><strong>兼容性检测</strong>：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (!navigator.<span class="property">clipboard</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;您的浏览器不支持Clipboard API&#x27;</span>);</span><br><span class="line">  <span class="comment">// 提供回退方案</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="实际应用建议">实际应用建议</h2>
+<ol>
+<li class="lvl-3">
+<p><strong>提供回退方案</strong>：对于不支持Clipboard API的浏览器，可以使用<code>document.execCommand</code></p>
+</li>
+<li class="lvl-3">
+<p><strong>清晰的用户提示</strong>：当需要读取剪贴板时，明确告知用户并请求权限</p>
+</li>
+<li class="lvl-3">
+<p><strong>错误处理</strong>：妥善处理权限被拒绝的情况</p>
+</li>
+<li class="lvl-3">
+<p><strong>性能考虑</strong>：处理大文件（如图片）时要注意内存使用</p>
+</li>
+</ol>
 ]]></content>
       <categories>
         <category>前端</category>
-        <category>vue中的插槽slot</category>
+        <category>Clipboard API</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>React事件机制</title>
+    <url>/2025/09/23/React%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
+<span id="more"></span>
+<h3 id="React-事件机制">React 事件机制</h3>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;div onClick=&#123;<span class="variable language_">this</span>.<span class="property">handleClick</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>)&#125;&gt;点我&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>​	React并不是将click事件绑定到了div的真实DOM上，而是在document处监听了所有的事件，当事件发生并且冒泡到document处的时候，React将事件内容封装并交由真正的处理函数运行。这样的方式不仅仅减少了内存的消耗，还能在组件挂在销毁时统一订阅和移除事件。</p>
+<p>​	除此之外，冒泡到document上的事件也不是原生的浏览器事件，而是由react自己实现的合成事件（SyntheticEvent）。因此如果不想要是事件冒泡的话应该调用event.preventDefault()方法，而不是调用event.stopProppagation()方法。</p>
+<img data-src="/2025/09/23/React%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/image-1.png" class="" title="React事件机制图">
+<p>​	JSX 上写的事件并没有绑定在对应的真实 DOM 上，而是通过事件代理的方式，将所有的事件都统一绑定在了 <code>document</code> 上。这样的方式不仅减少了内存消耗，还能在组件挂载销毁时统一订阅和移除事件。</p>
+<p>​	另外冒泡到 <code>document</code> 上的事件也不是原生浏览器事件，而是 React 自己实现的合成事件（SyntheticEvent）。因此我们如果不想要事件冒泡的话，调用 <code>event.stopPropagation</code> 是无效的，而应该调用 <code>event.preventDefault</code>。</p>
+<p>实现合成事件的目的如下：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>合成事件首先抹平了浏览器之间的兼容问题，另外这是一个跨浏览器原生事件包装器，赋予了跨浏览器开发的能力；</p>
+</li>
+<li class="lvl-2">
+<p>对于原生浏览器事件来说，浏览器会给监听器创建一个事件对象。如果你有很多的事件监听，那么就需要分配很多的事件对象，造成高额的内存分配问题。但是对于合成事件来说，有一个事件池专门来管理它们的创建和销毁，当事件需要被使用时，就会从池子中复用对象，事件回调结束后，就会销毁事件对象上的属性，从而便于下次复用事件对象。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>React</category>
+        <category>React事件机制</category>
       </categories>
       <tags>
-        <tag>vue</tag>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>创建RN项目</title>
+    <url>/2024/10/13/%E5%88%9B%E5%BB%BARN%E9%A1%B9%E7%9B%AE/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1>Android 开发环境</h1>
+<ul class="lvl-0">
+<li class="lvl-2">配置 Android 环境，请跟着<a href="https://reactnative.cn/docs/0.74/getting-started">文档</a>(0.74版本)进行</li>
+</ul>
+<span id="more"></span>
+<h1>创建新项目</h1>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>如果你之前全局安装过旧的react-native-cli命令行工具，请使用<code>npm uninstall -g react-native-cli</code>卸载掉它以避免一些冲突：<code>npm uninstall -g react-native-cli @react-native-community/cli</code></p>
+</li>
+<li class="lvl-2">
+<p>输入以下命令创建新项目<code>npx react-native@latest init [项目名]</code></p>
+</li>
+</ul>
+<h1>创建项目指定版本号：[可选参数] 指定版本或项目模板</h1>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>你可以使用–version参数（注意是两个杠）创建指定版本的项目。注意版本号必须精确到两个小数点：<code>npx react-native@X.XX.X init AwesomeProject --version X.XX.X</code></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>APP</category>
+        <category>React Native</category>
+      </categories>
+      <tags>
+        <tag>React Native</tag>
       </tags>
   </entry>
   <entry>
@@ -1259,65 +1258,27 @@
       </tags>
   </entry>
   <entry>
-    <title>带参数的文件上传</title>
-    <url>/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</url>
+    <title>vue中的插槽slot</title>
+    <url>/2025/07/15/vue%E4%B8%AD%E6%8F%92%E6%A7%BDslot/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
 <span id="more"></span>
-<h2 id="Element-plus-组件upload-关闭自动上传">Element plus 组件upload 关闭自动上传</h2>
-<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-1.png" class="" title="带参数的文件上传">
-<h2 id="成功后的回调">成功后的回调</h2>
-<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-2.png" class="" title="带参数的文件上传">
-<h2 id="获取实际文件对象">获取实际文件对象</h2>
-<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-3.png" class="" title="带参数的文件上传">
-<h2 id="上传方法">上传方法</h2>
-<h3 id="使用FormData-对象">使用FormData()对象</h3>
-<p><strong>FormData</strong> 接口提供了一种表示表单数据的键值对 <code>key/value</code> 的构造方式，并且可以轻松的将数据通过<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/send"><code>XMLHttpRequest.send()</code></a> 方法发送出去，本接口和此方法都相当简单直接。如果送出时的编码类型被设为 <code>&quot;multipart/form-data&quot;</code>，它会使用和表单一样的格式。</p>
-<h3 id="例子">例子</h3>
-<p>下面的代码将创建一个空的 FormData 对象：</p>
-<p>jsCopy to Clipboard</p>
-<figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> formData = <span class="keyword">new</span> FormData(); <span class="comment">// 当前为空</span></span><br></pre></td></tr></table></figure>
-<p>你可以使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FormData/append"><code>FormData.append</code></a>来添加键/值对到表单里面；</p>
-<p>jsCopy to Clipboard</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">formData.<span class="built_in">append</span>(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;Chris&quot;</span>);</span><br></pre></td></tr></table></figure>
-<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-4.png" class="" title="带参数的文件上传">]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>创建RN项目</title>
-    <url>/2024/10/13/%E5%88%9B%E5%BB%BARN%E9%A1%B9%E7%9B%AE/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1>Android 开发环境</h1>
-<ul class="lvl-0">
-<li class="lvl-2">配置 Android 环境，请跟着<a href="https://reactnative.cn/docs/0.74/getting-started">文档</a>(0.74版本)进行</li>
-</ul>
-<span id="more"></span>
-<h1>创建新项目</h1>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>如果你之前全局安装过旧的react-native-cli命令行工具，请使用<code>npm uninstall -g react-native-cli</code>卸载掉它以避免一些冲突：<code>npm uninstall -g react-native-cli @react-native-community/cli</code></p>
-</li>
-<li class="lvl-2">
-<p>输入以下命令创建新项目<code>npx react-native@latest init [项目名]</code></p>
-</li>
-</ul>
-<h1>创建项目指定版本号：[可选参数] 指定版本或项目模板</h1>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>你可以使用–version参数（注意是两个杠）创建指定版本的项目。注意版本号必须精确到两个小数点：<code>npx react-native@X.XX.X init AwesomeProject --version X.XX.X</code></p>
-</li>
-</ul>
+<h1>vue中的插槽slot</h1>
+<p>为了让组件具备更强的通用性</p>
+<h2 id="子组件">子组件</h2>
+<p>声明插槽的Comp组件</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">slot</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span> //默认插槽，调用default()，将返回的虚拟节点放到这里</span><br><span class="line">    <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">&#x27;slot1&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span>  //具名插槽，调用slot1()，将返回的虚拟节点放到这里</span><br><span class="line">    <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">&#x27;slot2&#x27;</span> <span class="attr">msg</span>=<span class="string">&#x27;hello world&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span>  //作用域插槽，调用slot2(&#123;msg:&#x27;hello world&#x27;&#125;)，将返回的虚拟节点放到这里</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="父组件">父组件</h2>
+<p>使用具有插槽的子组件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Comp&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">        default slot</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">    &lt;template #slot1&gt;</span><br><span class="line">      &lt;p&gt;</span><br><span class="line">        slot1</span><br><span class="line">      &lt;/p&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">    &lt;template #slot2=&#x27;slotData&#x27;&gt;</span><br><span class="line">      &lt;p&gt;</span><br><span class="line">        slot2:&#123;&#123;slotData.msg&#125;&#125;</span><br><span class="line">      &lt;/p&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">&lt;/Comp&gt;</span><br></pre></td></tr></table></figure>
+<p>插槽向组件Comp传递一个对象，对象里面的属性名就是插槽名</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">default</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;,</span><br><span class="line">    <span class="attr">slot1</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;,</span><br><span class="line">    <span class="attr">slot2</span>:<span class="keyword">function</span>(<span class="params">slotData</span>)&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用这些函数就会返回对应的虚拟节点</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>前端</category>
-        <category>APP</category>
-        <category>React Native</category>
+        <category>vue中的插槽slot</category>
       </categories>
       <tags>
-        <tag>React Native</tag>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -1391,6 +1352,34 @@
         <category>前端</category>
         <category>本地mock的使用</category>
       </categories>
+  </entry>
+  <entry>
+    <title>Vue首屏加载优化</title>
+    <url>/2025/07/08/vue%E9%A6%96%E5%B1%8F%E5%8A%A0%E8%BD%BD%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
+<span id="more"></span>
+<h2 id="怎样在代码中将首屏加载时间计算出来">怎样在代码中将首屏加载时间计算出来</h2>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 首屏时间的计算</span></span><br><span class="line">    <span class="comment">// console.log(performance.timing.domComplete - performance.timing.navigationStart, &#x27;times&#x27;)//已弃用</span></span><br><span class="line">    </span><br><span class="line">   <span class="keyword">const</span> observer = <span class="keyword">new</span> <span class="title class_">PerformanceObserver</span>(<span class="function">(<span class="params">list</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(list.<span class="title function_">getEntries</span>())</span><br><span class="line">    &#125;)</span><br><span class="line">    observer.<span class="title function_">observe</span>(&#123; <span class="attr">entryTypes</span>: [<span class="string">&#x27;navigation&#x27;</span>] &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="vue中的异步组件">vue中的异步组件</h2>
+<p>在vue框架中怎么实现当用到这个组件时才会加载</p>
+<p>异步组件（在打包的时候单独形成分包）</p>
+<h3 id="正常普通导入组件">正常普通导入组件</h3>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> cs <span class="keyword">from</span> <span class="string">&quot;./cs.vue&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="异步组件">异步组件</h3>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 异步组件</span></span><br><span class="line"><span class="keyword">const</span> cs = <span class="title function_">defineAsyncComponent</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">import</span>(<span class="string">&#x27;./cs.vue&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="首页图片">首页图片</h2>
+<p>接口返回的图片为网络图片，在页面加载的时候不会占用加载时间</p>
+<h2 id="优化白屏显示-骨架屏">优化白屏显示-骨架屏</h2>
+<p>在vue页面没加载出来之前显示骨架屏</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 35%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 50%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 60%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 80%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width: 100%;height: 20px;background-color: #999;margin-bottom: 10px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>首屏加载优化</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
   </entry>
   <entry>
     <title>动画</title>
@@ -1512,6 +1501,35 @@
       </categories>
       <tags>
         <tag>面经</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>带参数的文件上传</title>
+    <url>/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr>
+<span id="more"></span>
+<h2 id="Element-plus-组件upload-关闭自动上传">Element plus 组件upload 关闭自动上传</h2>
+<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-1.png" class="" title="带参数的文件上传">
+<h2 id="成功后的回调">成功后的回调</h2>
+<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-2.png" class="" title="带参数的文件上传">
+<h2 id="获取实际文件对象">获取实际文件对象</h2>
+<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-3.png" class="" title="带参数的文件上传">
+<h2 id="上传方法">上传方法</h2>
+<h3 id="使用FormData-对象">使用FormData()对象</h3>
+<p><strong>FormData</strong> 接口提供了一种表示表单数据的键值对 <code>key/value</code> 的构造方式，并且可以轻松的将数据通过<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/send"><code>XMLHttpRequest.send()</code></a> 方法发送出去，本接口和此方法都相当简单直接。如果送出时的编码类型被设为 <code>&quot;multipart/form-data&quot;</code>，它会使用和表单一样的格式。</p>
+<h3 id="例子">例子</h3>
+<p>下面的代码将创建一个空的 FormData 对象：</p>
+<p>jsCopy to Clipboard</p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> formData = <span class="keyword">new</span> FormData(); <span class="comment">// 当前为空</span></span><br></pre></td></tr></table></figure>
+<p>你可以使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FormData/append"><code>FormData.append</code></a>来添加键/值对到表单里面；</p>
+<p>jsCopy to Clipboard</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">formData.<span class="built_in">append</span>(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;Chris&quot;</span>);</span><br></pre></td></tr></table></figure>
+<img data-src="/2024/10/26/%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/image-4.png" class="" title="带参数的文件上传">]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
       </tags>
   </entry>
 </search>
